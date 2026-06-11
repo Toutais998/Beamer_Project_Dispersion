@@ -1,0 +1,148 @@
+================================================================================
+SOURCE: Ansys Optics (Zemax) Knowledge Base
+URL: https://optics.ansys.com/hc/zh-cn/articles/42661830811795
+TITLE: 光学系统设计中如何使用玻璃替换方法来优化玻璃
+ENGLISH: How to use glass substitution to optimize the glasses in your optical design
+AUTHOR: Nam-Hyong Kim
+DATE SAVED: 2026-06-11
+================================================================================
+
+================================================================================
+SECTION HEADERS
+================================================================================
+  Section 1: 简介 — 为什么需要玻璃替换方法
+  Section 2: 传统方法：Conrady d-D 与模型玻璃
+  Section 3: 玻璃替换方法（核心）
+  Section 4: 实际操作示例（Doublet.zmx）
+  Section 5: 使用玻璃替换模板进行进一步筛选
+  Section 6: 玻璃目录与状态分类
+
+================================================================================
+IMAGE REFERENCES
+================================================================================
+  Figure 1 (Picture1zh-cn.png): LDE 中设置玻璃为 Substitute 求解类型
+  Figure 2 (Picture2zh-cn.png): 构建 RMS 波前默认评价函数
+  Figure 3 (Picture3zh-cn.png): 使用 Hammer 优化（需启用 Auto Update）
+  Figure 4 (Picture4zh-cn.png): OPD 优化前后对比
+  Figure 5 (Picture5zh-cn.png): 限制玻璃目录（如只使用 Hoya 目录）
+  Figure 6 (Picture6zh-cn.png): 限制替换到特定目录（Hoya）后的 LDE
+  Figure 7 (Picture7zh-cn.png): 打开玻璃替换模板
+  Figure 8 (Picture8zh-cn.png): 玻璃替换模板界面（Status, Relative Cost, 耐候性）
+  Figure 9 (Picture9zh-cn.png): 玻璃目录中 Status 字段说明
+  Figure 10 (Picture10zh-cn.png): 玻璃目录界面
+  Figure 11 (Picture11zh-cn.png): ZPL 宏实现玻璃替换
+  Figure 12 (Picture12zh-cn.png): ZOS-API 玻璃替换
+
+  All images saved locally in: Figure/玻璃替换/
+
+================================================================================
+TEXT CONTENT (Article Body)
+================================================================================
+
+[1. 简介]
+在选择最优玻璃材料时，Conrady d-D 以及模型玻璃等传统的玻璃选择方法提供的帮助有限。
+本文介绍了如何使用玻璃替换方法进行直接玻璃优化，以及在考虑玻璃的可用性、成本及
+耐候性等因素时，如何进一步严格挑选玻璃。
+
+玻璃替换方法是 OpticStudio 中选择玻璃最有效的方法。玻璃替换方法可直接修改玻璃类型，
+然后重新优化系统，以确定新的玻璃是否是更好的设计方案。
+
+当玻璃被设置为"Substitute"求解时，OpticStudio 将自动完成此过程。如果一种玻璃被
+标记为可替换 (Substitute) 玻璃，则全局优化算法（Hammer 和 Global Search）将在
+优化过程中自动执行此类玻璃的迭代替换。这样可使 OpticStudio 在不借助于理想化玻璃
+色散的情况下优化系统。
+
+[2. 传统方法的局限]
+OpticStudio 中处理玻璃优化的方式与处理其他数据的方式有些不同。直接优化玻璃选择
+是一件很困难且不可预测的过程，因为玻璃的属性是\不连续的\。
+
+选择玻璃的传统方法是使用模型玻璃：
+- 模型玻璃方法使用数值参数将玻璃色散理想化，然后优化这些参数
+- 在可见光区域，可使用 Conrady d-D 方法进一步简化——仅对少数不同波长的光线进行
+  追迹、缩放，然后使用优化方法使其差异变为零值
+- 将折射率、阿贝数和部分色散偏离作为优化变量
+
+模型玻璃方法的\严重缺陷\：
+1. 获得良好的设计方案后，必须将模型玻璃转换为真实玻璃
+2. 用新选择的玻璃重新优化后，性能可能比模型玻璃方案更差
+3. 使用真实玻璃的最佳设计可能与模型玻璃找到的最优设计有不同的\结构形式\
+4. 整个过程需要两次优化，且结果不可预测
+
+[3. 玻璃替换方法 — 核心流程]
+OpticStudio 的玻璃替换方法使用来自玻璃目录中的\真实玻璃\替换 LDE 中的玻璃，
+避免了模型玻璃→真实玻璃的转换步骤。
+
+核心流程：
+Step 1: 在 LDE 中，将目标玻璃的 Solve 类型设置为 "Substitute"（显示字母"S"）
+Step 2: 构建 RMS 波前 (Wavefront) 默认评价函数
+Step 3: 使用\全局优化算法\（Hammer 或 Global Search）运行优化
+        — 重要：必须使用全局优化，因为玻璃替换导致评价函数不连续跳跃
+Step 4: 启用 "Auto Update" 以实时观察替代过程
+Step 5: OpticStudio 自动迭代替换玻璃目录中的真实玻璃
+
+\关键点\：
+- 在 Hammer 优化过程中，LDE 中的玻璃会动态变化
+- OPD (光程差) 会随着玻璃替换而改善
+- 可以从 System Explorer → Materials Catalogs 限制使用的玻璃目录
+- 可在 Solve 设置中限制替换到特定的单个目录（如仅 "Hoya"）
+
+[4. 实际操作示例]
+以 OpticStudio 自带的 Doublet.zmx 为例（位于 {Zemax}/Samples/Sequential/Objectives/）：
+1. 打开示例文件，将两片玻璃的 solve 类型设为 "Substitute"
+2. 构建 RMS Wavefront 默认评价函数
+3. 运行 Hammer 优化（Optimize → Hammer Current）
+4. 观察 OPD 从初始值逐步改善
+5. 可在 System Explorer → Materials Catalogs 中限制玻璃目录
+
+示例结果：使用 Schott 目录的玻璃替换后，OPD 从 ~0.5 改善到显著更低的值。
+
+[5. 玻璃替换模板 (Glass Substitution Template) — 进一步筛选]
+位置：Libraries → Glass Substitution Template
+
+勾选 "Use Glass Substitution Template" 后，可进一步过滤玻璃：
+- Status（状态）:
+  * Preferred（首选）— 推荐！最低成本、最稳定、最常用
+  * Standard（标准）
+  * Special（特殊）
+  * Obsolete（废弃）
+  * Melt（定制熔炼）
+
+- Relative Cost（相对成本）：
+  以 N-BK7 为基准的相对成本筛选
+
+- 耐候性/化学稳定性筛选：
+  * Climate Resistance（耐候性）
+  * Stain Resistance（耐污性）
+  * Acid Resistance（耐酸性）
+  * Alkali Resistance（耐碱性）
+  * Phosphate Resistance（耐磷酸盐性）
+
+\最佳实践\：始终勾选 "Preferred" 状态——这些玻璃成本最低、化学稳定性最好、
+供应最充足。
+
+[6. 玻璃目录与状态字段]
+在 Libraries → Materials Catalog 中可查看完整的玻璃目录数据。
+Status 字段定义：
+- Preferred（首选）：推荐使用
+- Standard（标准）：可用但非首选
+- Special（特殊）：特殊用途，需要确认可用性
+- Obsolete（废弃）：已被制造商淘汰，不推荐新设计使用
+- Melt（定制熔炼）：需特殊订购，交付周期长
+
+[7. 自动化：ZPL 与 ZOS-API]
+除了交互式操作，玻璃替换也可以通过 ZPL 宏和 ZOS-API 实现自动化：
+- ZPL：可编写宏脚本批量执行玻璃替换
+- ZOS-API：可在 MATLAB、Python 等外部程序中控制玻璃替换过程
+这在大批量设计或自动化工作流中特别有用。
+
+================================================================================
+PRACTICAL TAKEAWAYS
+================================================================================
+1. 玻璃替换是 OpticStudio 中最有效的玻璃选择方法——使用真实玻璃直接替换
+2. 必须使用全局优化（Hammer/Global Search），不能用 Local Optimization
+3. 始终使用 "Preferred" 状态的玻璃——成本最低、最稳定、最易获取
+4. 使用玻璃替换模板按成本、耐候性进一步筛选
+5. 可通过限制目录（如仅 Schott 或仅 Hoya）来匹配供应链
+6. 传统模型玻璃方法需要"理想→真实"的转换，往往导致性能损失
+7. Conrady d-D 方法仅适用于可见光区域的简化
+8. 可自动化：ZPL 宏 + ZOS-API 支持批量玻璃替换

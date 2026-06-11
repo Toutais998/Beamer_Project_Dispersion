@@ -1,0 +1,19 @@
+\beamer@sectionintoc {1}{光学像差理论基础}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{像差概念与波像差理论}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{点扩散函数与成像模型}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{横向像差图与三阶像差理论}{13}{0}{1}
+\beamer@sectionintoc {2}{像差类型分析与像质评估}{21}{0}{2}
+\beamer@subsectionintoc {2}{1}{单色像差与矫正方法}{22}{0}{2}
+\beamer@subsectionintoc {2}{2}{色差、渐晕与衍射极限}{32}{0}{2}
+\beamer@subsectionintoc {2}{3}{像差分析实战总结}{39}{0}{2}
+\beamer@sectionintoc {3}{Zemax光学设计实践}{42}{0}{3}
+\beamer@subsectionintoc {3}{1}{设计指标、操作数与流程}{43}{0}{3}
+\beamer@sectionintoc {4}{像差工程实践}{48}{0}{4}
+\beamer@subsectionintoc {4}{1}{像差的本质与分类}{49}{0}{4}
+\beamer@subsectionintoc {4}{2}{球差与像散:孔径与视场的角力}{51}{0}{4}
+\beamer@subsectionintoc {4}{3}{场曲与色差:像面与波长的控制}{55}{0}{4}
+\beamer@subsectionintoc {4}{4}{工程实践总结}{59}{0}{4}
+\beamer@sectionintoc {5}{Zemax 制造工程实践}{62}{0}{5}
+\beamer@subsectionintoc {5}{1}{Zemax 公差分析：从设计到可制造}{63}{0}{5}
+\beamer@subsectionintoc {5}{2}{玻璃替换：材料优化策略}{68}{0}{5}
+\beamer@subsectionintoc {5}{3}{从设计到制造：集成工作流}{75}{0}{5}

@@ -1,0 +1,197 @@
+% \documentclass[10pt,aspectratio=43,mathserif,table]{beamer} %这个是4：3的
+\documentclass[9pt,aspectratio=169,mathserif,table]{beamer}  %这个是16：9的
+%设置为 Beamer 文档类型，设置字体为 10pt，长宽比为16:9，数学字体为 serif 风格
+
+\usepackage{graphicx}
+\usepackage{animate}
+\usepackage{hyperref}
+
+%导入一些用到的宏包
+\usepackage{amsmath,bm,amsfonts,amssymb,enumerate,epsfig,bbm,calc,color,ifthen,capt-of,multimedia,hyperref}
+\usepackage{xeCJK} %导入中文包
+\setCJKmainfont{SimHei} %字体采用黑体
+\setCJKsansfont{Microsoft YaHei}
+\setCJKmonofont{SimHei}
+% 设置英文字体
+\setmainfont{Times New Roman}
+\setsansfont{Microsoft YaHei}
+
+\usetheme{Berlin} %主题
+\usecolortheme{sustech} %主题颜色
+
+% --- 自定义强调色：蓝色加粗 ---
+\setbeamercolor{alerted text}{fg=blue}
+
+% --- 为图片和表格开启编号（beamer 默认关闭） ---
+\setbeamertemplate{caption}[numbered]
+
+% --- 公式/图/表编号带上节号（如 1.1, 1.2, 2.1）---
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{fancybox}
+\usepackage{xcolor}
+\usepackage{times}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{multirow}
+% Chapter 4 使用文本图表替代 tikzpicture/svg，无需额外宏包
+
+\newcommand{\Console}{Console}
+\lstset{ %
+	backgroundcolor=\color{white},
+	basicstyle=\footnotesize\rmfamily,
+	columns=fullflexible,
+	breaklines=true,
+	captionpos=b,
+	tabsize=4,
+	commentstyle=\color{mygreen},
+	escapeinside={\%*}{*)},
+	keywordstyle=\color{blue},
+	stringstyle=\color{mymauve}\ttfamily,
+	numbers=left,
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	language=c
+}
+
+\setsansfont{Microsoft YaHei}
+\setmainfont{Times New Roman}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{mygray}{gray}{.9}
+\definecolor{mypink}{rgb}{.99,.91,.95}
+\definecolor{mycyan}{cmyk}{.3,0,0,0}
+
+%题目，作者，学校，日期
+\title{光学像差与横向像差图分析}
+\subtitle{\fontsize{9pt}{14pt}\textbf{几何光学中的像差理论与横向像差图解读方法}}
+\author{汇报人: 胡子睿}
+\institute{\fontsize{10pt}{16pt}Institute of Physics, CAS}
+\date{\today}
+
+%学校Logo（如缺少logo图片可注释掉以下两行）
+%\pgfdeclareimage[height=0.4cm]{sustech-logo}{Figure/中科院物理所.png}
+%\logo{\pgfuseimage{sustech-logo}\hspace*{0.2cm}}
+
+% --- 每节幻灯片自动编号 + 英文副标题 ---
+\makeatletter
+\newcounter{secframenumber}[section]
+
+\newcommand{\englishtitle}[1]{\def\@englishtitle{#1}}
+\let\@englishtitle\@empty
+
+% 临时屏蔽当前帧编号（目录页、Thank you 页使用）
+\newif\ifnoslidenumber
+\newcommand{\nonumberframe}{\global\noslidenumbertrue}
+
+% 编号前缀宽度（确保中英标题对齐）
+\newlength{\numberwidth}
+\setlength{\numberwidth}{2.5em}
+
+\setbeamertemplate{frametitle}
+{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \begin{beamercolorbox}[sep=0.18cm,left,wd=\paperwidth]{frametitle}
+    \usebeamerfont{frametitle}%
+    \ifnoslidenumber
+      \ifnum\value{section}>0\relax
+        \makebox[\numberwidth][r]{}\hspace{0.4em}\insertframetitle\par
+      \else
+        \insertframetitle\par
+      \fi
+      \global\noslidenumberfalse
+    \else
+      \stepcounter{secframenumber}%
+      \ifnum\value{section}>0%
+        \makebox[\numberwidth][r]{\thesection.\arabic{secframenumber}}\hspace{0.4em}\insertframetitle\par%
+      \else%
+        \insertframetitle\par%
+      \fi%
+    \fi
+    \ifx\@englishtitle\@empty\else%
+      \vskip1pt\relax
+      {\usebeamerfont{framesubtitle}\itshape\makebox[\numberwidth][r]{}\hspace{0.4em}\@englishtitle\par}%
+      \global\let\@englishtitle\@empty%
+    \fi%
+  \end{beamercolorbox}%
+}
+\makeatother
+
+% --- 导航栏：仅显示可点击的 section 标题 ---
+\setbeamertemplate{headline}
+{%
+  \begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}{section in head/foot}
+    \vskip2pt\insertsectionnavigationhorizontal{\paperwidth}{}{\hskip0pt plus1filll}\vskip2pt
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+% --- 页脚：作者（左） | 标题 — 26/40（右）---
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle\nobreak\hfill\nobreak%
+      \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{1em}%
+      \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}%
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\AtBeginSection[]
+{
+	\nonumberframe
+	\begin{frame}
+	\frametitle{\textbf{目录}}
+	\tableofcontents[currentsection]
+	\end{frame}
+}
+% 注意：以下行已删除 —— \beamerdefaultoverlayspecification{<+->}
+% 所有列表项将在单页内同时显示，不再逐条分页
+
+% -----------------------------------------------------------------------------
+\begin{document}
+% -----------------------------------------------------------------------------
+
+\frame{\titlepage}
+
+% -----------------------------------------------------------------------------
+
+\input{Chapter/01.Chapter1}
+
+\input{Chapter/02.Chapter2}
+
+\input{Chapter/03.Chapter3}
+
+\input{Chapter/04.Chapter4}
+
+\input{Chapter/05.Chapter5}
+
+% -----------------------------------------------------------------------------
+
+\nonumberframe
+\begin{frame}{Thank you}
+\begin{center}
+\begin{minipage}{1\textwidth}
+    \setbeamercolor{mybox}{fg=white, bg=black!50!blue}
+ \begin{beamercolorbox}[wd=0.70\textwidth, rounded=true, shadow=true]{mybox}
+\LARGE \centering Thank you for listening!
+\end{beamercolorbox}
+ \end{minipage}
+\end{center}
+\end{frame}
+
+% -----------------------------------------------------------------------------
+\end{document}  %文档结束

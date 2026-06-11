@@ -1,0 +1,185 @@
+================================================================================
+SOURCE: Edmund Optics Knowledge Center
+URL: https://www.edmundoptics.com/knowledge-center/application-notes/imaging/how-aberrations-affect-machine-vision-lenses/
+TITLE: Aberrations | Edmund Optics
+SECTION: Section 3.5 of the Imaging Resource Guide
+AUTHORS: Gregory Hollows, Nicholas James
+DATE SAVED: 2026-06-11
+================================================================================
+PAGE TITLE
+================================================================================
+  Title: Aberrations | Edmund Optics
+  Subtitle: How Aberrations Affect Machine Vision Lenses
+
+================================================================================
+SECTION HEADERS
+================================================================================
+  Section 1: Common Aberration Types
+  Section 2: Spherical Aberration
+  Section 3: Astigmatic Aberration
+  Section 4: Field Curvature
+  Section 5: Chromatic Aberration
+  Section 6: Chromatic Focal Shift
+
+================================================================================
+IMAGE REFERENCES
+================================================================================
+  Figure 1: aberrations-1v2.svg | Spherical aberration - rays at edges focus more quickly
+  Figure 2a: abberations-2a.webp | Field point WITHOUT astigmatism (bars equally focused)
+  Figure 2b: abberations-2b.webp | Field point WITH astigmatism (one direction blurred)
+  Figure 3: aberrations-3v3.svg | Off-axis asymmetry - tangential vs sagittal focus differ
+  Figure 4: aberrations-4v2.svg | Field curvature - non-planar surface of best focus
+  Figure 5: aberrations-5v2.svg | Singlet vs Achromatic Doublet spot comparison
+  Figure 6: aberrations-6v2.svg | Chromatic focal shift curve - ACHROMATIC lens (2 wavelengths)
+  Figure 7: aberrations-7v2.svg | Chromatic focal shift curve - APOCHROMATIC lens (3 wavelengths)
+
+  All images saved locally in: Figure/Edmund/
+
+================================================================================
+TEXT CONTENT (Article Body)
+================================================================================
+
+[INTRODUCTION]
+Optical aberrations are performance deviations from a perfect, mathematical model. It is
+important to note that they are not caused by any manufacturing flaws — physical, optical,
+nor mechanical. Rather, they are inherent in lens design and are due to diffraction,
+refraction, and the wave nature of light. As such, there is no "perfect" lens. Effects from
+various aberrations in a lens design are ultimately seen in performance and affect modulation
+transfer function (MTF), spot size, telecentricity, depth of field (DOF), and others.
+Aberration theory is an abstract and complex subject. However, understanding how aberrations
+affect performance is important for success with an application.
+
+[1. COMMON ABERRATION TYPES]
+While aberration theory is a vast subject, basic knowledge of a few fundamental concepts can
+ease understanding: spherical aberration, astigmatic aberrations, field curvature, and
+chromatic aberration.
+
+[2. SPHERICAL ABERRATION]
+Spherical aberration refers to rays focusing at different distances depending on where they
+interact with the lens and is a function of aperture size. To describe spherical aberration,
+the incident angle of light must be known. This angle occurs where light rays strike the
+curved surface of a lens and is the angle between the ray and the surface. The steeper the
+incident angle, the more the light will be refracted (Figure 1). Figure 1 shows that as the
+parallel rays in object space collide with the lens, the incident angle increases the farther
+up they hit on the lens's surface.
+
+Key points:
+- Image quality from lenses with large apertures (small f/#s) are more likely to suffer from
+  spherical aberration, because of this larger angle of incidence.
+- Lenses that suffer from spherical aberration can be improved by increasing the f/# by
+  closing the iris, but there is a limit to how much this improves image quality.
+- Closing the iris too much causes diffraction to limit performance sooner (see diffraction
+  limit in The Airy Disk and Diffraction Limit).
+- Optical designs that include high index glass or additional elements are used to correct
+  spherical aberration in a fast (small f/#) lens; these designs reduce the amount of
+  refraction at each surface and, with it, the amount of spherical aberration.
+- However, this increases the size, weight, and cost of the lens assembly.
+
+[3. ASTIGMATIC ABERRATION]
+Astigmatism is a function of field angles. To summarize, astigmatic aberration occurs when
+a lens must perform over a wide field, but the performance in the direction of the field is
+reduced compared to the performance orthogonal to the field (either sagittal or tangential,
+respectfully). If one looks at a series of bars that are half horizontal (tangential) and
+half vertical (sagittal), the bars in one direction will be in focus, but the bars in the
+other direction will be out of focus (shown in Figure 2a and 2b). This is caused by the
+fact that rays that are away from the center of the object, do not pass through rotationally
+symmetric surfaces like the on-axis rays do (Figure 3).
+
+Correction strategies:
+- Lens designs must be symmetric about the aperture and field rays must have low incident
+  angles.
+- Keeping a design symmetric leads to forms that are like a double gauss lens.
+- Symmetric designs prevent the use of telephoto or reverse telephoto designs, which can
+  cause long focal length designs to be large and short focal length designs to have small
+  back focal lengths.
+- Reducing the angles of incidence, much like for spherical aberration, requires higher
+  index glasses and additional elements, leading to an increase in lens size, weight, and cost.
+
+NOTE: The simplified definition used here intentionally combines the effects of astigmatism
+and coma for ease of understanding.
+
+[4. FIELD CURVATURE]
+Field curvature (Figure 4) is the aberration that describes the amount in which the image
+plane curves due to the curvature in the lens design. This aberration is caused by the sum
+of the focal lengths of the lens elements in the system (multiplied by the refractive indices)
+not equaling zero. If the sum is positive (typical for an imaging lens), the image plane will
+have a concave curvature.
+
+Key points:
+- Since curving the image plane is almost never an option for a machine vision lens, the
+  optical designer must insert negative powered corrective elements to reduce this sum
+  (Petzval sum correction).
+- This makes lenses longer and forces a negative lens to be close to the image plane,
+  reducing the lens's back focal length.
+- Field curvature is fundamentally a Petzval sum problem: Σ(φᵢ/nᵢ) → 0
+
+[5. CHROMATIC ABERRATION]
+Light of different wavelengths focuses at different points since the refractive index of
+glass varies based on the wavelength of light. Lenses using longer wavelengths of light have
+relatively longer focal lengths than lenses using shorter wavelengths.
+
+Correction approach:
+- Because the dispersion of a glass determines the refractive power of the glass at different
+  wavelengths, chromatic aberration can be removed by designing an imaging lens that contains
+  both positive and negative lenses made using glasses with different dispersions.
+- This is shown in Figure 5, which compares a singlet to an achromatic doublet lens.
+- A downside: increase in the number of lens elements used.
+- To reduce the aberration, lower index lenses (having higher Abbe numbers) must be used.
+- Higher index lenses are needed to correct spherical and astigmatic aberrations; if
+  corrections for spherical, astigmatic, AND chromatic aberrations must be done, additional
+  lens elements are needed.
+- The most desirable glasses for color correction often have properties that make them more
+  expensive and difficult to manufacture.
+- Minimizing chromatic aberration by using monochromatic light has considerable savings in
+  cost and complexity.
+
+[6. CHROMATIC FOCAL SHIFT]
+A type of chromatic aberration, chromatic focal shift describes how different wavelengths
+focus along different longitudinal positions (along the optical axis). The goal of most
+imaging lens designs is to have all desired wavelengths focus on the same plane (where the
+sensor is located). It is physically impossible to get a singular focus plane over a wide
+spectral range. However, it is possible to come close. If the wavelengths are focused closer
+to the same plane, fewer issues will be observed in the image.
+
+ACHROMATIC LENS (Figure 6):
+- Two wavelengths are focused on the same plane.
+- The chromatic focal shift curve shows wavelength (y-axis, short to long) vs. distance from
+  sensor plane (x-axis).
+- The curve intersects the sensor plane line at only two points/wavelengths — confirming
+  achromatic design.
+- Example using 470nm (blue), 520nm (green), 630nm (red) LEDs: green focuses left of sensor,
+  red and blue focus right — this is the most balanced position for white light.
+- If only one wavelength is used, performance improves since balancing effects for other
+  wavelengths are eliminated.
+- Most lens designs are achromatic, but for very small pixels, this can be an issue.
+
+APOCHROMATIC LENS (Figure 7):
+- An apochromatic lens is designed to focus THREE wavelengths on the same plane.
+- Far more complicated design, allows for superior balancing across the wavelength spectrum.
+- All three LED colors can be brought to focus on the same sensor plane — superior image quality.
+- Apochromatic lens designs have high performance, but low versatility and work well over a
+  smaller range of magnifications and working distances.
+- High-cost designs due to additional elements made of expensive materials.
+- Many high-end, high-magnification objectives (such as microscope objectives) are apochromatic.
+
+================================================================================
+PRACTICAL TAKEAWAYS (Machine Vision Context)
+================================================================================
+1. Spherical aberration worsens with large aperture (small f/#). Close iris to improve, but
+   diffraction limits eventually take over.
+2. Astigmatism is a field-dependent aberration — symmetric lens designs (double Gauss) help.
+3. Field curvature is a Petzval sum problem — requires negative power elements near image plane.
+4. Chromatic correction requires glass pairs with different dispersions (high and low Abbe #).
+5. Achromatic = 2 wavelengths corrected; Apochromatic = 3 wavelengths corrected.
+6. Monochromatic illumination saves cost and complexity by avoiding chromatic correction needs.
+7. All corrections add size, weight, cost — engineering tradeoffs are inevitable.
+8. No "perfect" lens exists — aberrations are inherent to optical design, not manufacturing flaws.
+
+================================================================================
+RELATED TOPICS (from Edmund Optics Imaging Resource Guide)
+================================================================================
+- Depth of Field and Depth of Focus
+- The Airy Disk and Diffraction Limit
+- Telecentric Design Topics
+- Tips for Designing Manufacturable Lenses and Assemblies
+- Design vs. Manufacturing

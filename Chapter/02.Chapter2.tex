@@ -1,641 +1,392 @@
-\section{像差类型分析与像质评估}
+\section{Zemax 仿真主线：从诊断到可制造}
 
-\subsection{单色像差与矫正方法}
+\subsection{把理论变量映射到 Zemax 工具}
 
-\englishtitle{Characteristics of Spherical Aberration}
-\begin{frame}{球差的特征}
+\englishtitle{OpticStudio as a Closed Loop}
+\begin{frame}{Zemax 中的完整闭环}
     \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.95\textwidth]{Figure/图片23.png}
-                \caption{球差引起的横向像差图——三次曲线}
-                \label{fig:spherical}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.55\textwidth}
-            \textbf{球差(Spherical Aberration)：}
-            \bigbreak
-            轴上光束中出现的\alert{唯一单色像差}。与孔径三次方成正比，横向像差图表现为\alert{三次曲线}(奇函数)。可包含3阶、5阶、7阶等奇函数分量。
-
-            \bigbreak
-            \textbf{混合像差：}实际系统中球差很少单独出现，通常与离焦分量和高阶球差混合。
-
-            \bigbreak
-            \alert{需要将各成分分解分析，才能有效优化镜头性能。}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Correction Methods for Spherical Aberration}
-\begin{frame}{球差矫正方法}
-    \begin{block}{球差的定义}
-        轴上光线与边缘光线在光轴上焦点之间的\alert{轴向距离}即为球差。
-    \end{block}
-
-    \textbf{主要矫正策略：}
-    \begin{enumerate}
-        \item \alert{分摊光焦度}：将单个透镜的光焦度分配给多个透镜，减小每个面的曲率
-        \item \alert{透镜拆分}：用大曲率半径的多个透镜替代小曲率半径的单一透镜
-        \item \alert{胶合透镜}：利用正负透镜的球差符号相反进行相互抵消
-        \item \alert{非球面透镜}：通过改变面形消除球差(最理想方式)
-    \end{enumerate}
-
-    \alert{核心思路：}球差源于球面折射面的几何形状，通过改变面形或光焦度分配来减小不同孔径区域的折射角度差异。
-\end{frame}
-
-\englishtitle{Characteristics and Types of Coma}
-\begin{frame}{彗差的特征与类型}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{.55\textwidth}
-            \begin{block}{\footnotesize 光路图与横向像差图对比}
-                \centering
-                \begin{minipage}[t]{.49\linewidth}
-                    \centering
-                    {\scriptsize \alert{外向彗差}}
-                    \par\vspace{2pt}
-                    \includegraphics[width=\linewidth,height=.34\textheight,keepaspectratio]{Figure/图片8.png}
-                    \par\vspace{2pt}
-                    {\scriptsize 下凸二次曲线}
-                    \label{fig:outward_coma}
-                \end{minipage}
-                \hfill
-                \begin{minipage}[t]{.49\linewidth}
-                    \centering
-                    {\scriptsize \alert{内向彗差}}
-                    \par\vspace{2pt}
-                    \includegraphics[width=\linewidth,height=.34\textheight,keepaspectratio]{Figure/图片11.png}
-                    \par\vspace{2pt}
-                    {\scriptsize 上凸二次曲线}
-                    \label{fig:inward_coma}
-                \end{minipage}
-            \end{block}
-        \end{column}
-        \hfill
-        \begin{column}{.43\textwidth}
-            \begin{block}{\footnotesize 彗差的定义}
-                \small
-                横向像差图关于入射光瞳坐标呈\alert{二次函数关系}的像差。与 $h^2$ 成正比(偶函数)。
+        \begin{column}{.50\textwidth}
+            \begin{block}{工作流不是“打开很多分析窗口”}
+                更稳妥的流程是：先用一阶规格把系统放对，再用 Ray Fan 和 OPD 找主要像差，用 Merit Function 改变量，最后用 MTF/PSF 和公差分析确认能否交付。
             \end{block}
 
-            \vspace{2pt}
-            \small
-            \textbf{两种类型及判断：}
-            \begin{enumerate}
-                \setlength{\itemsep}{3pt}
-                \item \alert{外向彗差}：\alert{下凸}二次曲线
-                \begin{itemize}
-                    \setlength{\itemsep}{-1pt}
-                    \item 上侧光线穿过主光线后落在正侧
-                \end{itemize}
-                \item \alert{内向彗差}：\alert{上凸}二次曲线
-                \begin{itemize}
-                    \setlength{\itemsep}{-1pt}
-                    \item 上侧光线与主光线交叉后落在负侧
-                \end{itemize}
-            \end{enumerate}
+            \begin{center}
+                \fbox{\textbf{规格}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{建模}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{诊断}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{优化}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{制造}}
+            \end{center}
 
-            \vspace{2pt}
-            {\small \alert{要点：}看横向像差曲线的开口方向，而不是只看光线图的倾斜程度。}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Coma Diagnosis and Correction}
-\begin{frame}{彗差判断与矫正}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \textbf{如何判断彗差：}
-            \begin{itemize}
-                \item 横向像差图呈 $\propto h^2$ 的二次曲线
-                \item 下凸 $\rightarrow$ 外向彗差 / 上凸 $\rightarrow$ 内向彗差
-                \item 离焦\alert{无法改善}彗差——这是区分彗差与离焦的关键
-                \item 彗差属偶函数，球差属奇函数
-            \end{itemize}
+            \bigbreak
+            \textbf{核心判断：}每一次优化都要能回答“我正在压低哪一种物理误差，以及它会如何改善像质”。
         \end{column}
         \hfill
         \begin{column}{.50\textwidth}
-            \textbf{彗差矫正策略：}
-            \begin{enumerate}
-                \item \alert{改变光阑位置}：满足阿贝正弦条件
-                \item \alert{非球面透镜}：改变轴外光线折射角分布
-                \item \alert{对称光学结构}：前后对称抵消奇次彗差
-            \end{enumerate}
-
-            \alert{注意：}彗差本质是\alert{轴外球差}，在\alert{大孔径+大视场}时最严重。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Hidden Coma}
-\begin{frame}{隐性彗差}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.9\textwidth]{Figure/图片24.png}
-                \caption{隐性彗差——上边缘光线随视场增大而减小}
-                \label{fig:hidden_coma}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            典型光学系统中，横向像差包含\alert{离焦、球差、彗差和场曲}的复合分量。
-
-            \bigbreak
-            \textbf{隐性彗差的特征：}
-            \begin{itemize}
-                \item 上边缘光线像差随视场增大而\alert{减小}
-                \item 下边缘光线像差\alert{基本不变}
-                \item 球差(奇函数)和彗差(偶函数)叠加
-            \end{itemize}
-
-            \bigbreak
-            \textbf{机制：}上边缘二者\alert{抵消}，下边缘二者\alert{加强}。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Transverse Aberration of Field Curvature}
-\begin{frame}{场曲的横向像差图特征}
-    \begin{columns}[T]
-        \begin{column}{.35\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.9\textwidth]{Figure/图片25.png}
-                \caption{场曲——原点附近斜率因视场而异}
-                \label{fig:field_curvature}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.65\textwidth}
-            \textbf{场曲(Field Curvature)：}
-            即使物面是平面，像面也可能弯曲——\alert{场曲}。
-
-            \bigbreak
-            \textbf{识别方法：}横向像差图\alert{原点附近}斜率因视场角不同而不同。
-
-            \bigbreak
-            各视场成像点在纵向上\alert{不同}，连接后形成\alert{弯曲的像面}(Petzval曲面)。
-
-            \bigbreak
-            \textbf{为何关注原点附近？}
-            \begin{itemize}
-                \item 球差($h^3$)和彗差($h^2$)在此处影响极小
-                \item 场曲($h^1$)在原点附近\alert{占主导}
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Correction Methods for Field Curvature}
-\begin{frame}{场曲矫正方法}
-    \begin{columns}[T]
-        \begin{column}{.52\textwidth}
-            \textbf{佩兹伐和(Petzval Sum)控制：}
-            场曲受系统的佩兹伐和支配，核心是\alert{降低总佩兹伐和}。
-
-            \textbf{主要策略：}
-            \begin{enumerate}
-                \item \alert{正负光焦度分离}：正负透镜组合抵消佩兹伐贡献
-                \item \alert{弯月透镜}：特殊面形引入负佩兹伐贡献
-                \item \alert{场镜}：在像面前改变会聚角而不影响总光焦度
-            \end{enumerate}
-        \end{column}
-        \hfill
-        \begin{column}{.48\textwidth}
-            \begin{block}{佩兹伐条件(薄透镜)}
-                \begin{equation}
-                    \sum \frac{\phi_i}{n_i} \rightarrow 0
-                    \label{eq:petzval}
-                \end{equation}
-                其中 $\phi_i$ 为光焦度，$n_i$ 为折射率。
-
-                正负透镜组合是\alert{唯一}能同时校正场曲和维持总光焦度的手段。
-            \end{block}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Meridional Plane, Sagittal Plane and Astigmatism}
-\begin{frame}{子午面、弧矢面与像散}
-    \begin{columns}[T]
-        \begin{column}{.42\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.9\textwidth]{Figure/图片18.png}
-                \caption{子午面和弧矢面的示意图}
-                \label{fig:meridional_sagittal}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.58\textwidth}
-            \begin{itemize}
-                \item \textbf{子午面：}包含物点和光轴的平面
-                \item \textbf{弧矢面：}垂直于子午面且包含主光线的平面
-            \end{itemize}
-
-            \bigbreak
-            \textbf{像散(Astigmatism)：}
-            即使同视场角，原点附近斜率在子午面和弧矢面之间\alert{不同}——子午和弧矢成像位置不一致。
-
-            \bigbreak
-            像散乃\alert{场曲的子午分量和弧矢分量分离}的状态。两个聚焦面上均呈现\alert{线像}而非点像。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Astigmatism: Imaging and Correction}
-\begin{frame}{像散成像与矫正}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth]{Figure/图片19.png}
-                \caption{像散发生时的光路图}
-                \label{fig:astigmatism_ray}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{像散的本质：}
-            \begin{itemize}
-                \item 子午聚焦面上，弧矢光线尚未聚焦
-                \item 弧矢聚焦面上，子午光线已开始发散
-            \end{itemize}
-
-            \textbf{像散矫正策略：}
-            \begin{enumerate}
-                \item \alert{改变光阑位置}：改变轴外光束入射对称性
-                \item \alert{非球面透镜}：同时改变两方向光焦度分布
-                \item \alert{对称光学结构}：前后对称自然抵消像散
-            \end{enumerate}
-
-            \alert{关键：}存在最佳光阑位置使像散为零。这与场曲不同——场曲与光阑位置无关。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Distinguishing Three Types of Linear Aberrations}
-\begin{frame}{三种线性像差的区分方法}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.3\textwidth]{Figure/图片20.png}\hfill
-        \includegraphics[width=0.3\textwidth]{Figure/图片21.png}\hfill
-        \includegraphics[width=0.3\textwidth]{Figure/图片22.png}
-        \caption{离焦(左)：斜率均一\quad 场曲(中)：子午/弧矢一致\quad 像散(右)：子午/弧矢不同}
-        \label{fig:linear_distinction}
-    \end{figure}
-
-    \smallbreak
-    \begin{table}
-        \centering
-        \begin{tabular}{c|c|c}
-            \toprule
-            \textbf{像差类型} & \textbf{斜率与视场角关系} & \textbf{子午与弧矢关系} \\
-            \midrule
-            离焦 & 均一           & 一致 \\
-            场曲 & 因视场角而异   & 一致 \\
-            像散 & 因视场角而异   & \alert{不一致} \\
-            \bottomrule
-        \end{tabular}
-        \caption{离焦、场曲与像散的区分准则}
-        \label{tab:linear_aberration}
-    \end{table}
-\end{frame}
-
-\subsection{色差、渐晕与衍射极限}
-
-\englishtitle{Vignetting and Pupil Aberration}
-\begin{frame}{渐晕与光瞳像差}
-    \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.9\textwidth]{Figure/图片27.png}
-                \caption{渐晕和光瞳像差引起宽度差异}
-                \label{fig:vignetting}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.55\textwidth}
-            比较 $0^\circ$ 和 $78^\circ$ 视场角的横向像差图，轴外光束宽度\alert{更窄}。
-
-            \bigbreak
-            \begin{itemize}
-                \item \alert{渐晕(Vignetting)}：大视场下镜筒或透镜边缘遮挡光束
-                \item \alert{光瞳像差}：轴上与轴外光束形成的入瞳形状不同
-            \end{itemize}
-
-            \textbf{判断方法：}比较满刻度(近轴入瞳直径)与实际宽度。
-            \alert{注意：}入瞳直径是近轴量，不受渐晕影响。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Axial Chromatic Aberration}
-\begin{frame}{轴向色差}
-    \begin{columns}[T]
-        \begin{column}{.46\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.98\textwidth]{Figure/图片30.png}\\[3pt]
-                \includegraphics[width=0.98\textwidth]{Figure/图片28.png}
-                \caption{轴向色差的光路示意与横向像差图特征}
-                \label{fig:axial_color}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.54\textwidth}
-            \textbf{轴向色差(纵色差/位置色差)：}
-            \bigbreak
-            轴上光束横向像差图\alert{原点附近}斜率因波长不同——近轴像点位置具有\alert{波长依赖性}。
-
-            \bigbreak
-            \textbf{物理机制：}
-            \begin{itemize}
-                \item $n(\lambda)$ 随波长变化：短波折射率高，焦点近
-                \item 原点附近球差($\propto h^3$)和彗差($\propto h^2$)影响最小
-                \item 轴向色差($\propto h^1$)在原点附近\alert{占主导}
-            \end{itemize}
-
-            矫正：\alert{消色差双透镜(achromat)}。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Lateral Chromatic Aberration}
-\begin{frame}{倍率色差}
-    \begin{columns}[T]
-        \begin{column}{.46\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.98\textwidth]{Figure/图片31.png}\\[3pt]
-                \includegraphics[width=0.98\textwidth]{Figure/图片29.png}
-                \caption{倍率色差的光路示意与横向像差图特征}
-                \label{fig:lateral_color}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.54\textwidth}
-            \textbf{倍率色差(横向色差)：}
-            \bigbreak
-            轴外光束横向像差图与\alert{纵轴交点坐标}因波长不同——不同波长主光线在像面上距光轴\alert{不同高度}成像。
-
-            \bigbreak
-            \begin{itemize}
-                \item 不同波长以不同倍率成像
-                \item 即使轴向色差被完全校正，倍率色差仍可能存在
-                \item 在像面\alert{边缘}最为显著
-            \end{itemize}
-
-            矫正：\alert{对称光学结构}。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Systematic Comparison of Two Chromatic Aberrations}
-\begin{frame}{两种色差的系统对比}
-    \begin{table}
-        \centering
-        \small
-        \begin{tabular}{p{2.2cm}|p{4.2cm}|p{4.2cm}}
-            \toprule
-            \textbf{特征} & \textbf{轴向色差} & \textbf{倍率色差} \\
-            \midrule
-            别名 & 纵色差、位置色差 & 横向色差、放大率色差 \\
-            观察位置 & 轴上光束、原点斜率 & 轴外光束、纵轴交点 \\
-            像差图表现 & 近轴斜率随波长变化 & 纵轴截距随波长变化 \\
-            物理含义 & 焦点位置不同 & 放大率不同 \\
-            光束类型 & $0^\circ$ 视场角 & 有视场角 \\
-            校正方式 & 消色差双透镜 & 对称光学结构 \\
-            \bottomrule
-        \end{tabular}
-        \caption{轴向色差与倍率色差的全面对比}
-        \label{tab:chromatic_compare}
-    \end{table}
-\end{frame}
-
-\englishtitle{Abbe Number and Dispersion of Optical Glass}
-\begin{frame}{阿贝数与光学玻璃的色散特性}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.95\textwidth]{Figure/Abbe.png}
-                \caption{常见光学玻璃的阿贝图——折射率 $n_d$ 与阿贝数 $\nu_d$}
-                \label{fig:abbe}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{阿贝数(Abbe Number)：}
-            \begin{equation}
-                \nu_d = \frac{n_d - 1}{n_F - n_C}
-                \label{eq:abbe}
-            \end{equation}
-            其中 $n_d$, $n_F$, $n_C$ 分别为 d, F, C 谱线的折射率。
-
-            \bigbreak
-            \begin{itemize}
-                \item \alert{低阿贝数($\nu_d < 50$)}：高色散(火石玻璃 F 系列)
-                \item \alert{高阿贝数($\nu_d > 55$)}：低色散(冕牌玻璃 K 系列)
-                \item 消色差设计：搭配高/低阿贝数玻璃，如 BK7+F2
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Diffraction Limit and Strehl Ratio}
-\begin{frame}{衍射极限与斯特列尔比}
-    \begin{columns}[T]
-        \begin{column}{.60\textwidth}
-            \textbf{衍射极限(Diffraction Limit)：}
-            即使 $OPD = 0$，受孔径衍射效应限制，点像仍是\alert{艾里斑(Airy Disk)}。
-
-            \bigbreak
-            \textbf{斯特列尔比(Strehl Ratio, S.R.)：}
-            \begin{equation}
-                S.R. \approx \exp\!\left[-\left(\frac{2\pi}{\lambda}\,OPD_{\text{rms}}\right)^2\right]
-                \label{eq:strehl}
-            \end{equation}
-
-            当像差较小时，可退化为\alert{马瑞夏近似}：
-            \begin{equation}
-                S.R. \approx 1 - \left(\frac{2\pi}{\lambda}\right)^2 (OPD_{\text{rms}})^2
-                \label{eq:marechal}
-            \end{equation}
-        \end{column}
-        \hfill
-        \begin{column}{.40\textwidth}
-            \begin{block}{瑞利判据}
-                当 $|OPD_{\text{PV}}| \le \frac{\lambda}{4}$ 时，
-                \alert{$S.R. > 0.8$}，系统达到\alert{衍射极限}。
-            \end{block}
-
+            \scriptsize
             \begin{table}
-                \small
-                \begin{tabular}{c|c|c}
+                \centering
+                \renewcommand{\arraystretch}{1.3}
+                \resizebox{\linewidth}{!}{%
+                \begin{tabular}{p{2.6cm}|p{5.0cm}}
                     \toprule
-                    \textbf{OPD\textsubscript{PV}} & \textbf{S.R.} & \textbf{评价} \\
+                    \textbf{理论对象} & \textbf{Zemax 中的常用窗口/指标} \\
                     \midrule
-                    $<\lambda/4$  & $>0.8$  & 衍射极限 \\
-                    $\lambda/4\sim\lambda/2$ & $0.4\sim0.8$ & 可接受 \\
-                    $>\lambda/2$ & $<0.4$   & 需矫正 \\
+                    一阶规格 & System Explorer, Lens Data Editor, Paraxial Data \\
+                    Ray Fan & Ray Aberration, Longitudinal Aberration \\
+                    OPD/波前 & OPD Fan, Wavefront Map, RMS Wavefront \\
+                    Zernike 系数 & Zernike Standard Coefficients \\
+                    PSF/MTF & Huygens PSF, FFT PSF, FFT MTF, Huygens MTF \\
+                    结构边界 & Merit Function Editor, Solve, Pick-up, Thickness constraints \\
+                    制造风险 & Tolerance Data Editor, Sensitivity, Monte Carlo \\
                     \bottomrule
                 \end{tabular}
-                \caption{像质评估对照}
-                \label{tab:strehl_table}
+                }
+                \caption{理论量与 OpticStudio 工具的对应关系}
+                \label{tab:zemax_mapping}
             \end{table}
         \end{column}
     \end{columns}
 \end{frame}
 
-\englishtitle{Common Image-Quality Metrics in Optical Design}
-\begin{frame}{光学设计中的常用像质评价量}
+\englishtitle{Design Specification Before Optimization}
+\begin{frame}{优化前先写清楚规格}
+    \begin{columns}[T]
+        \begin{column}{.45\textwidth}
+            \textbf{一阶规格决定设计空间：}
+            \begin{itemize}
+                \item 焦距、放大率、工作距离、后焦距
+                \item 孔径、$F/\#$、NA、入瞳位置
+                \item 视场角、像面尺寸、探测器像元
+                \item 波长范围、权重、是否单色照明
+                \item 总长、镜片数量、外径、封装空间
+                \item 成本、材料目录、加工等级、装调自由度
+            \end{itemize}
+        \end{column}
+        \hfill
+        \begin{column}{.55\textwidth}
+            \begin{block}{System Explorer 中先确定}
+                \begin{itemize}
+                    \item \textbf{Aperture}：Entrance Pupil、Image Space NA 或 $F/\#$
+                    \item \textbf{Fields}：角度、物高或像高
+                    \item \textbf{Wavelengths}：主波长、权重、色差控制范围
+                    \item \textbf{Units}：长度单位和玻璃目录
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Merit Function Structure}
+\begin{frame}{评价函数：不要把操作数堆成噪声}
+    \small
+    \begin{table}
+        \centering
+        \setlength{\tabcolsep}{4pt}
+        \renewcommand{\arraystretch}{1.35}
+        \begin{tabular}{p{2.0cm}|p{3.2cm}|p{5.8cm}}
+            \toprule
+            \textbf{层级} & \textbf{目标} & \textbf{常用操作数/指标} \\
+            \midrule
+            一阶锁定 & 焦距、像高、孔径、总长 & \texttt{EFFL}, \texttt{REAY}, \texttt{TOTR}, \texttt{WFNO}/\texttt{TFNO} \\
+            像差诊断 & 压低 Ray Fan、OPD、色差 & \texttt{TRAY}/\texttt{TRAX}, \texttt{OPDX}, \texttt{AXCL}, \texttt{DIMX} \\
+            像质目标 & 面向传感器或分辨率指标 & \texttt{RSCE}, \texttt{RWCE}/\texttt{RWCH}, \texttt{MTFA}, \texttt{DENC} \\
+            结构约束 & 保证可加工、可装配 & \texttt{MNCT}, \texttt{MNEG}, \texttt{DMVA}, \texttt{DMLT} \\
+            \bottomrule
+        \end{tabular}
+        \caption{评价函数应按物理层级组织，而不是按窗口顺序堆叠}
+        \label{tab:merit_layers_main}
+    \end{table}
+
+    \vspace{2pt}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{itemize}
+                \item 先低权重锁定一阶目标，确认系统没有跑偏。
+                \item 再提高关键视场、关键波长和关键频率权重。
+            \end{itemize}
+        \end{column}
+        \begin{column}{.50\textwidth}
+            \begin{itemize}
+                \item 不重复约束同一物理量，避免优化器被冲突目标困住。
+                \item 制造约束要从早期保留，不要最后才补。
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{From Ray Fan Diagnosis to Optimization Action}
+\begin{frame}{从 Ray Fan 诊断到优化动作}
+    \scriptsize
+    \begin{table}
+        \centering
+        \renewcommand{\arraystretch}{1.42}
+        \begin{tabular}{p{2.4cm}|p{3.1cm}|p{4.8cm}}
+            \toprule
+            \textbf{观察到的问题} & \textbf{对应像差} & \textbf{常见优化动作} \\
+            \midrule
+            轴上三次型 Ray Fan & 球差 & 分摊光焦度、调整弯曲因子、引入非球面、控制边缘孔径 \\
+            离轴二次型弯曲 & 彗差 & 调整光阑位置、改善对称性、降低离轴入射角 \\
+            不同视场最佳焦点不同 & 场曲 & 控制 Petzval 和、加入场镜或负光焦度元件 \\
+            子午/弧矢斜率分离 & 像散 & 调整光阑位置、增强结构对称性、优化离轴面入射角 \\
+            不同波长斜率不同 & 轴向色差 & 更换玻璃组合、增加消色差约束、调整主波长权重 \\
+            不同波长截距不同 & 倍率色差 & 对称结构、控制主光线色散、优化离轴波长权重 \\
+            \bottomrule
+        \end{tabular}
+        \caption{诊断不是终点：每一种图形特征都应对应可执行的设计变量}
+        \label{tab:diagnosis_to_action}
+    \end{table}
+
+    \begin{alertblock}{优化顺序}
+        先处理主导误差，再处理次要误差；先保证系统结构和一阶量合理，再追求局部像质极限。
+    \end{alertblock}
+\end{frame}
+
+\subsection{Zernike、PSF 与 MTF：确认优化是否真的改善图像}
+
+\englishtitle{Wavefront-Based Optimization}
+\begin{frame}{用 Zernike 和 RMS Wavefront 连接诊断与优化}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
-            \begin{block}{几何光学评价}
-                \begin{itemize}
-                    \item \textbf{横向像差图 / Ray Fan}：最快定位球差、彗差、像散和色差来源
-                    \item \textbf{点列图(Spot Diagram)}：观察能量在几何像点附近的扩散范围
-                \end{itemize}
-            \end{block}
+            \textbf{推荐使用场景：}
+            \begin{itemize}
+                \item 系统接近衍射极限，需要从几何像差转向波前质量。
+                \item 希望分离 defocus、astigmatism、coma、spherical 等模式。
+                \item 后续需要和干涉仪测量、装调补偿或自由曲面拟合对接。
+            \end{itemize}
 
-            \begin{block}{波前评价}
-                \begin{itemize}
-                    \item \textbf{OPD / Wavefront Map}：直接关联瑞利判据和 Strehl 比
-                    \item \textbf{PV / RMS}：适合做容差和优化目标的量化指标
-                \end{itemize}
-            \end{block}
+            \begin{equation}
+                S.R. \approx \exp\!\left[-\left(\frac{2\pi}{\lambda}OPD_{\text{rms}}\right)^2\right]
+                \label{eq:strehl_zemax}
+            \end{equation}
+
+            \alert{当 RMS OPD 降低时，Strehl Ratio 通常会提高，PSF 主峰能量更集中。}
         \end{column}
         \hfill
         \begin{column}{.48\textwidth}
-            \begin{block}{频域与能量评价}
+            \begin{block}{Zemax 中的做法}
+                \begin{enumerate}
+                    \item 查看 Wavefront Map 和 OPD Fan。
+                    \item 输出 Zernike Standard Coefficients。
+                    \item 去除 piston/tilt/defocus 后判断剩余主导项。
+                    \item 在 Merit Function 中加入 RMS Wavefront 或 Zernike 相关约束。
+                \end{enumerate}
+            \end{block}
+
+            \begin{block}{注意}
+                不要把 Zernike 系数单独当作最终像质；它负责解释波前，最终仍需用 PSF、MTF 或圈入能量确认成像后果。
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Image-Quality Metrics}
+\begin{frame}{像质评价：Ray Fan 之后看什么}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{block}{几何光学指标}
                 \begin{itemize}
-                    \item \textbf{MTF}：回答“某一空间频率还能传多少对比度”
-                    \item \textbf{PSF}：回答“点像扩散成什么形状”
-                    \item \textbf{圈入能量(Encircled Energy)}：回答“探测器像元内能收进多少能量”
+                    \item \textbf{Ray Fan}：最快定位像差类型。
+                    \item \textbf{Spot Diagram}：看几何弥散斑是否落入像元。
+                    \item \textbf{Distortion}：看主光线成像比例是否失真。
                 \end{itemize}
             \end{block}
 
-            \textbf{实用建议：}
-            \begin{itemize}
-                \item 早期结构选型先看 \alert{Ray Fan + Spot}
-                \item 接近完成时重点看 \alert{MTF + RMS OPD + 圈入能量}
-                \item 若面向传感器成像，要把\alert{像元尺寸}和截止频率一起考虑
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\subsection{像差分析实战总结}
-
-\englishtitle{Diagnostic Workflow for Transverse Aberration}
-\begin{frame}{横向像差图分析流程}
-    \begin{block}{系统的像差分析步骤}
-        \begin{enumerate}
-            \item \textbf{观察轴上光束横向像差图}
-            \begin{itemize}
-                \item 奇函数曲线 $\rightarrow$ 球差
-                \item 原点斜率随波长变化 $\rightarrow$ 轴向色差
-            \end{itemize}
-            \item \textbf{观察不同视场角的横向像差图}
-            \begin{itemize}
-                \item 原点斜率变化 $\rightarrow$ 场曲或像散
-                \item 子午/弧矢斜率差异 $\rightarrow$ 像散
-                \item 横轴宽度变化 $\rightarrow$ 渐晕/光瞳像差
-            \end{itemize}
-            \item \textbf{检查曲线特征}
-            \begin{itemize}
-                \item 偶函数对称 $\rightarrow$ 彗差
-                \item 上下边缘不对称 $\rightarrow$ 隐性彗差
-            \end{itemize}
-            \item \textbf{检查波长依赖性}
-            \begin{itemize}
-                \item 纵轴交点变化 $\rightarrow$ 倍率色差
-            \end{itemize}
-        \end{enumerate}
-    \end{block}
-\end{frame}
-
-\englishtitle{Classification and Summary of Aberrations}
-\begin{frame}{像差分类总览与横向特征总结}
-    \begin{columns}[T,onlytextwidth]
-        \begin{column}{.53\textwidth}
-            \begin{block}{\footnotesize 表 1\quad 光学系统像差的完整分类}
-                \centering
-                \scriptsize
-                \setlength{\tabcolsep}{2.2pt}
-                \renewcommand{\arraystretch}{1.16}
-                \resizebox{\linewidth}{!}{%
-                    \begin{tabular}{ccccc}
-                        \toprule
-                        \multicolumn{2}{c}{\textbf{物点位置}} & \textbf{像差类型} & \textbf{影响因素} & \textbf{高斯像面上的像} \\
-                        \midrule
-                        \multirow{3}{*}{轴上物点}
-                        & 单色                & 球差          & 孔径                   & 单色弥散圆斑 \\
-                        \cmidrule(lr){2-5}
-                        & \multirow{2}{*}{复色}
-                                              & 色球差        & 孔径、波长              & \multirow{2}{*}{彩色弥散圆斑} \\
-                        &                     & 位置(轴向)色差 & 波长                  & \\
-                        \midrule
-                        \multirow{5}{*}{轴外物点}
-                        & \multirow{4}{*}{单色}
-                                              & 彗差(正弦差)  & 孔径、视场              & \multirow{5}{*}{复杂弥散斑} \\
-                        &                     & 细光束像散     & 视场                  & \\
-                        &                     & 场曲          & \multirow{2}{*}{大物面} & \\
-                        &                     & 畸变          &                      & \\
-                        \cmidrule(lr){2-5}
-                        & 复色                & 倍率色差       & 波长                  & \\
-                        \bottomrule
-                    \end{tabular}%
-                }
-                \label{tab:aberration_classification}
+            \begin{block}{波前指标}
+                \begin{itemize}
+                    \item \textbf{OPD PV/RMS}：直接关联 Strehl Ratio。
+                    \item \textbf{Zernike}：把 OPD 拆成可解释模式。
+                \end{itemize}
             \end{block}
         \end{column}
         \hfill
-        \begin{column}{.45\textwidth}
-            \begin{block}{\footnotesize 表 2\quad 横向像差图特征总结}
+        \begin{column}{.50\textwidth}
+            \begin{block}{图像指标}
+                \begin{itemize}
+                    \item \textbf{PSF}：点像扩散成什么形状。
+                    \item \textbf{MTF}：某空间频率还能传递多少对比度。
+                    \item \textbf{Encircled Energy}：目标像元内能收进多少能量。
+                \end{itemize}
+            \end{block}
+
+            \begin{alertblock}{传感器系统的检查}
+                不只看 diffraction limit；还要把像元尺寸、Nyquist 频率、目标线对频率和照度要求一起放进评价标准。
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{材料、色差与玻璃替换}
+
+\englishtitle{Glass Choice as Chromatic Aberration Control}
+\begin{frame}{玻璃选择：色差优化的核心变量}
+    \begin{columns}[T]
+        \begin{column}{.44\textwidth}
+            \begin{figure}
                 \centering
-                \scriptsize
-                \setlength{\tabcolsep}{2.4pt}
-                \renewcommand{\arraystretch}{1.85}
-                \resizebox{\linewidth}{!}{%
-                    \begin{tabular}{cccc}
-                        \toprule
-                        \textbf{像差类型} & \textbf{曲线特征} & \textbf{函数类型} & \textbf{离焦改善} \\
-                        \midrule
-                        离焦     & 通过原点的直线       & 奇函数，$h^1$ & \alert{可完全校正} \\
-                        球差     & 三次曲线             & 奇函数，$h^3$ & 部分改善 \\
-                        彗差     & 二次曲线             & 偶函数，$h^2$ & \alert{否} \\
-                        场曲     & 原点附近斜率变化     & 奇函数，$h^1$ & 部分改善 \\
-                        像散     & 子午/弧矢斜率不同    & --            & 部分改善 \\
-                        轴向色差 & 原点斜率随波长变化   & --            & 需消色差设计 \\
-                        倍率色差 & 纵轴交点随波长变化   & --            & 需对称结构 \\
-                        \bottomrule
-                    \end{tabular}%
-                }
-                \vspace{8pt}
-                \label{tab:aberration_summary}
+                \includegraphics[width=.95\textwidth,height=.48\textheight,keepaspectratio]{Figure/Edmund/aberrations-5v2.pdf}
+                \caption{单透镜与消色差双胶合的色差差异}
+                \label{fig:achromat_edmund_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.56\textwidth}
+            \textbf{消色差的基本逻辑：}
+            \begin{itemize}
+                \item 正透镜提供主要光焦度，但会产生色焦移。
+                \item 负透镜选用不同色散玻璃，用相反色散贡献抵消。
+                \item 常见组合是低色散冕牌玻璃与高色散火石玻璃。
+            \end{itemize}
+
+            \begin{block}{在 Zemax 中的落点}
+                \begin{itemize}
+                    \item 多波长权重决定系统偏向哪个谱段。
+                    \item 玻璃目录决定可选材料空间。
+                    \item Ray Fan 和 OPD 可判断色差是否真正改善。
+                    \item MTF/PSF 确认多波长综合像质。
+                \end{itemize}
             \end{block}
         \end{column}
     \end{columns}
-
-    \vspace{4pt}
-    {\footnotesize \alert{两大类：}单色像差(球差/彗差/像散/场曲/畸变)影响成像清晰度和物像相似度；色差(位置色差/倍率色差)源于 $n(\lambda)$ 导致的色散。}
 \end{frame}
 
-\englishtitle{Key Takeaways of Aberration Analysis}
-\begin{frame}{像差分析的核心要点}
-    \begin{itemize}
-        \item 横向像差图中包含\alert{离焦、球差、彗差、场曲、像散、色差}的复合信息
-        \item 分析的关键在于\alert{分解各分量}，而非整体判断
-        \item 原点附近(近轴区域)：场曲、像散、色差占主导
-        \item 边缘光线区域：球差和彗差显著体现
-        \item 画角依赖性和波长依赖性是区分色差的关键
-        \item 子午/弧矢分量的对比是识别像散的唯一方法
-        \item 镜头设计没有捷径——但掌握了横向像差图的解读，就能"聆听镜头参数发出的像差之声"
-    \end{itemize}
+\englishtitle{Glass Substitution Workflow}
+\begin{frame}{玻璃替换：直接在真实玻璃目录中优化}
+    \begin{columns}[T]
+        \begin{column}{.45\textwidth}
+            \begin{enumerate}
+                \item 在 LDE 中将玻璃 Solve 类型设为 \alert{Substitute}。
+                \item 选择供应商目录，如 Schott、Hoya、Ohara、CDGM。
+                \item 构建 RMS Wavefront 或 MTF/Spot 相关评价函数。
+                \item 使用 Hammer 或 Global Search 处理离散玻璃变化。
+                \item 用玻璃替换模板过滤成本、状态和耐候性。
+            \end{enumerate}
+
+            \begin{alertblock}{关键}
+                玻璃型号是离散变量，Local Optimization 不擅长跨越材料跳变；全局搜索更适合玻璃替换。
+            \end{alertblock}
+        \end{column}
+        \hfill
+        \begin{column}{.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture1zh-cn.png}\hfill
+                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture2zh-cn.png}
+                \vspace{4pt}
+                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture3zh-cn.png}\hfill
+                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture8zh-cn.png}
+                \caption{Substitute solve、评价函数、Hammer 优化与玻璃模板}
+                \label{fig:glass_substitution_steps_main}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{公差分析：从名义设计到真实制造}
+
+\englishtitle{Tolerance Analysis}
+\begin{frame}{为什么名义设计之后必须做公差分析}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{block}{名义设计的限制}
+                名义设计默认曲率、厚度、折射率、偏心、倾斜都精确无误；真实制造中这些参数都会偏离。没有公差分析，就无法判断样品做出来以后还能不能满足指标。
+            \end{block}
+
+            \textbf{公差分析回答四个问题：}
+            \begin{enumerate}
+                \item 哪些面或参数最敏感？
+                \item 当前供应商能力是否足够？
+                \item 是否需要设置补偿器？
+                \item 预计良率与成本是否可接受？
+            \end{enumerate}
+        \end{column}
+        \hfill
+        \begin{column}{.50\textwidth}
+            \scriptsize
+            \begin{table}
+                \centering
+                \renewcommand{\arraystretch}{1.28}
+                \resizebox{\linewidth}{!}{%
+                \begin{tabular}{p{2.2cm}|p{4.5cm}}
+                    \toprule
+                    \textbf{公差类型} & \textbf{典型操作数} \\
+                    \midrule
+                    曲率/厚度 & \texttt{TEPR}, \texttt{TEDR} \\
+                    表面偏心/倾斜 & \texttt{TSDX}/\texttt{TSDY}, \texttt{TSTX}/\texttt{TSTY} \\
+                    元件偏心/倾斜 & \texttt{TEDX}/\texttt{TEDY}, \texttt{TETX}/\texttt{TETY} \\
+                    表面不规则度 & \texttt{TIRR}, \texttt{TIRX}/\texttt{TIRY} \\
+                    材料误差 & \texttt{TIND}, \texttt{TABB} \\
+                    装调补偿 & \texttt{COMP} \\
+                    \bottomrule
+                \end{tabular}
+                }
+                \caption{Tolerance Data Editor 中的常见公差项}
+                \label{tab:tolerance_operands_main}
+            \end{table}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+% \englishtitle{Compensators, Sensitivity and Monte Carlo}
+% \begin{frame}{补偿器、灵敏度与蒙特卡洛}
+%     \begin{columns}[T]
+%         \begin{column}{.50\textwidth}
+%             \textbf{补偿器模拟真实装调自由度：}
+%             \begin{itemize}
+%                 \item 像面位置或后焦距是最常用补偿器。
+%                 \item 镜组间空气间隔可作为装调补偿量。
+%                 \item 没有补偿器的公差结果通常过于悲观。
+%                 \item 过多补偿器则可能高估实际可装调能力。
+%             \end{itemize}
+
+%             \begin{block}{灵敏度分析}
+%                 每次扰动一个公差项，观察像质指标变化；用于找到最敏感面和成本驱动因素。
+%             \end{block}
+%         \end{column}
+%         \hfill
+%         \begin{column}{.50\textwidth}
+%             \textbf{蒙特卡洛模拟：}
+%             \begin{itemize}
+%                 \item 同时随机扰动所有公差项。
+%                 \item 每个虚拟样品都重新执行补偿器调整。
+%                 \item 输出 MTF、RMS spot、RMS wavefront 等统计分布。
+%                 \item 用合格率判断公差等级是否可接受。
+%             \end{itemize}
+
+%             \begin{alertblock}{闭环判断}
+%                 若良率不足，不是简单把所有公差收紧；应先找敏感参数，再决定改结构、加补偿器、放宽非关键项或提高关键面加工等级。
+%             \end{alertblock}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
+
+\englishtitle{Design-to-Manufacturing Workflow}
+\begin{frame}{从仿真到制造的最终流程}
+    \small
+    \begin{table}
+        \centering
+        \renewcommand{\arraystretch}{1.35}
+        \begin{tabular}{p{2.5cm}|p{4.0cm}|p{4.0cm}}
+            \toprule
+            \textbf{阶段} & \textbf{关键动作} & \textbf{判断标准} \\
+            \midrule
+            规格定义 & 确定焦距、孔径、视场、波长、像元、成本 & 一阶量清楚，优先级清楚 \\
+            初始结构 & 选择透镜型式、光阑位置、玻璃目录 & Ray Fan 不出现明显不可救结构 \\
+            名义优化 & 评价函数分层：一阶、像差、像质、结构 & OPD/Spot/MTF 达到名义目标 \\
+            材料优化 & Substitute solve + 全局搜索 + 玻璃模板 & 色差、成本、供应状态同时可接受 \\
+            公差分析 & 灵敏度、补偿器、蒙特卡洛 & 关键公差可制造，统计良率达标 \\
+            输出制造 & ISO 10110 图纸、装调补偿策略、验收指标 & 仿真指标能对应实际检测指标 \\
+            \bottomrule
+        \end{tabular}
+        \caption{Zemax 仿真应服务于可制造的光学系统，而不只是名义像质最优}
+        \label{tab:zemax_manufacturing_workflow}
+    \end{table}
+
+    \begin{center}
+        \alert{最终闭环：理论诊断 $\rightarrow$ Zemax 优化 $\rightarrow$ 材料选择 $\rightarrow$ 公差验证 $\rightarrow$ 可制造设计}
+    \end{center}
 \end{frame}

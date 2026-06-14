@@ -90,49 +90,6 @@
     \end{columns}
 \end{frame}
 
-\englishtitle{Spherical Aberration — Correction Tradeoffs}
-\begin{frame}{球差校正的工程权衡}
-    \begin{columns}[T]
-        \begin{column}{.52\textwidth}
-            \textbf{校正策略与代价:}
-
-            \begin{enumerate}
-                \item \alert{缩小光圈(增大 $f/\#$)}
-                \begin{itemize}
-                    \item 优点:简单、零成本
-                    \item 缺点:减少进光量；过小光圈导致衍射极限降低分辨率
-                \end{itemize}
-
-                \item \alert{高折射率玻璃}
-                \begin{itemize}
-                    \item 优点:减小各面的折射量
-                    \item 缺点:材料更贵、可能更难加工
-                \end{itemize}
-
-                \item \alert{增加镜片数量}
-                \begin{itemize}
-                    \item 优点:分摊光焦度，减小每个面的入射角
-                    \item 缺点:增加体积、重量和装配复杂度
-                \end{itemize}
-            \end{enumerate}
-        \end{column}
-        \hfill
-        \begin{column}{.48\textwidth}
-            \begin{block}{设计权衡}
-                \begin{equation}
-                    \text{像质} \uparrow \;\Longleftrightarrow\; \text{体积} \uparrow,\; \text{重量} \uparrow,\; \text{成本} \uparrow
-                \end{equation}
-
-                \alert{快速镜头($f/\# < 2$)}几乎必然需要球差校正元件。
-            \end{block}
-
-            \bigbreak
-            \begin{block}{球差校正板}
-                Edmund Optics 提供专用的\alert{球差补偿板}(Spherical Aberration Compensation Plates)，可在不改变系统结构的前提下补偿球差。
-            \end{block}
-        \end{column}
-    \end{columns}
-\end{frame}
 
 \englishtitle{Astigmatic Aberration — Field-Dependent Asymmetry}
 \begin{frame}{像散:视场依赖的不对称性}
@@ -191,7 +148,7 @@
             \end{itemize}
 
             \bigbreak
-            \alert{像散和彗差}在实际镜头中常共同出现，Edmund Optics 将其合并讨论。
+            \alert{像散和彗差}在实际镜头中常共同出现。
         \end{column}
     \end{columns}
 \end{frame}
@@ -297,83 +254,8 @@
     \end{itemize}
 \end{frame}
 
-\englishtitle{Achromat vs Apochromat — Engineering Comparison}
-\begin{frame}{消色差与复消色差的工程对比}
-    \begin{table}
-        \centering
-        \small
-        \begin{tabular}{p{2.2cm}|p{4.2cm}|p{4.2cm}}
-            \toprule
-            \textbf{对比维度} & \textbf{消色差 (Achromat)} & \textbf{复消色差 (Apochromat)} \\
-            \midrule
-            校正波长数 & \alert{2} 个波长聚焦于同一平面 & \alert{3} 个波长聚焦于同一平面 \\
-            设计复杂度 & 中等，常规设计 & 高，需要特殊玻璃材料 \\
-            色焦移曲线 & 与传感器平面有 2 个交点 & 与传感器平面有 3 个交点 \\
-            \textbf{图像质量} & 良好(多数应用可接受) & \alert{极优}(高端检测用) \\
-            适用性 & 通用性强，多种放大率 & 适用\alert{范围窄}，特定工作距 \\
-            成本 & 适中 & \alert{高成本}(材料+加工) \\
-            典型应用 & 一般工业相机镜头 & 显微镜物镜、高端检测 \\
-            \bottomrule
-        \end{tabular}
-        \caption{消色差与复消色差的全面对比}
-        \label{tab:achromat_vs_apochromat}
-    \end{table}
-
-    \alert{实用建议:}大多数镜头为消色差设计。对于极小像元($<2\mu$m)的传感器，消色差的残余色差可能成为问题，需考虑复消色差。
-\end{frame}
 
 \subsection{工程实践总结}
-
-\englishtitle{Engineering Tradeoffs in Aberration Correction}
-\begin{frame}{像差校正的工程权衡矩阵}
-    \begin{columns}[T]
-        \begin{column}{.55\textwidth}
-            \textbf{所有校正方案都遵循"不可能三角":}
-
-            \smallbreak
-            \begin{block}{\centering 像质 $\uparrow$}
-                \centering
-                \alert{高折射率玻璃} $\nearrow$ 成本 $\uparrow$ \hspace{1.5em}
-                \alert{增加镜片} $\nearrow$ 体积/重量 $\uparrow$
-
-                \bigbreak
-                \centering
-                $\swarrow$ \hspace{4em} \alert{单色光源 = 低成本} \hspace{4em} $\searrow$
-
-                \bigbreak
-                {\large \textbf{成本 \hspace{3em} $\longleftrightarrow$ \hspace{3em} 体积/重量}}
-            \end{block}
-
-            \smallbreak
-            \begin{center}
-                \alert{$\Longrightarrow$ 工程设计的本质是找到三者之间的最优平衡点}
-            \end{center}
-        \end{column}
-        \hfill
-        \begin{column}{.48\textwidth}
-            \textbf{各类像差的校正成本:}
-
-            \begin{table}
-                \centering
-                \footnotesize
-                \begin{tabular}{c|c|c}
-                    \toprule
-                    \textbf{像差} & \textbf{校正手段} & \textbf{代价} \\
-                    \midrule
-                    球差 & 高$n$玻璃/多片 & \$ + 体积 \\
-                    像散 & 对称结构 & 体积/灵活性 \\
-                    场曲 & 负光焦度元件 & 后工作距 \\
-                    色差 & 消色差双胶合 & \$ + 复杂度 \\
-                    复消色差 & 特殊材料 & \$\$\$ + 窄适用 \\
-                    \bottomrule
-                \end{tabular}
-            \end{table}
-
-            \bigbreak
-            \alert{核心信息:}理解像差如何影响性能，比追求"完美校正"更重要。
-        \end{column}
-    \end{columns}
-\end{frame}
 
 \englishtitle{Key Messages}
 \begin{frame}{像差工程要点总结}
@@ -388,52 +270,4 @@
         \item \textbf{复消色差}用于高端检测——成本高、适用范围窄
         \item \alert{工程设计的本质是在像质、体积/重量和成本之间寻找最优平衡}
     \end{enumerate}
-\end{frame}
-
-\englishtitle{Integration with Transverse Aberration Analysis}
-\begin{frame}{与横向像差图分析的整合视角}
-    \begin{columns}[T]
-        \begin{column}{.52\textwidth}
-            \textbf{两种分析方法的互补关系:}
-
-            \begin{table}
-                \centering
-                \small
-                \begin{tabular}{p{2.5cm}|p{3cm}}
-                    \toprule
-                    \textbf{横向像差图分析} & \textbf{Edmund Optics 视角} \\
-                    \midrule
-                    精确的数学诊断 & 工程应用理解 \\
-                    定量分解各像差分量 & 定性理解性能影响 \\
-                    指导优化方向 & 指导设计选型 \\
-                    Ray Fan / Spot & MTF / DOF / 远心度 \\
-                    \bottomrule
-                \end{tabular}
-            \end{table}
-
-            \bigbreak
-            \textbf{整合使用:}
-            \begin{enumerate}
-                \item 用 Edmund 视角\alert{理解需求}:什么像差对应用最关键？
-                \item 用横向像差图\alert{诊断问题}:具体是哪种像差在限制性能？
-                \item 用 Zemax\alert{优化设计}:如何权衡校正方案？
-            \end{enumerate}
-        \end{column}
-        \hfill
-        \begin{column}{.48\textwidth}
-            \begin{block}{从理论到实践的闭环}
-                \centering
-                \setlength{\fboxsep}{6pt}
-                \fbox{\textbf{应用需求分析}}\\[4pt]
-                \Large $\downarrow$ \\[2pt]
-                \fbox{\textbf{像差诊断}}\\[4pt]
-                \Large $\downarrow$ \\[2pt]
-                \fbox{\textbf{Zemax 优化}}\\[4pt]
-                \Large $\downarrow$ \\[2pt]
-                \fbox{\textbf{性能验证}}\\[4pt]
-                \small
-                $\longleftarrow$ \alert{反馈迭代} $\longleftarrow$
-            \end{block}
-        \end{column}
-    \end{columns}
 \end{frame}

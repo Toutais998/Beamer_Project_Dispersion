@@ -1,525 +1,527 @@
-\section{光学像差理论基础}
+\section{像差诊断主线：从波前到像质}
 
-\subsection{像差概念与波像差理论}
+\subsection{统一框架：先定义理想，再分析偏离}
 
-\englishtitle{What is Aberration?}
-\begin{frame}{什么是像差？}
+\englishtitle{One Story for Aberration Analysis}
+\begin{frame}{本报告的主线}
     \begin{columns}[T]
-        \begin{column}{.48\textwidth}
-            \textbf{像差(Aberration)}的本质是\alert{会聚差异}——光线无法会聚于理想像点。
+        \begin{column}{.52\textwidth}
+            \textbf{目标：}把“像差是什么”收束成一条可以在 Zemax 中验证和优化的链路：
+
+            \begin{center}
+                \fbox{\textbf{理想成像}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{OPD/波前}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{Ray Fan/Zernike}}\quad
+                $\rightarrow$\quad
+                \fbox{\textbf{PSF/MTF}}
+            \end{center}
 
             \bigbreak
-            理想的\alert{无像差镜头}应具备：
             \begin{itemize}
-                \item 物点 $\rightarrow$ 像点(点 $\rightarrow$ 点)
-                \item 直线 $\rightarrow$ 直线
-                \item 平面 $\rightarrow$ 平面
-                \item 无色散(不受波长影响)
+                \item \alert{理想成像}给出参考：物点应成像为像点。
+                \item \alert{OPD}描述实际波前偏离参考球面的程度。
+                \item \alert{Ray Fan}从光线落点诊断像差形状。
+                \item \alert{Zernike}把波前拆成可量化的正交模式。
+                \item \alert{PSF/MTF}回答最终图像是否足够清晰。
             \end{itemize}
         \end{column}
         \hfill
-        \begin{column}{.52\textwidth}
-            \textbf{像差的分类：}
-            \begin{itemize}
-                \item \alert{单色像差}：即使入射单色光也会产生
-                \begin{itemize}
-                    \item 球差、彗差、像散、场曲、畸变
-                \end{itemize}
-                \item \alert{色差}：因波长依赖性导致
-                \begin{itemize}
-                    \item 轴向色差(位置色差)
-                    \item 倍率色差(横向色差)
-                \end{itemize}
-            \end{itemize}
+        \begin{column}{.48\textwidth}
+            \begin{block}{重构后的删减原则}
+                \begin{enumerate}
+                    \item 像差定义只讲一次：用 OPD 统一几何与波动描述。
+                    \item 一阶量和三阶像差合并讲：前者定系统，后者看残差。
+                    \item 色差不单独重复成一章：并入材料色散和 Ray Fan 诊断。
+                    \item Zemax 不只列菜单：每个工具都回到同一条像质主线。
+                \end{enumerate}
+            \end{block}
+
+            \begin{alertblock}{一句话主题}
+                从波前误差出发，用 Ray Fan 与 Zernike 找到像差来源，再用 Zemax 把设计推向可制造的像质目标。
+            \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
 
-\englishtitle{Optical Path and Wavefront Deviation}
-\begin{frame}{光程与波前偏离的物理定义}
+\englishtitle{First-Order Layout, Third-Order Aberration and Zernike}
+\begin{frame}{一阶、三阶与 Zernike 的关系}
+    \begin{columns}[T]
+        \begin{column}{.48\textwidth}
+            \begin{alertblock}{先澄清一个容易混淆的点}
+                这里的\alert{一阶}不是“一阶色散”，而是近轴高斯光学中的系统规格；\alert{三阶}也不是“三阶色散”，而是去除理想成像后最先出现的 Seidel 像差项。
+            \end{alertblock}
+
+            \textbf{一阶设计量回答：系统应该把像成在哪里？}
+            \begin{itemize}
+                \item 有效焦距 $f'$、放大率 $\beta$、像高 $y'$
+                \item 孔径、$F/\#$、NA、视场角 $\omega$
+                \item 工作距离、后焦距、系统总长
+            \end{itemize}
+
+            \begin{equation}
+                \beta = \frac{y'}{y}, \qquad
+                J = nyu = n'y'u'
+                \label{eq:first_order_main}
+            \end{equation}
+        \end{column}
+        \hfill
+        \begin{column}{.52\textwidth}
+            \textbf{三阶像差回答：系统偏离理想成像的最低阶形状是什么？}
+            \begin{itemize}
+                \item 球差：孔径三次项，轴上也存在
+                \item 彗差：孔径二次项，随视场一次增长
+                \item 像散/场曲：孔径一次项，随视场二次增长
+                \item 畸变：主光线像高偏移，主要改变几何相似性
+            \end{itemize}
+
+            \begin{block}{Zernike 的位置}
+                Zernike 不是另一套重复分类，而是把\alert{波像差 $W(\rho,\theta)$}投影到单位圆上的正交基。它适合把 Zemax 的 OPD 图、干涉测量结果和优化目标连接起来。
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{OPD、PSF 与 Ray Fan}
+
+\englishtitle{Optical Path Difference and Wave Aberration}
+\begin{frame}{OPD：统一描述像差的物理量}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
-            \textbf{光程(Optical Path Length, OPL)：}
-            光在折射率 $n$ 连续分布介质中的积分路径：
+            \textbf{光程(Optical Path Length)：}
             \begin{equation}
                 OPL = \int n(s)\,ds
-                \label{eq:opl}
+                \label{eq:opl_main}
             \end{equation}
 
-            \textbf{光程差(OPD)：}
-            两束光线的 OPL 之差，等效为\alert{波像差函数} $W(x,y)$：
+            \textbf{光程差(OPD)或波像差：}
             \begin{equation}
-                OPD = OPL_{\text{实际}} - OPL_{\text{理想}} \equiv W(x,y)
-                \label{eq:opd}
+                OPD = OPL_{\text{actual}} - OPL_{\text{reference}}
+                \equiv W(\rho,\theta)
+                \label{eq:opd_main}
+            \end{equation}
+
+            \textbf{相位误差：}
+            \begin{equation}
+                \Delta\phi(\rho,\theta)
+                = \frac{2\pi}{\lambda}W(\rho,\theta)
+                \label{eq:phase_main}
             \end{equation}
         \end{column}
         \hfill
         \begin{column}{.48\textwidth}
-            \begin{block}{马吕斯定律}
-                理想成像系统中，物点到像点的所有光线光程均相等。
+            \begin{block}{理想成像的波前条件}
+                从同一物点出发并到达同一理想像点的所有光线，应具有相同光程；等价地，实际波前应与以理想像点为球心的参考球面重合。
             \end{block}
-
-            \textbf{波像差的物理意义：}
-            \begin{itemize}
-                \item 实际波前与理想参考球面波前的\alert{法向几何偏离量}
-                \item $W(x,y) \neq 0$ 时，点像退化为弥散斑
-                \item 波像差是评估像质的\alert{根本物理量}
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{From Phase Modulation to Image Plane}
-\begin{frame}{从相位调制到像面光场}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth]{Figure/图片1.png}
-                \caption{有像差与无像差的PSF对比}
-                \label{fig:psf_compare}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{相位差：}
-            \begin{equation}
-                \Delta\phi = k \cdot OPD = \frac{2\pi}{\lambda} W(x,y)
-                \label{eq:phase_diff}
-            \end{equation}
 
             \textbf{广义光瞳函数：}
             \begin{equation}
-                P(x,y) = A(x,y) \exp\!\left[i\frac{2\pi}{\lambda}W(x,y)\right]
-                \label{eq:pupil_func}
+                P(\rho,\theta)=A(\rho,\theta)
+                \exp\!\left[i\frac{2\pi}{\lambda}W(\rho,\theta)\right]
+                \label{eq:pupil_main}
             \end{equation}
 
-            \textbf{点扩散函数(Point Spread Function, PSF)：}
-            \begin{equation}
-                PSF(u,v) = \left|\iint P(x,y)\,e^{-i\frac{2\pi}{\lambda f}(ux+vy)}dx\,dy\right|^2
-                \label{eq:psf}
-            \end{equation}
-
-            \alert{核心关系链：} OPD $\rightarrow$ 相位 $\rightarrow$ PSF $\rightarrow$ 像质
+            \alert{核心判断：}如果 $W=0$，系统只受衍射限制；如果 $W\neq0$，相位误差会改变焦点附近的能量分布。
         \end{column}
     \end{columns}
 \end{frame}
 
-\subsection{点扩散函数与成像模型}
-
-\englishtitle{Point Spread Function and Airy Disk}
-\begin{frame}{点扩散函数(PSF)与艾里斑}
+\englishtitle{PSF, OTF and Image Formation}
+\begin{frame}{PSF 与成像模型：这页才对应 PSF 图片}
     \begin{columns}[T]
-        \begin{column}{.5\textwidth}
+        \begin{column}{.42\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.95\textwidth]{Figure/PSF_01.png}
-                \caption{不同NA下的PSF——衍射图案随NA增大而收缩}
-                \label{fig:psf_na}
+                \includegraphics[width=.94\textwidth,height=.42\textheight,keepaspectratio]{Figure/PSF_01.png}
+                \caption{PSF、FWHM 与 NA 的关系}
+                \label{fig:psf_na_main}
             \end{figure}
         \end{column}
         \hfill
-        \begin{column}{.5\textwidth}
-            \textbf{PSF 的定义：}
-            \bigbreak
-            从样本中无限小点光源发射、通过高数值孔径($NA$)物镜传输到像平面的\alert{三维衍射图案}，是图像形成模型的\alert{基本单位}。
-
-            \bigbreak
-            \textbf{艾里斑(Airy Disk)：}
-            在 $x$-$y$ 平面上形成中心明亮、周围环绕同心光环的衍射图案。中心亮斑半径由 $NA$ 决定：
-
-            \begin{equation}
-                r_{\text{Airy}} = \frac{0.61\,\lambda}{NA}
-                \label{eq:airy_radius}
-            \end{equation}
-
-            \alert{NA 越大，PSF 越集中，分辨率越高。}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Resolution and Rayleigh Criterion}
-\begin{frame}{分辨率与瑞利判据}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \textbf{半峰全宽(FWHM)：}
-            用来描述 PSF 的宽度，进而定义物镜的\alert{横向分辨率}和瑞利极限。
-
-            \bigbreak
-            在没有球差的完美透镜中，点源衍射图案呈\alert{沙漏形}(横向)或\alert{橄榄球形}(轴向)对称分布。
-
-            \bigbreak
-            两个相邻发光点能被分辨的最小距离，决定了显微镜的\alert{横向和轴向分辨率}。
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \begin{block}{瑞利判据(Rayleigh Criterion)}
-                当第一个艾里斑的中心正好落在第二个艾里斑的第一暗环上时，两点恰好可分辨：
-                \begin{equation}
-                    d_{\text{min}} = \frac{0.61\,\lambda}{NA}
-                    \label{eq:rayleigh}
-                \end{equation}
-            \end{block}
-
-            \textbf{提高分辨率的途径：}
-            \begin{itemize}
-                \item 增大 $NA$(高数值孔径物镜)
-                \item 减小 $\lambda$(短波长/紫外光源)
-                \item 使用反卷积等计算恢复技术
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Convolution Model of Imaging}
-\begin{frame}{成像过程的卷积模型}
-    \begin{columns}[T]
-        \begin{column}{.55\textwidth}
+        \begin{column}{.58\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth]{Figure/PSF_02.png}
-                \caption{图像退化与反卷积恢复过程}
-                \label{fig:psf_convolution}
+                \includegraphics[width=.96\textwidth,height=.30\textheight,keepaspectratio]{Figure/PSF_02.png}
+                \caption{物体与 PSF 卷积形成退化图像}
+                \label{fig:psf_conv_main}
+            \end{figure}
+
+            \vspace{-4pt}
+            \begin{equation}
+                PSF=\left|\mathcal{F}\{P(\rho,\theta)\}\right|^2,
+                \qquad i=o\otimes PSF
+                \label{eq:psf_conv_main}
+            \end{equation}
+
+            \begin{equation}
+                r_{\text{Airy}} = \frac{0.61\lambda}{NA}, \qquad
+                OTF=\mathcal{F}\{PSF\}
+                \label{eq:airy_otf_main}
+            \end{equation}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Ray Fan Plot and Its Geometric Meaning}
+\begin{frame}{横向像差图：从入瞳采样到像面落点}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/图片1.png}
+                \caption{光线穿过入瞳并落到评估面的几何关系}
+                \label{fig:rayfan_ray_geometry_main}
             \end{figure}
         \end{column}
         \hfill
-        \begin{column}{.45\textwidth}
-            在满足\alert{线性}和\alert{空间平移不变性}的前提下，最终图像 $i(r)$ 是真实物体 $o(r)$ 与系统 $PSF(r)$ 的\alert{卷积}：
-
-            \begin{equation}
-                i(x,y,z) = o(x,y,z) \otimes PSF(x,y,z)
-                \label{eq:convolution}
-            \end{equation}
-
-            \bigbreak
-            连续域卷积积分：
-            \begin{equation}
-                i(x) = \int_{-\infty}^{\infty} o(x-x') \times PSF(x')\,dx'
-                \label{eq:conv_integral}
-            \end{equation}
-
-            \alert{卷积的含义：}每个物点都被替换为该系统对应的 PSF 图案，所有 PSF 按强度加权叠加形成最终图像。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Frequency Domain Analysis and OTF}
-\begin{frame}{频域分析与光学传递函数(OTF)}
-    \begin{columns}[T]
-        \begin{column}{.55\textwidth}
-            通过\alert{傅里叶变换}将空间坐标转化为空间频率，频域中卷积简化为\alert{逐点乘法}：
-
-            \begin{equation}
-                F\{i\} = F\{o\} \times F\{PSF\}
-                \label{eq:freq_conv}
-            \end{equation}
-
-            \bigbreak
-            \textbf{光学传递函数(OTF)：}
-            \begin{equation}
-                OTF = F\{PSF\}
-                \label{eq:otf}
-            \end{equation}
-            OTF 描述显微系统如何传递不同空间频率的信号。
-        \end{column}
-        \hfill
         \begin{column}{.50\textwidth}
-            \begin{block}{显微镜的低通滤波特性}
-                \begin{itemize}
-                    \item \textbf{低频}：大尺寸特征，容易通过
-                    \item \textbf{中高频}：细节逐渐被衰减
-                    \item \textbf{截止频率} $2NA/\lambda$ 以上：极高频完全丢失
-                \end{itemize}
-            \end{block}
-
-            \alert{衍射极限的本质：}OTF 在高频处截止，超过截止频率的信息不可能被任何光学系统传递。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Deconvolution Image Restoration}
-\begin{frame}{反卷积图像恢复技术}
-    \begin{columns}[T]
-        \begin{column}{.55\textwidth}
-            \textbf{反卷积的数学原理：}
-            理论上通过频域逆运算可直接恢复物体信息：
-            \begin{equation}
-                F\{o\} = \frac{F\{i\}}{OTF}
-                \label{eq:deconv}
-            \end{equation}
-
-            然而，直接反滤波会\alert{极大放大高频噪声}，使结果完全失真。
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{主要反卷积算法：}
-            \begin{itemize}
-                \item \alert{去模糊算法}：如最近邻法——快速但可能降低 SNR
-                \item \alert{约束迭代法}：如 Jansson-van Cittert——设定非负约束，有效降噪
-                \item \alert{盲反卷积}：无需预先测量 PSF，同时估计物体分布和系统 PSF
-            \end{itemize}
-        \end{column}
-    \end{columns}
-
-    \bigbreak
-    \alert{核心权衡：}反卷积需要在\alert{分辨率提升}、\alert{处理速度}和\alert{噪声控制}之间取得平衡。
-\end{frame}
-
-\englishtitle{Ray Description in Geometrical Optics}
-\begin{frame}{几何光学中的光束描述}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \textbf{光线扇图(Ray Fan)：}
-            从物点发出多条光线，形成扇状分布。通过观察光线扇的分布，可以大致了解光线的会聚状态。
-
-            \bigbreak
-            \textbf{子午面(Meridional Plane)：}
-            包含物点和光轴的平面。光路图通常展示子午面内的光线路径。
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{弧矢面(Sagittal Plane)：}
-            垂直于子午面且包含主光线的平面。
-
-            \bigbreak
-            \textbf{主光线：}从任意物点发出的所有光线中，唯一穿过入瞳或孔径光阑中心的光线。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{First-Order Quantities in Imaging Optics}
-\begin{frame}{成像系统的一阶设计量}
-    \begin{columns}[T]
-        \begin{column}{.56\textwidth}
-            在进入像差优化之前，通常要先确定\alert{一阶规格}：
-
-            \begin{itemize}
-                \item \textbf{有效焦距 $f'$}：决定成像比例和视场覆盖能力
-                \item \textbf{$F/\#$}：近似表征通光能力与景深，$F/\# \approx f'/D_{EP}$
-                \item \textbf{视场(Field of View)}：决定离轴像差压力和像面尺寸
-                \item \textbf{放大率 $\beta$}：决定物像尺度对应关系
-            \end{itemize}
-
-            \begin{equation}
-                \beta = \frac{y'}{y}
-                \label{eq:magnification}
-            \end{equation}
-
-            \alert{设计逻辑：}先满足焦距、孔径、视场与像高，再讨论像差如何压低。
-        \end{column}
-        \hfill
-        \begin{column}{.44\textwidth}
-            \begin{block}{Lagrange 不变量}
-                \begin{equation}
-                    J = nyu = n'y'u'
-                    \label{eq:lagrange}
-                \end{equation}
-            \end{block}
-
-            \textbf{它告诉我们：}
-            \begin{itemize}
-                \item 视场、孔径和像高之间存在\alert{守恒约束}
-                \item 想同时增大视场和数值孔径，系统体积与像差校正难度都会上升
-                \item Zemax 中很多优化冲突，本质上都能追溯到这一约束
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\subsection{横向像差图与三阶像差理论}
-
-\englishtitle{What is a Transverse Aberration Diagram?}
-\begin{frame}{什么是横向像差图？}
-    \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.95\textwidth]{Figure/图片2.png}
-                \caption{横向像差图的基本结构}
-                \label{fig:trans_aberr_def}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.55\textwidth}
-            \begin{block}{定义}
-                横向像差图是将到达评估面的光线坐标与入射光瞳面上的光线坐标相关联的图表。
+            \begin{block}{Ray Fan 的读图方式}
+                横轴是归一化入瞳坐标 $h\in[-1,1]$，纵轴是每条光线在评估面上的横向偏移，通常以主光线落点为原点。
             \end{block}
 
             \begin{itemize}
-                \item \textbf{横轴}：光瞳坐标，满刻度对应入瞳直径
-                \item \textbf{纵轴}：横向像差量(垂直于光轴方向的偏移)
-                \item \textbf{原点}：主光线在评估面上的到达位置
+                \item \textbf{曲线斜率}：主要对应离焦、场曲、像散等线性项。
+                \item \textbf{曲线弯曲}：对应球差、彗差等高阶项。
+                \item \textbf{视场变化}：区分轴上像差和轴外像差。
+                \item \textbf{波长变化}：区分单色像差和色差。
             \end{itemize}
 
-            在几何光学中，沿光轴方向称为\alert{纵向}，垂直于光轴的方向称为\alert{横向}，由此定义的像差称为\alert{横向像差}。
+            \alert{Ray Fan 是几何诊断图；PSF 是最终点像能量分布。两者相关，但不能混用图片和结论。}
         \end{column}
     \end{columns}
 \end{frame}
 
-\englishtitle{Geometric Origin of the Ray Fan Plot}
-\begin{frame}{横向像差图的几何来源}
-    \begin{columns}[T]
-        \begin{column}{.62\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth]{Figure/图片26.png}
-                \caption{由入瞳坐标到像面光线穿透点的映射关系}
-                \label{fig:rayfan_origin}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.38\textwidth}
-            \textbf{这张图说明了横向像差图是如何生成的：}
-            \begin{itemize}
-                \item \textbf{横轴}对应入瞳上的归一化坐标 $h\in[-1,1]$
-                \item \textbf{纵轴}对应各条光线在像面的穿透坐标，相对主光线读出
-                \item 子午光束形成 \alert{$y$-fan}，弧矢光束可形成 \alert{$x$-fan}
-                \item 图上的每个点都是一条真实追迹光线，连线后得到横向像差曲线
-            \end{itemize}
-
-            \alert{因此：}横向像差图不是抽象函数图，而是“\alert{入瞳采样} $\rightarrow$ \alert{像面落点}”的直接可视化。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-
-% \englishtitle{Ray Diagram vs.\ Transverse Aberration Diagram}
-% \begin{frame}{光路图与横向像差图的关系}
-%     \begin{figure}
-%         \centering
-%         \includegraphics[width=0.78\textwidth]{Figure/图片1.png}
-%         \caption{光路图与横向像差的对应关系}
-%         \label{fig:ray_vs_trans_aberr}
-%     \end{figure}
-% \end{frame}
-
-
-\englishtitle{Ideal Imaging and Defocus}
-\begin{frame}{理想成像与离焦}
-    \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.95\textwidth]{Figure/图片3.png}
-                \caption{无像差时——所有光线会聚于一点}
-                \label{fig:no_aberration}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.55\textwidth}
-            \textbf{无像差时：}横向像差量均为零，曲线为沿横轴的直线。
-
-            \bigbreak
-            \textbf{离焦(Defocus)：}将评估面沿光轴移动的操作。
-            \begin{itemize}
-                \item 远离镜头 $\rightarrow$ \alert{右下倾斜}直线
-                \item 靠近镜头 $\rightarrow$ \alert{右上倾斜}直线
-            \end{itemize}
-
-            \alert{关键：}离焦总是表现为通过原点的直线，斜率方向指示离焦方向。
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Defocus Diagrams}
-\begin{frame}{离焦示意图}
+\englishtitle{Ideal Imaging and Defocus in One Slide}
+\begin{frame}{理想成像与离焦：合并到一张图}
     \begin{figure}
         \centering
-        \includegraphics[width=0.43\textwidth]{Figure/图片4.png}\hfill
-        \includegraphics[width=0.43\textwidth]{Figure/图片6.png}
-        \caption{评估面沿正方向(左)和负方向(右)移动的横向像差图}
-        \label{fig:defocus_both}
-    \end{figure}
-\end{frame}
-
-\englishtitle{Best-Fit Line and Optimal Image Plane}
-\begin{frame}{最佳拟合直线与最佳像面}
-    \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=0.9\textwidth]{Figure/图片17.png}
-                \caption{以新坐标系表示的横向像差图}
-                \label{fig:best_fit}
-            \end{figure}
-        \end{column}
+        \begin{minipage}[t]{.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=.40\textheight,keepaspectratio]{Figure/图片3.png}
+            \scriptsize 理想评估面：所有光线会聚于同一点
+        \end{minipage}
         \hfill
-        \begin{column}{.55\textwidth}
-            当最佳拟合直线相对于横轴倾斜时，表明评估面\alert{不在最佳会聚位置}。
+        \begin{minipage}[t]{.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=.40\textheight,keepaspectratio]{Figure/图片4.png}
+            \scriptsize 评估面远离最佳焦面：Ray Fan 呈一侧倾斜直线
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth,height=.40\textheight,keepaspectratio]{Figure/图片6.png}
+            \scriptsize 评估面靠近镜头：斜率方向相反
+        \end{minipage}
+        \caption{理想成像与正负离焦的统一示意}
+        \label{fig:ideal_defocus_merged}
+    \end{figure}
 
-            \bigbreak
-            通过\alert{旋转坐标系}(将最佳拟合直线作为新横轴)，可以预测离焦后的横向像差量，无需实际移动评估面。
-
-            \bigbreak
-            用垂直于新横轴的坐标轴读出的幅值即代表去除离焦分量后的\alert{真实像差量}。
+    \vspace{-4pt}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{itemize}
+                \item 无像差：横向像差为零，Ray Fan 落在横轴上。
+                \item 离焦：Ray Fan 是通过原点的直线。
+            \end{itemize}
+        \end{column}
+        \begin{column}{.50\textwidth}
+            \begin{itemize}
+                \item 改变像面位置只能消除线性离焦项。
+                \item 弯曲项仍存在时，需要改变光学结构或面形。
+            \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
-\englishtitle{Third-Order (Seidel) Aberration Theory}
-\begin{frame}{三阶像差理论}
-    根据三阶像差理论，横向像差量 $\Delta Y$ 的孔径依赖性和视场依赖性为：
+\subsection{Seidel 像差与 Zernike 展开}
 
+\englishtitle{Third-Order Aberration as Residual After Paraxial Imaging}
+\begin{frame}{三阶像差：理想成像之后的最低阶残差}
+    \small
+    \textbf{在一阶成像已经确定之后，Ray Fan 的最低阶残差可写成：}
     \begin{equation}
-        \Delta Y \propto \mathrm{I}h^3(\tan\omega)^0 - 3\mathrm{II}h^2(\tan\omega)^1 + (3\mathrm{III}+P)h^1(\tan\omega)^2 - \mathrm{V}h^0(\tan\omega)^3
-        \label{eq:seidel}
+        \Delta y(h,\omega)
+        \approx A h
+        + B h^3
+        + C h^2\tan\omega
+        + D h\tan^2\omega
+        + E\tan^3\omega
+        \label{eq:rayfan_third_order}
     \end{equation}
 
-    其中 $h$ 为入射光瞳坐标，$\omega$ 为视场角。
-
-    \begin{block}{各系数的物理意义}
-        \begin{itemize}
-            \item \textbf{I(球差系数)}：$\propto h^3$，与视场角无关
-            \item \textbf{II(彗差系数)}：$\propto h^2$，$\propto \tan\omega$
-            \item \textbf{III, P(像散/场曲系数)}：$\propto h$，$\propto \tan^2\omega$
-            \item \textbf{V(畸变系数)}：与孔径无关，$\propto \tan^3\omega$
-        \end{itemize}
-    \end{block}
-\end{frame}
-
-\englishtitle{Aberration Coefficients and Transverse Aberration Features}
-\begin{frame}{像差系数与横向像差图特征}
+    \vspace{-2pt}
     \begin{table}
         \centering
-        \small
-        \begin{tabular}{c|c|c|c}
+        \scriptsize
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{p{2.1cm}|p{2.2cm}|p{2.5cm}|p{4.5cm}}
             \toprule
-            \textbf{系数} & \textbf{孔径依赖性} & \textbf{视场依赖性} & \textbf{横向像差图特征} \\
+            \textbf{项} & \textbf{孔径依赖} & \textbf{视场依赖} & \textbf{Ray Fan 诊断特征} \\
             \midrule
-            I(球差)    & $h^3$(立方)  & $(\tan\omega)^0$(无关) & 奇函数，三次曲线 \\
-            II(彗差)   & $h^2$(平方)  & $(\tan\omega)^1$(一次) & 偶函数，二次曲线 \\
-            III(像散)  & $h^1$(一次)  & $(\tan\omega)^2$(二次) & 奇函数，直线 \\
-            IV/P(场曲) & $h^1$(一次)  & $(\tan\omega)^2$(二次) & 奇函数，直线 \\
-            V(畸变)    & $h^0$(无关)  & $(\tan\omega)^3$(三次) & 无法在图中表达 \\
+            离焦 & $h$ & 与视场弱相关 & 通过原点的直线，移动像面可改变斜率 \\
+            球差 & $h^3$ & 轴上存在 & 奇函数三次曲线，边缘孔径贡献最大 \\
+            彗差 & $h^2$ & $\tan\omega$ & 偶函数二次曲线，离轴视场快速变坏 \\
+            像散/场曲 & $h$ & $\tan^2\omega$ & 原点附近斜率随视场或子午/弧矢方向改变 \\
+            畸变 & $h^0$ & $\tan^3\omega$ & 主光线像高偏移，Ray Fan 不直接显示弥散形状 \\
             \bottomrule
         \end{tabular}
-        \caption{三阶(Seidel)像差系数的依赖性与横向像差图特征}
-        \label{tab:seidel_coeff}
+        \caption{三阶项与横向像差图的对应关系}
+        \label{tab:third_order_rayfan_main}
     \end{table}
-    \alert{注意：}畸变(V)仅涉及主光线位置偏移，在横向像差图上无法直接表达。
+
+    \alert{合并后的理解：}一阶量负责把像“放到正确位置”；三阶项描述“放到那里之后还剩下什么形状的误差”。
 \end{frame}
 
-\englishtitle{Zernike Polynomial Expansion of Wave Aberration}
-\begin{frame}{波像差的泽尼克多项式展开}
+\englishtitle{Zernike Polynomial Expansion}
+\begin{frame}{Zernike 多项式：波前像差的正交坐标系}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
-            现代光学设计中，波像差用\alert{泽尼克多项式}在极坐标 $(\rho,\theta)$ 下正交展开：
+            对圆形光瞳，波像差通常展开为：
             \begin{equation}
-                W(\rho,\theta) = \sum_{j} C_j Z_j(\rho,\theta)
-                \label{eq:zernike}
+                W(\rho,\theta)=\sum_j C_j Z_j(\rho,\theta),
+                \qquad 0\le \rho \le 1
+                \label{eq:zernike_main}
+            \end{equation}
+
+            \begin{equation}
+                Z_n^m(\rho,\theta)
+                =R_n^m(\rho)\cos(m\theta)
+                \ \text{或}\
+                R_n^m(\rho)\sin(m\theta)
+                \label{eq:zernike_nm_main}
+            \end{equation}
+
+            \begin{equation}
+                \int_0^1\!\!\int_0^{2\pi}
+                Z_i Z_j\,\rho\,d\theta\,d\rho
+                = N_i\delta_{ij}
+                \label{eq:zernike_orthogonal_main}
             \end{equation}
         \end{column}
         \hfill
         \begin{column}{.48\textwidth}
             \begin{itemize}
-                \item \textbf{球差：} $W \propto \rho^4$(径向偶次函数)
-                \item \textbf{彗差：} $W \propto \rho^3\cos\theta$
-                \item \textbf{像散：} $W \propto \rho^2\cos^2\theta$
-                \item \textbf{场曲：} $W$ 随视场和孔径平方变化
+                \item Zernike直接面向\alert{波前 $W$}，比单纯看 Ray Fan 更接近像质根源。
+                \item 正交性让每个系数 $C_j$ 具有相对独立的含义，便于量化比较。
+                \item Zemax 的 Wavefront Map、Zernike Standard Coefficients 和 RMS Wavefront 都建立在同一套波前语言上。
+                \item 干涉仪测量、自由曲面补偿和自适应光学校正也常用 Zernike 系数沟通。
+            \end{itemize}
+
+            \begin{alertblock}{从波前到光线}
+                Ray Fan 可近似理解为波前斜率的表现：
+                \[
+                    \Delta \mathbf{r}_{\perp}\propto \nabla_{\rho,\theta} W
+                \]
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Zernike Modes and Physical Aberrations}
+\begin{frame}{常用 Zernike 模式与像差含义}
+    \scriptsize
+    \begin{table}
+        \centering
+        \renewcommand{\arraystretch}{1.42}
+        \begin{tabular}{p{2.3cm}|p{3.2cm}|p{3.0cm}|p{3.4cm}}
+            \toprule
+            \textbf{Zernike 模式} & \textbf{典型形式} & \textbf{物理含义} & \textbf{诊断用途} \\
+            \midrule
+            Piston & $1$ & 整体相位常数 & 不影响成像，通常去除 \\
+            Tilt X/Y & $\rho\cos\theta,\ \rho\sin\theta$ & 像点平移或装调倾斜 & 通常作为对准误差处理 \\
+            Defocus & $2\rho^2-1$ & 像面前后移动 & 与 Ray Fan 直线斜率对应 \\
+            Astigmatism & $\rho^2\cos2\theta,\ \rho^2\sin2\theta$ & 两个正交方向焦点不同 & 区分子午与弧矢焦面 \\
+            Coma & $(3\rho^3-2\rho)\cos\theta$ 等 & 轴外不对称波前 & 对应 Ray Fan 二次弯曲 \\
+            Primary spherical & $6\rho^4-6\rho^2+1$ & 边缘与近轴光线焦点不同 & 对应轴上三次型 Ray Fan \\
+            Higher order terms & $n\ge5$ & 高阶球差、二级彗差等 & 大 NA、自由曲面或复杂系统中需关注 \\
+            \bottomrule
+        \end{tabular}
+        \caption{Zernike 系数不是装饰性输出，而是可用于优化、测量和误差分解的波前坐标}
+        \label{tab:zernike_modes_main}
+    \end{table}
+
+    \vspace{-2pt}
+    \begin{block}{使用建议}
+        先移除 piston、tilt 和必要的 defocus，再讨论剩余 Zernike 系数；否则装调误差和像面位置会掩盖真正的设计像差。
+    \end{block}
+\end{frame}
+
+\subsection{Ray Fan 诊断：单色像差与色差}
+
+\englishtitle{Spherical Aberration and Coma in Ray Fan}
+\begin{frame}{球差与彗差：看曲线阶次}
+    \begin{columns}[T]
+        \begin{column}{.42\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/图片23.png}
+                \caption{球差：轴上三次型 Ray Fan}
+                \label{fig:spherical_rayfan_main}
+            \end{figure}
+            \vfil
+            \begin{figure}
+                \centering
+                \includegraphics[width=.46\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片8.png}\hfill
+                \includegraphics[width=.46\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片11.png}
+                \caption{彗差：二次型曲线，开口方向区分内向/外向}
+                \label{fig:coma_rayfan_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.58\textwidth}
+            \begin{itemize}
+                \item \textbf{球差}：轴上也存在，孔径越大越明显；Ray Fan 为奇函数三次曲线。
+                \item \textbf{彗差}：轴外像差，随视场增加；Ray Fan 呈偶函数二次曲线。
+                \item \textbf{离焦对比}：离焦只能改变直线斜率，不能把二次彗差项消掉。
+                \item \textbf{工程处理}：分摊光焦度、改变光阑位置、加入非球面或对称结构。
             \end{itemize}
         \end{column}
     \end{columns}
+\end{frame}
 
-    \bigbreak
-    泽尼克系数 $C_j$ 可以\alert{直接量化}各像差分量强度，方便与 Seidel 像差系数对应转换。
+\englishtitle{Linear Ray Fan Terms: Defocus, Field Curvature and Astigmatism}
+\begin{frame}{离焦、场曲与像散：看原点附近斜率}
+    \begin{figure}
+        \centering
+        \includegraphics[width=.31\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片20.png}\hfill
+        \includegraphics[width=.31\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片21.png}\hfill
+        \includegraphics[width=.31\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片22.png}
+        \caption{离焦、场曲与像散都表现在线性斜率上，但判据不同}
+        \label{fig:linear_aberrations_main}
+    \end{figure}
+
+    \begin{columns}[T]
+        \begin{column}{.33\textwidth}
+            \textbf{离焦}
+            \begin{itemize}
+                \item 同一视场整体斜率一致
+                \item 移动像面即可校正
+            \end{itemize}
+        \end{column}
+        \begin{column}{.33\textwidth}
+            \textbf{场曲}
+            \begin{itemize}
+                \item 不同视场最佳焦点不同
+                \item 本质是 Petzval 曲面问题
+            \end{itemize}
+        \end{column}
+        \begin{column}{.33\textwidth}
+            \textbf{像散}
+            \begin{itemize}
+                \item 子午与弧矢斜率不同
+                \item 两条焦线无法同时聚焦
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Dispersion and Two Chromatic Aberrations}
+\begin{frame}{材料色散与两类色差}
+    \begin{columns}[T]
+        \begin{column}{.46\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.98\textwidth,height=.50\textheight,keepaspectratio]{Figure/Abbe.png}
+                \caption{阿贝图：折射率与色散能力的材料地图}
+                \label{fig:abbe_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.54\textwidth}
+            \textbf{色散是材料属性：}
+            \begin{equation}
+                \nu_d = \frac{n_d-1}{n_F-n_C}
+                \label{eq:abbe_main}
+            \end{equation}
+
+            \begin{table}
+                \centering
+                \scriptsize
+                \renewcommand{\arraystretch}{1.35}
+                \resizebox{\linewidth}{!}{%
+                \begin{tabular}{p{1.8cm}|p{3.0cm}|p{3.0cm}}
+                    \toprule
+                    \textbf{类型} & \textbf{Ray Fan 特征} & \textbf{物理含义} \\
+                    \midrule
+                    轴向色差 & 原点附近斜率随波长变化 & 不同波长的焦点前后不同 \\
+                    倍率色差 & 纵轴截距随波长变化 & 不同波长的成像倍率不同 \\
+                    \bottomrule
+                \end{tabular}
+                }
+            \end{table}
+
+            \textbf{设计策略：}
+            \begin{itemize}
+                \item 冕牌/火石玻璃组合用于消色差。
+                \item 单色光照明可显著降低色差压力。
+                \item 宽光谱系统需要在评价函数中给多波长合理权重。
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Chromatic Aberration in Ray Fan}
+\begin{frame}{色差在 Ray Fan 上怎么看}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.98\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片30.png}
+                \vspace{2pt}
+                \includegraphics[width=.98\textwidth,height=.22\textheight,keepaspectratio]{Figure/图片28.png}
+                \caption{轴向色差：不同波长近轴焦点位置不同}
+                \label{fig:axial_color_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.98\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片31.png}
+                \vspace{2pt}
+                \includegraphics[width=.98\textwidth,height=.22\textheight,keepaspectratio]{Figure/图片29.png}
+                \caption{倍率色差：不同波长主光线像高不同}
+                \label{fig:lateral_color_main}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \vspace{-4pt}
+    \begin{block}{读图要点}
+        轴向色差看“斜率”：同一视场下，不同波长在原点附近斜率不一致；倍率色差看“截距”：轴外视场中，不同波长主光线落点高度不一致。
+    \end{block}
+\end{frame}
+
+\englishtitle{Diagnostic Workflow}
+\begin{frame}{像差诊断流程：从图到结论}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{block}{Ray Fan 先行诊断}
+                \begin{enumerate}
+                    \item 先看轴上视场：三次曲线为球差，波长斜率差为轴向色差。
+                    \item 再看轴外视场：二次曲线为彗差，原点斜率变化为场曲/像散。
+                    \item 对比子午和弧矢：斜率分离说明像散。
+                    \item 对比不同波长：截距分离说明倍率色差。
+                    \item 对比满刻度宽度：光束变窄说明渐晕或光瞳像差。
+                \end{enumerate}
+            \end{block}
+        \end{column}
+        \hfill
+        \begin{column}{.50\textwidth}
+            \begin{block}{再用波前和像质确认}
+                \begin{itemize}
+                    \item \textbf{Zernike}：分解 OPD，确认主要波前模式。
+                    \item \textbf{Spot}：查看几何弥散斑是否落入像元。
+                    \item \textbf{PSF}：查看点像能量是否集中。
+                    \item \textbf{MTF}：查看目标空间频率的对比度传递。
+                    \item \textbf{Encircled Energy}：查看探测器采样能量是否足够。
+                \end{itemize}
+            \end{block}
+
+            \begin{alertblock}{最重要的工作习惯}
+                不要只看一个图下结论；Ray Fan 告诉你“像差形状”，OPD/Zernike 告诉你“波前来源”，MTF/PSF 告诉你“图像后果”。
+            \end{alertblock}
+        \end{column}
+    \end{columns}
 \end{frame}

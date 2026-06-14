@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.23)  11 JUN 2026 17:29
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.23)  14 JUN 2026 16:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -947,8 +947,7 @@ Package fontspec Info:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Microsoft
 (fontspec)             YaHei/BI/OT:script=hani;language=dflt;"
 
-
-No file slides.aux.
+ (./slides.aux)
 \openout1 = `slides.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 165.
@@ -971,6 +970,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 165.
 LaTeX Font Info:    ... okay on input line 165.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 165.
 LaTeX Font Info:    ... okay on input line 165.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1006,11 +1006,9 @@ LaTeX Font Info:    ... okay on input line 165.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 165.
+(./slides.out) (./slides.out)
 \@outlinefile=\write6
 \openout6 = `slides.out'.
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 \symnumbers=\mathgroup9
 \sympureletters=\mathgroup10
@@ -1046,7 +1044,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/b/it on input line 165.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  TU/pcr/m/n --> TU/pcr/b/n on input line 165.
-(e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
 Dictionary: translator-bibliography-dictionary, Language: English 
@@ -1122,21 +1120,14 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 
 [1
 
-] (./Chapter/01.Chapter1.tex
-No file slides.toc.
-
+] (./Chapter/02.Zhang.tex (./slides.toc)
 
 [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
- (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
- (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+File: Figure/Zhang/ZhangFig_01.png Graphic file (type bmp)
+<Figure/Zhang/ZhangFig_01.png>
+
 
 LaTeX Font Warning: Font shape `TU/MicrosoftYaHei(0)/m/it' undefined
 (Font)              using `TU/MicrosoftYaHei(0)/m/n' instead on input line 36.
@@ -1146,482 +1137,37 @@ LaTeX Font Warning: Font shape `TU/MicrosoftYaHei(0)/m/it' undefined
 [3
 
 ]
+File: Figure/Zhang/ZhangFig_02.png Graphic file (type bmp)
+<Figure/Zhang/ZhangFig_02.png>
+
 
 [4
 
 ]
-File: Figure/图片1.png Graphic file (type bmp)
-<Figure/图片1.png>
+File: Figure/Zhang/ZhangFig_03.png Graphic file (type bmp)
+<Figure/Zhang/ZhangFig_03.png>
 
 
 [5
 
 ]
-File: Figure/PSF_01.png Graphic file (type bmp)
-<Figure/PSF_01.png>
+File: Figure/Zhang/ZhangFig_04.png Graphic file (type bmp)
+<Figure/Zhang/ZhangFig_04.png>
 
 
 [6
 
-]
+])
+LaTeX Font Info:    Trying to load font information for U+msa on input line 196.
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 196.
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 [7
-
-]
-File: Figure/PSF_02.png Graphic file (type bmp)
-<Figure/PSF_02.png>
-
-
-[8
-
-]
-
-[9
-
-]
-
-[10
-
-]
-
-[11
-
-]
-
-[12
-
-]
-File: Figure/图片2.png Graphic file (type bmp)
-<Figure/图片2.png>
-
-
-[13
-
-]
-File: Figure/图片26.png Graphic file (type bmp)
-<Figure/图片26.png>
-
-Overfull \vbox (0.59723pt too high) detected at line 383
- []
-
-
-
-[14
-
-]
-File: Figure/图片3.png Graphic file (type bmp)
-<Figure/图片3.png>
-
-
-[15
-
-]
-File: Figure/图片4.png Graphic file (type bmp)
-<Figure/图片4.png>
-File: Figure/图片6.png Graphic file (type bmp)
-<Figure/图片6.png>
-
-
-[16
-
-]
-File: Figure/图片17.png Graphic file (type bmp)
-<Figure/图片17.png>
-
-
-[17
-
-]
-
-[18
-
-]
-
-[19
-
-]
-
-[20
-
-]) (./Chapter/02.Chapter2.tex
-No file slides.toc.
-
-
-[21
-
-]
-File: Figure/图片23.png Graphic file (type bmp)
-<Figure/图片23.png>
-
-
-[22
-
-]
-
-[23
-
-]
-File: Figure/图片8.png Graphic file (type bmp)
-<Figure/图片8.png>
-File: Figure/图片11.png Graphic file (type bmp)
-<Figure/图片11.png>
-
-
-[24
-
-]
-
-[25
-
-]
-File: Figure/图片24.png Graphic file (type bmp)
-<Figure/图片24.png>
-
-Overfull \vbox (5.95618pt too high) detected at line 158
- []
-
-
-
-[26
-
-]
-File: Figure/图片25.png Graphic file (type bmp)
-<Figure/图片25.png>
-
-Overfull \vbox (6.15604pt too high) detected at line 190
- []
-
-
-
-[27
-
-]
-
-[28
-
-]
-File: Figure/图片18.png Graphic file (type bmp)
-<Figure/图片18.png>
-
-
-[29
-
-]
-File: Figure/图片19.png Graphic file (type bmp)
-<Figure/图片19.png>
-
-
-[30
-
-]
-File: Figure/图片20.png Graphic file (type bmp)
-<Figure/图片20.png>
-File: Figure/图片21.png Graphic file (type bmp)
-<Figure/图片21.png>
-File: Figure/图片22.png Graphic file (type bmp)
-<Figure/图片22.png>
-
-Overfull \vbox (42.83572pt too high) detected at line 306
- []
-
-
-
-[31
-
-]
-File: Figure/图片27.png Graphic file (type bmp)
-<Figure/图片27.png>
-
-Overfull \vbox (2.65208pt too high) detected at line 335
- []
-
-
-
-[32
-
-]
-File: Figure/图片30.png Graphic file (type bmp)
-<Figure/图片30.png>
-File: Figure/图片28.png Graphic file (type bmp)
-<Figure/图片28.png>
-
-Overfull \vbox (28.24742pt too high) detected at line 366
- []
-
-
-
-[33
-
-]
-File: Figure/图片31.png Graphic file (type bmp)
-<Figure/图片31.png>
-File: Figure/图片29.png Graphic file (type bmp)
-<Figure/图片29.png>
-
-
-[34
-
-]
-
-[35
-
-]
-File: Figure/Abbe.png Graphic file (type bmp)
-<Figure/Abbe.png>
-
-
-[36
-
-]
-
-[37
-
-]
-
-[38
-
-]
-
-[39
-
-]
-
-[40
-
-]
-
-[41
-
-]) (./Chapter/03.Chapter3.tex
-No file slides.toc.
-
-
-[42
-
-]
-
-[43
-
-]
-LaTeX Font Info:    Trying to load font information for TU+pcr on input line 63.
-LaTeX Font Info:    No file TUpcr.fd. on input line 63.
-
-
-LaTeX Font Warning: Font shape `TU/pcr/m/n' undefined
-(Font)              using `TU/lmr/m/n' instead on input line 63.
-
-
-
-[44
-
-]
-
-[45
-
-]
-
-[46
-
-]
-
-[47
-
-]) (./Chapter/04.Chapter4.tex
-No file slides.toc.
-
-
-[48
-
-]
-File: Figure/Edmund/aberrations-1v2.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-1v2.pdf>
-
-
-[49
-
-]
-
-[50
-
-]
-File: Figure/Edmund/aberrations-1v2.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-1v2.pdf>
-
-
-LaTeX Font Warning: Font shape `TU/MicrosoftYaHei(1)/m/it' undefined
-(Font)              using `TU/MicrosoftYaHei(1)/m/n' instead on input line 91.
-
-
-
-[51
-
-]
-
-[52
-
-]
-File: Figure/Edmund/abberations-2a.png Graphic file (type bmp)
-<Figure/Edmund/abberations-2a.png>
-File: Figure/Edmund/abberations-2b.png Graphic file (type bmp)
-<Figure/Edmund/abberations-2b.png>
-
-
-[53
-
-]
-File: Figure/Edmund/aberrations-3v3.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-3v3.pdf>
-
-
-[54
-
-]
-File: Figure/Edmund/aberrations-4v2.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-4v2.pdf>
-
-
-[55
-
-]
-File: Figure/Edmund/aberrations-5v2.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-5v2.pdf>
-
-
-[56
-
-]
-File: Figure/Edmund/aberrations-6v2.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-6v2.pdf>
-File: Figure/Edmund/aberrations-7v2.pdf Graphic file (type pdf)
-<use Figure/Edmund/aberrations-7v2.pdf>
-
-
-[57
-
-]
-
-[58
-
-]
-
-[59
-
-]
-
-[60
-
-]
-
-[61
-
-]) (./Chapter/05.Chapter5.tex
-No file slides.toc.
-
-
-[62
-
-]
-
-[63
-
-]
-
-[64
-
-]
-
-[65
-
-]
-
-[66
-
-]
-
-[67
-
-]
-Overfull \hbox (123.41273pt too wide) in paragraph at lines 212--212
- [] 
- []
-
-
-
-[68
-
-]
-File: Figure/玻璃替换/Picture1zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture1zh-cn.png>
-
-
-[69
-
-]
-File: Figure/玻璃替换/Picture2zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture2zh-cn.png>
-
-
-[70
-
-]
-File: Figure/玻璃替换/Picture3zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture3zh-cn.png>
-File: Figure/玻璃替换/Picture4zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture4zh-cn.png>
-
-Overfull \vbox (25.63347pt too high) detected at line 315
- []
-
-
-
-[71
-
-]
-File: Figure/玻璃替换/Picture6zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture6zh-cn.png>
-
-
-[72
-
-]
-File: Figure/玻璃替换/Picture7zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture7zh-cn.png>
-File: Figure/玻璃替换/Picture8zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture8zh-cn.png>
-
-Overfull \vbox (0.72775pt too high) detected at line 386
- []
-
-
-
-[73
-
-]
-File: Figure/玻璃替换/Picture11zh-cn.png Graphic file (type bmp)
-<Figure/玻璃替换/Picture11zh-cn.png>
-
-
-[74
-
-]
-Overfull \vbox (30.89131pt too high) detected at line 497
- []
-
-
-
-[75
-
-]
-
-[76
-
-]
-
-[77
-
-])
-
-[78
 
 ]
 \tf@nav=\write7
@@ -1633,7 +1179,7 @@ Overfull \vbox (30.89131pt too high) detected at line 497
 \tf@snm=\write9
 \openout9 = `slides.snm'.
 
- [79] (./slides.aux)
+ (./slides.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/08/05>
@@ -1642,28 +1188,16 @@ L3 programming layer <2022/08/05>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-LaTeX Warning: Temporary extra page added at the end. Rerun to get it removed.
-
-
-Package rerunfilecheck Warning: File `slides.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `slides.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  412557186A1D70FFA9424F268984DE37;2592.
+Package rerunfilecheck Info: File `slides.out' has not changed.
+(rerunfilecheck)             Checksum: 3B2F9321C7D28A2F03F15158163C6643;699.
  ) 
 Here is how much of TeX's memory you used:
- 31008 strings out of 468527
- 681641 string characters out of 5445410
- 1268224 words of memory out of 5000000
- 58639 multiletter control sequences out of 15000+600000
- 642635 words of font info for 165 fonts, out of 8000000 for 9000
+ 30021 strings out of 468527
+ 650926 string characters out of 5445410
+ 1251224 words of memory out of 5000000
+ 57735 multiletter control sequences out of 15000+600000
+ 634660 words of font info for 118 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,15n,107p,469b,947s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,15n,107p,469b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on slides.pdf (79 pages).
+Output written on slides.pdf (7 pages).

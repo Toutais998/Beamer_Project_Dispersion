@@ -94,7 +94,7 @@
 \newcommand{\englishtitle}[1]{\def\@englishtitle{#1}}
 \let\@englishtitle\@empty
 
-% --- 当前页参考文献文本框：按页设置，未设置则隐藏 ---
+% --- 当前页参考文献文本框：按页设置，在页脚阶段绘制到前景层 ---
 \newif\ifshowframerefbox
 \showframerefboxfalse
 \newcommand{\insertframerefbox}{}
@@ -172,14 +172,11 @@
       \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}%
     \end{beamercolorbox}%
   }%
-  \vskip0pt%
-}
-\addtobeamertemplate{background canvas}{%
   \ifshowframerefbox
     \begin{tikzpicture}[remember picture,overlay]
       \node[
         anchor=south west,
-        xshift=.30cm,
+        xshift=.08cm,
         yshift=.88cm,
         rounded corners=2pt,
         draw=black!25,
@@ -192,13 +189,14 @@
       };
     \end{tikzpicture}%
   \fi
-}{}
-
+  \vskip0pt%
+}
 \AtBeginSection[]
 {
 	\nonumberframe
 	\begin{frame}
 	\frametitle{\textbf{目录}}
+	\label{toc:\thesection}
 	\tableofcontents[currentsection]
 	\end{frame}
 }
@@ -209,7 +207,10 @@
 \begin{document}
 % -----------------------------------------------------------------------------
 
-\frame{\titlepage}
+\begin{frame}
+\label{titlepage}
+\titlepage
+\end{frame}
 
 % -----------------------------------------------------------------------------
 
@@ -217,18 +218,13 @@
 
 \input{Chapter/02.Chapter2}
 
-\input{Chapter/02.Zhang}
-
-\input{Chapter/03.ZemaxSimulation}
-
-% \input{Chapter/04.Chapter4}
-
-% \input{Chapter/05.Chapter5}
+\input{Chapter/03.Chapter3}
 
 % -----------------------------------------------------------------------------
 
 \nonumberframe
 \begin{frame}{Thank you}
+\label{thanks}
 \begin{center}
 \begin{minipage}{1\textwidth}
     \setbeamercolor{mybox}{fg=white, bg=black!50!blue}

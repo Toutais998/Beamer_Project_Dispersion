@@ -1,9 +1,152 @@
-\section{Zemax 仿真主线：从诊断到可制造}
+\section{物镜设计方法与 Zemax 闭环}
+\label{chap:2}
 
-\subsection{把理论变量映射到 Zemax 工具}
+\subsection{物镜规格与结构演化}
+\label{sec:2.1}
+
+\englishtitle{Mechanical Constraints Behind Microscope Objectives}
+\begin{frame}{物镜不是纯光学问题，而是“光学+机械”共同约束}
+\label{2.1}
+    \small
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_01.png}
+                \caption{显微物镜设计中的机械边界与远心光瞳}
+                \label{fig:objective_mechanics_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.48\textwidth}
+            \textbf{三个关键机械约束：}
+            \begin{itemize}
+                \item \alert{齐焦距}：样品面到物镜肩部的距离，限制轴向可用空间。
+                \item \alert{螺纹直径}：限制后端光束、出瞳尺寸和镜组外径。
+                \item \alert{远心光瞳}：保证倍率与照明稳定，便于和显微镜筒镜匹配。
+            \end{itemize}
+
+            \begin{block}{设计含义}
+                高 NA、大视场、长工作距和平场并不会自然兼容；它们会同时挤压长度、口径、材料和装调预算。
+            \end{block}
+
+            \alert{因此，物镜设计的第一步不是“堆镜片”，而是把应用目标翻译成机械边界和一阶规格。}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Objective History as Design Logic}
+\begin{frame}{物镜设计史：消色差、高 NA、平场与长工作距}
+\label{2.2}
+    \small
+    \begin{columns}[T]
+        \begin{column}{.53\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.98\textwidth,height=.30\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_02.png}
+                \vspace{3pt}
+                \includegraphics[width=.98\textwidth,height=.28\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_03.png}
+                \caption{上：19 世纪基础结构；下：20 世纪现代结构分化}
+                \label{fig:objective_history_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.47\textwidth}
+            \begin{table}
+                \centering
+                \scriptsize
+                \renewcommand{\arraystretch}{1.25}
+                \resizebox{\linewidth}{!}{%
+                \begin{tabular}{p{1.6cm}|p{3.0cm}|p{3.0cm}}
+                    \toprule
+                    \textbf{阶段} & \textbf{主要问题} & \textbf{结构响应} \\
+                    \midrule
+                    Lister & 轴向色差、球差 & 消色差双胶合成为物镜基本单元 \\
+                    Amici/Abbe & 高 NA 与浸液成像 & 前组 aplanatic 结构、异常色散材料 \\
+                    Plan 物镜 & 场曲与像散 & 后组场曲补偿，平场成为显微成像刚需 \\
+                    长工作距 & 样品空间与物镜间距 & 借鉴 Double-Gauss，增加中后组校正自由度 \\
+                    低倍远心 & 大视场、齐焦与远心 & PNP 等专门结构服务系统匹配 \\
+                    \bottomrule
+                \end{tabular}
+                }
+            \end{table}
+
+            \begin{alertblock}{插入历史的目的}
+                历史不是背景故事，而是初始结构库：看到规格后，先判断它更像高 NA、平场、长工作距还是大视场远心问题。
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Chromatic Correction Classes and Structural Cost}
+\begin{frame}{色差校正等级：从 Achromat 到 Superapochromat}
+\label{2.3}
+    \small
+    \begin{columns}[T]
+        \begin{column}{.56\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_04.png}
+                \caption{色差校正等级越高，结构和材料自由度越多}
+                \label{fig:objective_chromatic_classes_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.42\textwidth}
+            \textbf{校正等级对应不同设计代价：}
+            \begin{itemize}
+                \item \textbf{Achromat}：两色校正，结构较简单。
+                \item \textbf{Fluorite/Semi-Apo}：三色改善，但仍有明显残余。
+                \item \textbf{Apochromat}：可见光范围内纵向色差压到景深附近。
+                \item \textbf{VIS/UV/IR Superapo}：扩展波段后，材料和制造难度显著上升。
+            \end{itemize}
+
+            \begin{block}{和第 1 章的连接}
+                阿贝图决定可选材料空间；Ray Fan/OPD 判断色差是否被压低；Zemax 中再通过多波长权重、真实玻璃和评价函数闭环。
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Design Specification Before Optimization}
+\begin{frame}{优化前先写清楚规格}
+\label{2.4}
+    \begin{columns}[T]
+        \begin{column}{.45\textwidth}
+            \textbf{一阶规格决定设计空间：}
+            \begin{itemize}
+                \item 焦距、放大率、工作距离、后焦距
+                \item 孔径、$F/\#$、NA、入瞳位置
+                \item 视场角、像面尺寸、探测器像元
+                \item 波长范围、权重、是否单色照明
+                \item 总长、镜片数量、外径、封装空间
+                \item 成本、材料目录、加工等级、装调自由度
+            \end{itemize}
+        \end{column}
+        \hfill
+        \begin{column}{.55\textwidth}
+            \begin{block}{System Explorer 中先确定}
+                \begin{itemize}
+                    \item \textbf{Aperture}：Entrance Pupil、Image Space NA 或 $F/\#$
+                    \item \textbf{Fields}：角度、物高或像高
+                    \item \textbf{Wavelengths}：主波长、权重、色差控制范围
+                    \item \textbf{Units}：长度单位和玻璃目录
+                \end{itemize}
+            \end{block}
+
+            \begin{alertblock}{规格到结构的判断}
+                高 NA 优先检查前组会聚角；平场优先检查 Petzval 补偿；长工作距优先检查总长、前端口径和中后组校正自由度。
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Zemax 诊断与优化闭环}
+\label{sec:2.2}
 
 \englishtitle{OpticStudio as a Closed Loop}
 \begin{frame}{Zemax 中的完整闭环}
+\label{2.5}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{block}{工作流不是“打开很多分析窗口”}
@@ -13,7 +156,7 @@
             \begin{center}
                 \fbox{\textbf{规格}}\quad
                 $\rightarrow$\quad
-                \fbox{\textbf{建模}}\quad
+                \fbox{\textbf{结构}}\quad
                 $\rightarrow$\quad
                 \fbox{\textbf{诊断}}\quad
                 $\rightarrow$\quad
@@ -53,243 +196,102 @@
     \end{columns}
 \end{frame}
 
-\englishtitle{Design Specification Before Optimization}
-\begin{frame}{优化前先写清楚规格}
+\englishtitle{Merit Function and Optimization Actions}
+\begin{frame}{评价函数：从物理指标到优化动作}
+\label{2.6}
+    \small
     \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \textbf{一阶规格决定设计空间：}
-            \begin{itemize}
-                \item 焦距、放大率、工作距离、后焦距
-                \item 孔径、$F/\#$、NA、入瞳位置
-                \item 视场角、像面尺寸、探测器像元
-                \item 波长范围、权重、是否单色照明
-                \item 总长、镜片数量、外径、封装空间
-                \item 成本、材料目录、加工等级、装调自由度
-            \end{itemize}
+        \begin{column}{.49\textwidth}
+            \begin{table}
+                \centering
+                \scriptsize
+                \renewcommand{\arraystretch}{1.28}
+                \resizebox{\linewidth}{!}{%
+                \begin{tabular}{p{1.7cm}|p{2.8cm}|p{2.2cm}}
+                    \toprule
+                    \textbf{层级} & \textbf{目标} & \textbf{指标} \\
+                    \midrule
+                    一阶锁定 & 焦距、像高、孔径、总长 & \texttt{EFFL}, \texttt{REAY}, \texttt{TOTR} \\
+                    像差诊断 & 压低 Ray Fan、OPD、色差 & \texttt{TRAY}, \texttt{OPDX}, \texttt{AXCL} \\
+                    像质目标 & 面向传感器或分辨率 & \texttt{RSCE}, \texttt{MTFA}, \texttt{DENC} \\
+                    结构约束 & 保证可加工、可装配 & \texttt{MNCT}, \texttt{MNEG}, \texttt{DMVA} \\
+                    \bottomrule
+                \end{tabular}
+                }
+                \caption{评价函数按物理层级组织}
+                \label{tab:merit_layers_main}
+            \end{table}
         \end{column}
         \hfill
-        \begin{column}{.55\textwidth}
-            \begin{block}{System Explorer 中先确定}
-                \begin{itemize}
-                    \item \textbf{Aperture}：Entrance Pupil、Image Space NA 或 $F/\#$
-                    \item \textbf{Fields}：角度、物高或像高
-                    \item \textbf{Wavelengths}：主波长、权重、色差控制范围
-                    \item \textbf{Units}：长度单位和玻璃目录
-                \end{itemize}
-            \end{block}
+        \begin{column}{.51\textwidth}
+            \begin{table}
+                \centering
+                \scriptsize
+                \renewcommand{\arraystretch}{1.22}
+                \resizebox{\linewidth}{!}{%
+                \begin{tabular}{p{2.8cm}|p{4.0cm}}
+                    \toprule
+                    \textbf{Ray Fan/OPD 现象} & \textbf{常见优化动作} \\
+                    \midrule
+                    轴上三次型 & 分摊光焦度、改变弯曲因子、引入非球面 \\
+                    离轴二次型 & 调整光阑位置、改善对称性 \\
+                    场曲/像散 & 控制 Petzval 和、加入场镜或后组补偿 \\
+                    色差分离 & 换玻璃组合、多波长权重、消色差约束 \\
+                    \bottomrule
+                \end{tabular}
+                }
+                \caption{诊断图形应对应可执行变量}
+                \label{tab:diagnosis_to_action}
+            \end{table}
         \end{column}
     \end{columns}
-\end{frame}
 
-\englishtitle{Merit Function Structure}
-\begin{frame}{评价函数：不要把操作数堆成噪声}
-    \small
-    \begin{table}
-        \centering
-        \setlength{\tabcolsep}{4pt}
-        \renewcommand{\arraystretch}{1.35}
-        \begin{tabular}{p{2.0cm}|p{3.2cm}|p{5.8cm}}
-            \toprule
-            \textbf{层级} & \textbf{目标} & \textbf{常用操作数/指标} \\
-            \midrule
-            一阶锁定 & 焦距、像高、孔径、总长 & \texttt{EFFL}, \texttt{REAY}, \texttt{TOTR}, \texttt{WFNO}/\texttt{TFNO} \\
-            像差诊断 & 压低 Ray Fan、OPD、色差 & \texttt{TRAY}/\texttt{TRAX}, \texttt{OPDX}, \texttt{AXCL}, \texttt{DIMX} \\
-            像质目标 & 面向传感器或分辨率指标 & \texttt{RSCE}, \texttt{RWCE}/\texttt{RWCH}, \texttt{MTFA}, \texttt{DENC} \\
-            结构约束 & 保证可加工、可装配 & \texttt{MNCT}, \texttt{MNEG}, \texttt{DMVA}, \texttt{DMLT} \\
-            \bottomrule
-        \end{tabular}
-        \caption{评价函数应按物理层级组织，而不是按窗口顺序堆叠}
-        \label{tab:merit_layers_main}
-    \end{table}
-
-    \vspace{2pt}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{itemize}
-                \item 先低权重锁定一阶目标，确认系统没有跑偏。
-                \item 再提高关键视场、关键波长和关键频率权重。
-            \end{itemize}
-        \end{column}
-        \begin{column}{.50\textwidth}
-            \begin{itemize}
-                \item 不重复约束同一物理量，避免优化器被冲突目标困住。
-                \item 制造约束要从早期保留，不要最后才补。
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{From Ray Fan Diagnosis to Optimization Action}
-\begin{frame}{从 Ray Fan 诊断到优化动作}
-    \scriptsize
-    \begin{table}
-        \centering
-        \renewcommand{\arraystretch}{1.42}
-        \begin{tabular}{p{2.4cm}|p{3.1cm}|p{4.8cm}}
-            \toprule
-            \textbf{观察到的问题} & \textbf{对应像差} & \textbf{常见优化动作} \\
-            \midrule
-            轴上三次型 Ray Fan & 球差 & 分摊光焦度、调整弯曲因子、引入非球面、控制边缘孔径 \\
-            离轴二次型弯曲 & 彗差 & 调整光阑位置、改善对称性、降低离轴入射角 \\
-            不同视场最佳焦点不同 & 场曲 & 控制 Petzval 和、加入场镜或负光焦度元件 \\
-            子午/弧矢斜率分离 & 像散 & 调整光阑位置、增强结构对称性、优化离轴面入射角 \\
-            不同波长斜率不同 & 轴向色差 & 更换玻璃组合、增加消色差约束、调整主波长权重 \\
-            不同波长截距不同 & 倍率色差 & 对称结构、控制主光线色散、优化离轴波长权重 \\
-            \bottomrule
-        \end{tabular}
-        \caption{诊断不是终点：每一种图形特征都应对应可执行的设计变量}
-        \label{tab:diagnosis_to_action}
-    \end{table}
-
+    \vspace{-2pt}
     \begin{alertblock}{优化顺序}
-        先处理主导误差，再处理次要误差；先保证系统结构和一阶量合理，再追求局部像质极限。
+        先低权重锁定一阶目标，再压主导像差；制造约束从早期保留，避免最后才发现镜片厚度、空气间隔或材料不可用。
     \end{alertblock}
 \end{frame}
 
-\subsection{Zernike、PSF 与 MTF：确认优化是否真的改善图像}
-
-\englishtitle{Wavefront-Based Optimization}
-\begin{frame}{用 Zernike 和 RMS Wavefront 连接诊断与优化}
+\englishtitle{Wavefront and Image-Quality Metrics}
+\begin{frame}{用 Zernike、PSF 与 MTF 确认优化是否真的改善图像}
+\label{2.7}
     \begin{columns}[T]
-        \begin{column}{.52\textwidth}
-            \textbf{推荐使用场景：}
+        \begin{column}{.50\textwidth}
+            \textbf{波前侧：解释误差来源}
             \begin{itemize}
-                \item 系统接近衍射极限，需要从几何像差转向波前质量。
-                \item 希望分离 defocus、astigmatism、coma、spherical 等模式。
-                \item 后续需要和干涉仪测量、装调补偿或自由曲面拟合对接。
+                \item Wavefront Map 和 OPD Fan 直接观察 $W(\rho,\theta)$。
+                \item Zernike Standard Coefficients 分离 defocus、astigmatism、coma、spherical 等模式。
+                \item RMS Wavefront 可近似关联 Strehl Ratio：
             \end{itemize}
 
             \begin{equation}
                 S.R. \approx \exp\!\left[-\left(\frac{2\pi}{\lambda}OPD_{\text{rms}}\right)^2\right]
                 \label{eq:strehl_zemax}
             \end{equation}
-
-            \alert{当 RMS OPD 降低时，Strehl Ratio 通常会提高，PSF 主峰能量更集中。}
-        \end{column}
-        \hfill
-        \begin{column}{.48\textwidth}
-            \begin{block}{Zemax 中的做法}
-                \begin{enumerate}
-                    \item 查看 Wavefront Map 和 OPD Fan。
-                    \item 输出 Zernike Standard Coefficients。
-                    \item 去除 piston/tilt/defocus 后判断剩余主导项。
-                    \item 在 Merit Function 中加入 RMS Wavefront 或 Zernike 相关约束。
-                \end{enumerate}
-            \end{block}
-
-            \begin{block}{注意}
-                不要把 Zernike 系数单独当作最终像质；它负责解释波前，最终仍需用 PSF、MTF 或圈入能量确认成像后果。
-            \end{block}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Image-Quality Metrics}
-\begin{frame}{像质评价：Ray Fan 之后看什么}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{block}{几何光学指标}
-                \begin{itemize}
-                    \item \textbf{Ray Fan}：最快定位像差类型。
-                    \item \textbf{Spot Diagram}：看几何弥散斑是否落入像元。
-                    \item \textbf{Distortion}：看主光线成像比例是否失真。
-                \end{itemize}
-            \end{block}
-
-            \begin{block}{波前指标}
-                \begin{itemize}
-                    \item \textbf{OPD PV/RMS}：直接关联 Strehl Ratio。
-                    \item \textbf{Zernike}：把 OPD 拆成可解释模式。
-                \end{itemize}
-            \end{block}
         \end{column}
         \hfill
         \begin{column}{.50\textwidth}
-            \begin{block}{图像指标}
-                \begin{itemize}
-                    \item \textbf{PSF}：点像扩散成什么形状。
-                    \item \textbf{MTF}：某空间频率还能传递多少对比度。
-                    \item \textbf{Encircled Energy}：目标像元内能收进多少能量。
-                \end{itemize}
-            \end{block}
-
-            \begin{alertblock}{传感器系统的检查}
-                不只看 diffraction limit；还要把像元尺寸、Nyquist 频率、目标线对频率和照度要求一起放进评价标准。
-            \end{alertblock}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\subsection{材料、色差与玻璃替换}
-
-\englishtitle{Glass Choice as Chromatic Aberration Control}
-\begin{frame}{玻璃选择：色差优化的核心变量}
-    \begin{columns}[T]
-        \begin{column}{.44\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=.95\textwidth,height=.48\textheight,keepaspectratio]{Figure/Edmund/aberrations-5v2.pdf}
-                \caption{单透镜与消色差双胶合的色差差异}
-                \label{fig:achromat_edmund_main}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.56\textwidth}
-            \textbf{消色差的基本逻辑：}
+            \textbf{图像侧：确认成像后果}
             \begin{itemize}
-                \item 正透镜提供主要光焦度，但会产生色焦移。
-                \item 负透镜选用不同色散玻璃，用相反色散贡献抵消。
-                \item 常见组合是低色散冕牌玻璃与高色散火石玻璃。
+                \item \textbf{Spot Diagram}：几何弥散斑是否落入像元。
+                \item \textbf{PSF}：点像能量是否集中，旁瓣是否可接受。
+                \item \textbf{MTF}：目标空间频率还能传递多少对比度。
+                \item \textbf{Encircled Energy}：目标像元内能收进多少能量。
             \end{itemize}
 
-            \begin{block}{在 Zemax 中的落点}
-                \begin{itemize}
-                    \item 多波长权重决定系统偏向哪个谱段。
-                    \item 玻璃目录决定可选材料空间。
-                    \item Ray Fan 和 OPD 可判断色差是否真正改善。
-                    \item MTF/PSF 确认多波长综合像质。
-                \end{itemize}
-            \end{block}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Glass Substitution Workflow}
-\begin{frame}{玻璃替换：直接在真实玻璃目录中优化}
-    \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \begin{enumerate}
-                \item 在 LDE 中将玻璃 Solve 类型设为 \alert{Substitute}。
-                \item 选择供应商目录，如 Schott、Hoya、Ohara、CDGM。
-                \item 构建 RMS Wavefront 或 MTF/Spot 相关评价函数。
-                \item 使用 Hammer 或 Global Search 处理离散玻璃变化。
-                \item 用玻璃替换模板过滤成本、状态和耐候性。
-            \end{enumerate}
-
-            \begin{alertblock}{关键}
-                玻璃型号是离散变量，Local Optimization 不擅长跨越材料跳变；全局搜索更适合玻璃替换。
+            \begin{alertblock}{不要只看一个指标}
+                Zernike 解释波前，Ray Fan 定位像差，MTF/PSF 才回答最终图像是否足够清晰。
             \end{alertblock}
         \end{column}
-        \hfill
-        \begin{column}{.55\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture1zh-cn.png}\hfill
-                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture2zh-cn.png}
-                \vspace{4pt}
-                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture3zh-cn.png}\hfill
-                \includegraphics[width=.48\textwidth,height=.25\textheight,keepaspectratio]{Figure/玻璃替换/Picture8zh-cn.png}
-                \caption{Substitute solve、评价函数、Hammer 优化与玻璃模板}
-                \label{fig:glass_substitution_steps_main}
-            \end{figure}
-        \end{column}
     \end{columns}
 \end{frame}
 
-\subsection{公差分析：从名义设计到真实制造}
+\subsection{公差与可制造闭环}
+\label{sec:2.3}
 
 \englishtitle{Tolerance Analysis}
 \begin{frame}{为什么名义设计之后必须做公差分析}
+\label{2.8}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{block}{名义设计的限制}
@@ -331,41 +333,9 @@
     \end{columns}
 \end{frame}
 
-% \englishtitle{Compensators, Sensitivity and Monte Carlo}
-% \begin{frame}{补偿器、灵敏度与蒙特卡洛}
-%     \begin{columns}[T]
-%         \begin{column}{.50\textwidth}
-%             \textbf{补偿器模拟真实装调自由度：}
-%             \begin{itemize}
-%                 \item 像面位置或后焦距是最常用补偿器。
-%                 \item 镜组间空气间隔可作为装调补偿量。
-%                 \item 没有补偿器的公差结果通常过于悲观。
-%                 \item 过多补偿器则可能高估实际可装调能力。
-%             \end{itemize}
-
-%             \begin{block}{灵敏度分析}
-%                 每次扰动一个公差项，观察像质指标变化；用于找到最敏感面和成本驱动因素。
-%             \end{block}
-%         \end{column}
-%         \hfill
-%         \begin{column}{.50\textwidth}
-%             \textbf{蒙特卡洛模拟：}
-%             \begin{itemize}
-%                 \item 同时随机扰动所有公差项。
-%                 \item 每个虚拟样品都重新执行补偿器调整。
-%                 \item 输出 MTF、RMS spot、RMS wavefront 等统计分布。
-%                 \item 用合格率判断公差等级是否可接受。
-%             \end{itemize}
-
-%             \begin{alertblock}{闭环判断}
-%                 若良率不足，不是简单把所有公差收紧；应先找敏感参数，再决定改结构、加补偿器、放宽非关键项或提高关键面加工等级。
-%             \end{alertblock}
-%         \end{column}
-%     \end{columns}
-% \end{frame}
-
 \englishtitle{Design-to-Manufacturing Workflow}
 \begin{frame}{从仿真到制造的最终流程}
+\label{2.9}
     \small
     \begin{table}
         \centering
@@ -375,7 +345,7 @@
             \textbf{阶段} & \textbf{关键动作} & \textbf{判断标准} \\
             \midrule
             规格定义 & 确定焦距、孔径、视场、波长、像元、成本 & 一阶量清楚，优先级清楚 \\
-            初始结构 & 选择透镜型式、光阑位置、玻璃目录 & Ray Fan 不出现明显不可救结构 \\
+            初始结构 & 选择物镜型式、光阑位置、玻璃目录 & Ray Fan 不出现明显不可救结构 \\
             名义优化 & 评价函数分层：一阶、像差、像质、结构 & OPD/Spot/MTF 达到名义目标 \\
             材料优化 & Substitute solve + 全局搜索 + 玻璃模板 & 色差、成本、供应状态同时可接受 \\
             公差分析 & 灵敏度、补偿器、蒙特卡洛 & 关键公差可制造，统计良率达标 \\
@@ -387,6 +357,6 @@
     \end{table}
 
     \begin{center}
-        \alert{最终闭环：理论诊断 $\rightarrow$ Zemax 优化 $\rightarrow$ 材料选择 $\rightarrow$ 公差验证 $\rightarrow$ 可制造设计}
+        \alert{最终闭环：理论诊断 $\rightarrow$ 结构选择 $\rightarrow$ Zemax 优化 $\rightarrow$ 材料选择 $\rightarrow$ 公差验证 $\rightarrow$ 可制造设计}
     \end{center}
 \end{frame}

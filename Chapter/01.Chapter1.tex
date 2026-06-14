@@ -1,9 +1,12 @@
-\section{像差诊断主线：从波前到像质}
+\section{像差理论与诊断基础}
+\label{chap:1}
 
 \subsection{统一框架：先定义理想，再分析偏离}
+\label{sec:1.1}
 
 \englishtitle{One Story for Aberration Analysis}
 \begin{frame}{本报告的主线}
+\label{1.1}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
             \textbf{目标：}把“像差是什么”收束成一条可以在 Zemax 中验证和优化的链路：
@@ -47,6 +50,7 @@
 
 \englishtitle{First-Order Layout, Third-Order Aberration and Zernike}
 \begin{frame}{一阶、三阶与 Zernike 的关系}
+\label{1.2}
     \begin{columns}[T]
         \begin{column}{.48\textwidth}
             \begin{alertblock}{先澄清一个容易混淆的点}
@@ -84,9 +88,11 @@
 \end{frame}
 
 \subsection{OPD、PSF 与 Ray Fan}
+\label{sec:1.2}
 
 \englishtitle{Optical Path Difference and Wave Aberration}
 \begin{frame}{OPD：统一描述像差的物理量}
+\label{1.3}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
             \textbf{光程(Optical Path Length)：}
@@ -129,6 +135,7 @@
 
 \englishtitle{PSF, OTF and Image Formation}
 \begin{frame}{PSF 与成像模型：这页才对应 PSF 图片}
+\label{1.4}
     \begin{columns}[T]
         \begin{column}{.42\textwidth}
             \begin{figure}
@@ -165,6 +172,7 @@
 
 \englishtitle{Ray Fan Plot and Its Geometric Meaning}
 \begin{frame}{横向像差图：从入瞳采样到像面落点}
+\label{1.5}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{figure}
@@ -192,8 +200,9 @@
     \end{columns}
 \end{frame}
 
-\englishtitle{Ideal Imaging and Defocus in One Slide}
-\begin{frame}{理想成像与离焦：合并到一张图}
+\englishtitle{Ideal Imaging and Defocus}
+\begin{frame}{理想成像与离焦}
+\label{1.6}
     \begin{figure}
         \centering
         \begin{minipage}[t]{.32\textwidth}
@@ -235,9 +244,11 @@
 \end{frame}
 
 \subsection{Seidel 像差与 Zernike 展开}
+\label{sec:1.3}
 
 \englishtitle{Third-Order Aberration as Residual After Paraxial Imaging}
 \begin{frame}{三阶像差：理想成像之后的最低阶残差}
+\label{1.7}
     \small
     \textbf{在一阶成像已经确定之后，Ray Fan 的最低阶残差可写成：}
     \begin{equation}
@@ -275,6 +286,7 @@
 
 \englishtitle{Zernike Polynomial Expansion}
 \begin{frame}{Zernike 多项式：波前像差的正交坐标系}
+\label{1.8}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
             对圆形光瞳，波像差通常展开为：
@@ -320,6 +332,7 @@
 
 \englishtitle{Zernike Modes and Physical Aberrations}
 \begin{frame}{常用 Zernike 模式与像差含义}
+\label{1.9}
     \scriptsize
     \begin{table}
         \centering
@@ -347,236 +360,151 @@
     \end{block}
 \end{frame}
 
-\subsection{Ray Fan 诊断：单色像差与色差}
+\subsection{单色像差诊断：先分清曲线形状}
+\label{sec:1.4}
 
-\englishtitle{Spherical Aberration and Coma in Ray Fan}
-\begin{frame}{球差与彗差：看曲线阶次}
+\englishtitle{Monochromatic Aberrations in Ray Fan}
+\begin{frame}{球差、彗差与离焦：先看曲线阶次}
+\label{1.10}
     \begin{figure}
         \centering
-        \includegraphics[width=.52\textwidth,height=.32\textheight,keepaspectratio]{Figure/图片23.png}\hfill
-        \includegraphics[width=.21\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片8.png}\hfill
-        \includegraphics[width=.21\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片11.png}
+        \includegraphics[width=.48\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片23.png}\hfill
+        \includegraphics[width=.23\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片8.png}\hfill
+        \includegraphics[width=.23\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片11.png}
         \caption{左：球差的三次型 Ray Fan；右：彗差的二次型 Ray Fan，开口方向区分内向/外向}
         \label{fig:spherical_coma_rayfan_main}
     \end{figure}
 
-    \vspace{-2pt}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{itemize}
-                \item \textbf{球差}：轴上也存在，孔径越大越明显；Ray Fan 为奇函数三次曲线。
-                \item \textbf{彗差}：轴外像差，随视场增加；Ray Fan 呈偶函数二次曲线。
-            \end{itemize}
-        \end{column}
-        \begin{column}{.50\textwidth}
-            \begin{itemize}
-                \item \textbf{离焦对比}：离焦只能改变直线斜率，不能把二次彗差项消掉。
-                \item \textbf{工程处理}：分摊光焦度、改变光阑位置、加入非球面或对称结构。
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \vspace{-4pt}
+    \begin{table}
+        \centering
+        \scriptsize
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{p{1.8cm}|p{3.2cm}|p{4.8cm}}
+            \toprule
+            \textbf{类型} & \textbf{Ray Fan 特征} & \textbf{设计动作} \\
+            \midrule
+            离焦 & 通过原点的直线 & 先移动像面；若只剩斜率，优先修焦面位置 \\
+            球差 & 轴上三次曲线，边缘孔径贡献最大 & 分摊光焦度、改变弯曲因子、引入非球面 \\
+            彗差 & 离轴二次曲线，随视场快速增加 & 调整光阑位置、增强结构对称性、降低离轴入射角 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \alert{这一页把原先分散的离焦、球差、彗差合并为一个判据：先看阶次，再决定是移像面还是改结构。}
 \end{frame}
 
-\englishtitle{Linear Ray Fan Terms: Defocus, Field Curvature and Astigmatism}
-\begin{frame}{离焦、场曲与像散：看原点附近斜率}
-    \begin{figure}
-        \centering
-        \includegraphics[width=.33\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片20.png}\hfill
-        \includegraphics[width=.33\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片21.png}\hfill
-        \includegraphics[width=.33\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片22.png}
-        \caption{离焦、场曲与像散都表现在线性斜率上，但判据不同}
-        \label{fig:linear_aberrations_main}
-    \end{figure}
-
+\englishtitle{Field Curvature and Astigmatism}
+\begin{frame}{场曲与像散：同是斜率问题，但物理来源不同}
+\label{1.11}
     \begin{columns}[T]
-        \begin{column}{.33\textwidth}
-            \textbf{离焦}
-            \begin{itemize}
-                \item 同一视场整体斜率一致
-                \item 移动像面即可校正
-            \end{itemize}
+        \begin{column}{.53\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.32\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片20.png}\hfill
+                \includegraphics[width=.32\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片21.png}\hfill
+                \includegraphics[width=.32\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片22.png}
+                \vspace{3pt}
+                \includegraphics[width=\textwidth,height=.24\textheight,keepaspectratio]{Figure/Edmund/aberrations-4v2.png}
+                \caption{上：离焦、场曲、像散的 Ray Fan；下：场曲的弯曲最佳像面}
+                \label{fig:linear_field_curvature_main}
+            \end{figure}
         \end{column}
-        \begin{column}{.33\textwidth}
-            \textbf{场曲}
-            \begin{itemize}
-                \item 不同视场最佳焦点不同
-                \item 本质是 Petzval 曲面问题
-            \end{itemize}
-        \end{column}
-        \begin{column}{.33\textwidth}
-            \textbf{像散}
-            \begin{itemize}
-                \item 子午与弧矢斜率不同
-                \item 两条焦线无法同时聚焦
-            \end{itemize}
+        \hfill
+        \begin{column}{.47\textwidth}
+            \begin{block}{场曲}
+                不同视场的最佳焦点落在不同轴向位置，本质上由 Petzval 和决定；移动平面探测器只能在中心和边缘之间折中。
+            \end{block}
+
+            \begin{block}{像散}
+                子午与弧矢两组光线的最佳焦点分离，因此同一点物会先后形成两条正交焦线，中间只是最小弥散圆。
+            \end{block}
+
+            \begin{alertblock}{诊断顺序}
+                先看不同视场的最佳焦点是否移动，再看 Tangential/Sagittal 两条曲线是否分离。
+            \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
 
 \englishtitle{Meridional and Sagittal Planes}
-\begin{frame}{子午面与弧矢面：像散分析的两个切面}
-    \begin{figure}
-        \centering
-        \includegraphics[width=.24\textwidth,height=.34\textheight,keepaspectratio]{Figure/图片18.png}\hfill
-        \includegraphics[width=.72\textwidth,height=.34\textheight,keepaspectratio]{Figure/图片26.png}
-        \caption{图片18给出子午面/弧矢面的空间定义，图片26补充了主光线、入射瞳与像平面坐标}
-        \label{fig:meridional_sagittal_planes_main}
-    \end{figure}
-
-    \vspace{-2pt}
-    \begin{itemize}
-        \item \textbf{子午面}包含光轴和主光线；\textbf{弧矢面}与其正交，并同样经过主光线。
-        \item Zemax 的 Tangential Fan / Sagittal Fan，本质上就是分别在这两个切面中观察 Ray Fan。
-        \item 后面判断像散时，关键不是“曲线有没有斜率”，而是子午与弧矢两组光线的最佳焦点是否分离。
-    \end{itemize}
-\end{frame}
-
-\englishtitle{Astigmatism Light Path}
-\begin{frame}{像散发生时：子午像面与弧矢像面分离}
+\begin{frame}{子午/弧矢：像散诊断所需的两个切面}
+\label{1.12}
     \begin{columns}[T]
-        \begin{column}{.54\textwidth}
+        \begin{column}{.56\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.33\textheight,keepaspectratio]{Figure/图片19.png}
-                \caption{像散下的光路：同一点物不能在同一平面同时成像}
-                \label{fig:astigmatism_light_path_main}
+                \includegraphics[width=.24\textwidth,height=.29\textheight,keepaspectratio]{Figure/图片18.png}\hfill
+                \includegraphics[width=.72\textwidth,height=.29\textheight,keepaspectratio]{Figure/图片26.png}
+                \vspace{3pt}
+                \includegraphics[width=.46\textwidth,height=.18\textheight,keepaspectratio]{Figure/Edmund/abberations-2a.png}\hfill
+                \includegraphics[width=.46\textwidth,height=.18\textheight,keepaspectratio]{Figure/Edmund/abberations-2b.png}
+                \caption{上：子午面与弧矢面；下：像散导致两个方向不能同时清晰}
+                \label{fig:meridional_sagittal_astigmatism_main}
             \end{figure}
         \end{column}
         \hfill
-        \begin{column}{.46\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=.33\textheight,keepaspectratio]{Figure/Edmund/aberrations-3v3.png}
-                \caption{Edmund 补充图：Tangential 焦线与 Sagittal 焦线分开}
-                \label{fig:astigmatism_edmund_main}
-            \end{figure}
-        \end{column}
-    \end{columns}
-
-    \vspace{-4pt}
-    \begin{itemize}
-        \item 先到达的通常是一条焦线，再往后才是另一条焦线，中间位置对应最小弥散圆而不是理想点像。
-        \item 这也是为什么在 Ray Fan 中需要同时看子午与弧矢两条曲线，单看其中一条很容易误判。
-    \end{itemize}
-\end{frame}
-
-\englishtitle{Astigmatism Image Comparison}
-\begin{frame}{像散的直接后果：两个方向不能同时清晰}
-    \begin{columns}[T]
-        \begin{column}{.46\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=.46\textwidth,height=.22\textheight,keepaspectratio]{Figure/Edmund/abberations-2a.png}\hfill
-                \includegraphics[width=.46\textwidth,height=.22\textheight,keepaspectratio]{Figure/Edmund/abberations-2b.png}
-                \caption{Edmund 对比图：调到一个方向清晰时，正交方向仍然发虚}
-                \label{fig:astigmatism_compare_main}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.54\textwidth}
+        \begin{column}{.44\textwidth}
             \begin{itemize}
-                \item 图样一边更清晰，说明系统此时更接近其中一条焦线，而不是同时到达两个正交方向的最佳焦点。
+                \item \textbf{子午面}包含光轴和主光线。
+                \item \textbf{弧矢面}与子午面正交，并同样经过主光线。
+                \item Zemax 的 Tangential Fan / Sagittal Fan，就是分别在这两个切面里观察 Ray Fan。
                 \item 若只靠整体移动像面，通常只能在两条焦线之间折中，不能真正消掉像散。
-                \item 工程上常通过弯月透镜、对称结构或降低离轴会聚角来减弱像散。
             \end{itemize}
+
+            \begin{block}{工程处理}
+                常见手段包括弯月透镜、对称结构、调整光阑位置或降低离轴会聚角。
+            \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
-\englishtitle{Field Curvature Supplement}
-\begin{frame}{场曲：最佳像面本身就是弯的}
+\subsection{色散、阿贝图与玻璃选择}
+\label{sec:1.5}
+
+\englishtitle{Abbe Diagram and Chromatic Correction}
+\begin{frame}{阿贝图：把色差问题落到材料选择}
+\label{1.13}
     \begin{columns}[T]
-        \begin{column}{.55\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=.36\textheight,keepaspectratio]{Figure/Edmund/aberrations-4v2.png}
-                \caption{Edmund 场曲示意：实际最佳焦点落在弯曲像面上}
-                \label{fig:field_curvature_edmund_main}
-            \end{figure}
-        \end{column}
-        \hfill
         \begin{column}{.45\textwidth}
-            \begin{itemize}
-                \item 场曲的核心不是“轴外有模糊”，而是不同视场对应不同最佳像面位置。
-                \item 若探测器是平面，中心和边缘往往只能二选一地达到最佳清晰度。
-                \item 它和像散都表现为 Ray Fan 原点附近斜率变化，但像散还伴随子午/弧矢分离。
-            \end{itemize}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Dispersion and Two Chromatic Aberrations}
-\begin{frame}{材料色散与两类色差}
-    \begin{columns}[T]
-        \begin{column}{.46\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.50\textheight,keepaspectratio]{Figure/Abbe.png}
+                \includegraphics[width=.98\textwidth,height=.45\textheight,keepaspectratio]{Figure/Abbe.png}
                 \caption{阿贝图：折射率与色散能力的材料地图}
                 \label{fig:abbe_main}
             \end{figure}
         \end{column}
         \hfill
-        \begin{column}{.54\textwidth}
+        \begin{column}{.55\textwidth}
             \textbf{色散是材料属性：}
             \begin{equation}
                 \nu_d = \frac{n_d-1}{n_F-n_C}
                 \label{eq:abbe_main}
             \end{equation}
 
-            \begin{table}
-                \centering
-                \scriptsize
-                \renewcommand{\arraystretch}{1.35}
-                \resizebox{\linewidth}{!}{%
-                \begin{tabular}{p{1.8cm}|p{3.0cm}|p{3.0cm}}
-                    \toprule
-                    \textbf{类型} & \textbf{Ray Fan 特征} & \textbf{物理含义} \\
-                    \midrule
-                    轴向色差 & 原点附近斜率随波长变化 & 不同波长的焦点前后不同 \\
-                    倍率色差 & 纵轴截距随波长变化 & 不同波长的成像倍率不同 \\
-                    \bottomrule
-                \end{tabular}
-                }
-            \end{table}
-
-            \textbf{设计策略：}
             \begin{itemize}
-                \item 冕牌/火石玻璃组合用于消色差。
-                \item 单色光照明可显著降低色差压力。
-                \item 宽光谱系统需要在评价函数中给多波长合理权重。
+                \item 低色散冕牌玻璃和高色散火石玻璃组合，是消色差双胶合的基本思路。
+                \item Achromat 通常先让两种代表波长共焦；Apochromat 进一步压低第三波长和二级光谱残差。
+                \item 对显微物镜，色差校正等级会直接推高材料自由度、镜片数量和制造成本。
             \end{itemize}
+
+            \begin{alertblock}{合并后的主线}
+                色差不要和材料选择分开讲：先看阿贝图决定材料空间，再回到 Ray Fan/OPD 判断色差是否真的被压低。
+            \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
 
-\englishtitle{Achromat and Apochromat}
-\begin{frame}{消色差与复消色差：校正目标的差别}
-    \begin{figure}
-        \centering
-        \includegraphics[width=.47\textwidth,height=.31\textheight,keepaspectratio]{Figure/Edmund/aberrations-6v2.png}\hfill
-        \includegraphics[width=.47\textwidth,height=.31\textheight,keepaspectratio]{Figure/Edmund/aberrations-7v2.png}
-        \caption{左：消色差镜组让两个波长聚焦在同一平面；右：复消色差镜组让三个波长同时接近同一平面}
-        \label{fig:achromat_apochromat_main}
-    \end{figure}
-
-    \vspace{-2pt}
-    \begin{itemize}
-        \item \textbf{消色差}通常先校正两种代表波长，显著压低轴向色差，是最常见的基础方案。
-        \item \textbf{复消色差}进一步把第三个波长也拉回同一焦平面，更适合宽光谱、高 NA 或高倍率系统。
-        \item 读图时可直接看不同彩色点是否贴近同一条竖直参考线；越重合，剩余焦移越小。
-    \end{itemize}
-\end{frame}
-
 \englishtitle{Chromatic Aberration in Ray Fan}
 \begin{frame}{色差在 Ray Fan 上怎么看}
+\label{1.14}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片30.png}
+                \includegraphics[width=.98\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片30.png}
                 \vspace{2pt}
-                \includegraphics[width=.98\textwidth,height=.22\textheight,keepaspectratio]{Figure/图片28.png}
+                \includegraphics[width=.98\textwidth,height=.19\textheight,keepaspectratio]{Figure/图片28.png}
                 \caption{轴向色差：不同波长近轴焦点位置不同}
                 \label{fig:axial_color_main}
             \end{figure}
@@ -585,9 +513,9 @@
         \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片31.png}
+                \includegraphics[width=.98\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片31.png}
                 \vspace{2pt}
-                \includegraphics[width=.98\textwidth,height=.22\textheight,keepaspectratio]{Figure/图片29.png}
+                \includegraphics[width=.98\textwidth,height=.19\textheight,keepaspectratio]{Figure/图片29.png}
                 \caption{倍率色差：不同波长主光线像高不同}
                 \label{fig:lateral_color_main}
             \end{figure}
@@ -595,13 +523,60 @@
     \end{columns}
 
     \vspace{-4pt}
-    \begin{block}{读图要点}
-        轴向色差看“斜率”：同一视场下，不同波长在原点附近斜率不一致；倍率色差看“截距”：轴外视场中，不同波长主光线落点高度不一致。
-    \end{block}
+    \begin{table}
+        \centering
+        \scriptsize
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{p{2.0cm}|p{4.2cm}|p{4.2cm}}
+            \toprule
+            \textbf{类型} & \textbf{Ray Fan 特征} & \textbf{优化抓手} \\
+            \midrule
+            轴向色差 & 同一视场下，不同波长在原点附近斜率不同 & 玻璃组合、多波长权重、消色差约束 \\
+            倍率色差 & 轴外视场中，不同波长主光线截距不同 & 对称结构、主光线色散控制、离轴波长权重 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
 \end{frame}
+
+\englishtitle{Glass Substitution Workflow}
+\begin{frame}{玻璃替换：直接在真实玻璃目录中优化}
+\label{1.15}
+    \begin{columns}[T]
+        \begin{column}{.45\textwidth}
+            \begin{enumerate}
+                \item 在 LDE 中将玻璃 Solve 类型设为 \alert{Substitute}。
+                \item 选择供应商目录，如 Schott、Hoya、Ohara、CDGM。
+                \item 构建 RMS Wavefront 或 MTF/Spot 相关评价函数。
+                \item 使用 Hammer 或 Global Search 处理离散玻璃变化。
+                \item 用玻璃替换模板过滤成本、供应状态和耐候性。
+            \end{enumerate}
+
+            \begin{alertblock}{关键}
+                玻璃型号是离散变量，Local Optimization 不擅长跨越材料跳变；全局搜索更适合玻璃替换。
+            \end{alertblock}
+        \end{column}
+        \hfill
+        \begin{column}{.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.48\textwidth,height=.24\textheight,keepaspectratio]{Figure/玻璃替换/Picture1zh-cn.png}\hfill
+                \includegraphics[width=.48\textwidth,height=.24\textheight,keepaspectratio]{Figure/玻璃替换/Picture2zh-cn.png}
+                \vspace{4pt}
+                \includegraphics[width=.48\textwidth,height=.24\textheight,keepaspectratio]{Figure/玻璃替换/Picture3zh-cn.png}\hfill
+                \includegraphics[width=.48\textwidth,height=.24\textheight,keepaspectratio]{Figure/玻璃替换/Picture8zh-cn.png}
+                \caption{Substitute solve、评价函数、Hammer 优化与玻璃模板}
+                \label{fig:glass_substitution_steps_main}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{诊断闭环：从图到结论}
+\label{sec:1.6}
 
 \englishtitle{Diagnostic Workflow}
 \begin{frame}{像差诊断流程：从图到结论}
+\label{1.16}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{block}{Ray Fan 先行诊断}

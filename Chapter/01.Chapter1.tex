@@ -1,51 +1,34 @@
 \section{像差理论与诊断基础}
 \label{chap:1}
 
-\subsection{统一框架：先定义理想，再分析偏离}
+\subsection{统一框架：理想成像、波前误差与像质退化}
 \label{sec:1.1}
 
 \englishtitle{One Story for Aberration Analysis}
 \begin{frame}{本报告的主线}
 \label{1.1}
-    \begin{columns}[T]
-        \begin{column}{.52\textwidth}
-            \textbf{目标：}把“像差是什么”收束成一条可以在 Zemax 中验证和优化的链路：
+        \begin{center}
+            \fbox{\textbf{理想成像}}\quad
+            $\rightarrow$\quad
+            \fbox{\textbf{OPD/波前}}\quad
+            $\rightarrow$\quad
+            \fbox{\textbf{Ray Fan/Zernike}}\quad
+            $\rightarrow$\quad
+            \fbox{\textbf{PSF/MTF}}
+        \end{center}
 
-            \begin{center}
-                \fbox{\textbf{理想成像}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{OPD/波前}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{Ray Fan/Zernike}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{PSF/MTF}}
-            \end{center}
-
-            \bigbreak
-            \begin{itemize}
-                \item \alert{理想成像}给出参考：物点应成像为像点。
-                \item \alert{OPD}描述实际波前偏离参考球面的程度。
-                \item \alert{Ray Fan}从光线落点诊断像差形状。
-                \item \alert{Zernike}把波前拆成可量化的正交模式。
-                \item \alert{PSF/MTF}回答最终图像是否足够清晰。
-            \end{itemize}
-        \end{column}
-        \hfill
-        \begin{column}{.48\textwidth}
-            \begin{block}{重构后的删减原则}
-                \begin{enumerate}
-                    \item 像差定义只讲一次：用 OPD 统一几何与波动描述。
-                    \item 一阶量和三阶像差合并讲：前者定系统，后者看残差。
-                    \item 色差不单独重复成一章：并入材料色散和 Ray Fan 诊断。
-                    \item Zemax 不只列菜单：每个工具都回到同一条像质主线。
-                \end{enumerate}
-            \end{block}
-
-            \begin{alertblock}{一句话主题}
-                从波前误差出发，用 Ray Fan 与 Zernike 找到像差来源，再用 Zemax 把设计推向可制造的像质目标。
-            \end{alertblock}
-        \end{column}
-    \end{columns}
+        \bigbreak
+        \begin{itemize}
+            \item \alert{理想成像}给出参考：物点应成像为像点。
+            \item \alert{OPD}描述实际波前偏离参考球面的程度。
+            \item \alert{Ray Fan}从光线落点诊断像差形状。
+            \item \alert{Zernike}把波前拆成可量化的正交模式。
+            \item \alert{PSF/MTF}回答最终图像是否足够清晰。
+        \end{itemize}
+        \hfil
+        \begin{alertblock}{总结}
+            从波前误差出发，用 Ray Fan 与 Zernike 找到像差来源，再用 Zemax 把设计推向可制造的像质目标。
+        \end{alertblock}
 \end{frame}
 
 \englishtitle{First-Order Layout, Third-Order Aberration and Zernike}
@@ -53,10 +36,6 @@
 \label{1.2}
     \begin{columns}[T]
         \begin{column}{.48\textwidth}
-            \begin{alertblock}{先澄清一个容易混淆的点}
-                这里的\alert{一阶}不是“一阶色散”，而是近轴高斯光学中的系统规格；\alert{三阶}也不是“三阶色散”，而是去除理想成像后最先出现的 Seidel 像差项。
-            \end{alertblock}
-
             \textbf{一阶设计量回答：系统应该把像成在哪里？}
             \begin{itemize}
                 \item 有效焦距 $f'$、放大率 $\beta$、像高 $y'$
@@ -80,18 +59,18 @@
                 \item 畸变：主光线像高偏移，主要改变几何相似性
             \end{itemize}
 
-            \begin{block}{Zernike 的位置}
-                Zernike 不是另一套重复分类，而是把\alert{波像差 $W(\rho,\theta)$}投影到单位圆上的正交基。它适合把 Zemax 的 OPD 图、干涉测量结果和优化目标连接起来。
+            \begin{block}{Zernike 多项式的角色}
+                Seidel 像差给出的是典型像差类别；Zernike 多项式给出的是波前误差的展开坐标。本页先说明其在整体框架中的位置，后续第 1.8 和 1.9 节再分别展开其数学表达和物理模式。
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 
-\subsection{OPD、PSF 与 Ray Fan}
+\subsection{光程、波前与成像表征}
 \label{sec:1.2}
 
-\englishtitle{Optical Path Difference and Wave Aberration}
-\begin{frame}{OPD：统一描述像差的物理量}
+\englishtitle{Optical Path Difference, Wavefront and PSF}
+\begin{frame}{光程差、波前误差与点扩散函数}
 \label{1.3}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
@@ -114,6 +93,12 @@
                 = \frac{2\pi}{\lambda}W(\rho,\theta)
                 \label{eq:phase_main}
             \end{equation}
+
+            \begin{equation}
+                PSF=\left|\mathcal{F}\{P(\rho,\theta)\}\right|^2,
+                \qquad i=o\otimes PSF
+                \label{eq:psf_conv_main}
+            \end{equation}
         \end{column}
         \hfill
         \begin{column}{.48\textwidth}
@@ -128,19 +113,21 @@
                 \label{eq:pupil_main}
             \end{equation}
 
-            \alert{核心判断：}如果 $W=0$，系统只受衍射限制；如果 $W\neq0$，相位误差会改变焦点附近的能量分布。
+            \begin{alertblock}{光程差作为统一描述量的意义}
+                球差、彗差、像散等几何像差，本质上都对应不同孔径或不同视场光线的\alert{光程不再相等}。因此，OPD 是把传统像差分类与最终像质退化联系起来的统一物理量。
+            \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
 
 \englishtitle{PSF, OTF and Image Formation}
-\begin{frame}{PSF 与成像模型：这页才对应 PSF 图片}
+\begin{frame}{PSF、OTF 与成像退化}
 \label{1.4}
     \begin{columns}[T]
         \begin{column}{.42\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.94\textwidth,height=.42\textheight,keepaspectratio]{Figure/PSF_01.png}
+                \includegraphics[width=.94\textwidth,height=.55\textheight,keepaspectratio]{Figure/PSF_01.png}
                 \caption{PSF、FWHM 与 NA 的关系}
                 \label{fig:psf_na_main}
             \end{figure}
@@ -149,23 +136,21 @@
         \begin{column}{.58\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.96\textwidth,height=.30\textheight,keepaspectratio]{Figure/PSF_02.png}
+                \includegraphics[width=.96\textwidth,height=.38\textheight,keepaspectratio]{Figure/PSF_02.png}
                 \caption{物体与 PSF 卷积形成退化图像}
                 \label{fig:psf_conv_main}
             \end{figure}
 
             \vspace{-4pt}
             \begin{equation}
-                PSF=\left|\mathcal{F}\{P(\rho,\theta)\}\right|^2,
-                \qquad i=o\otimes PSF
-                \label{eq:psf_conv_main}
-            \end{equation}
-
-            \begin{equation}
                 r_{\text{Airy}} = \frac{0.61\lambda}{NA}, \qquad
                 OTF=\mathcal{F}\{PSF\}
                 \label{eq:airy_otf_main}
             \end{equation}
+
+            \begin{block}{从 OPD 到像质}
+                当 $W(\rho,\theta)$ 偏离零值时，焦点附近能量由理想 Airy 分布向更宽、更不对称的形式扩展，最终表现为 PSF 展宽和 MTF 下降。
+            \end{block}
         \end{column}
     \end{columns}
 \end{frame}
@@ -184,7 +169,7 @@
         \end{column}
         \hfill
         \begin{column}{.50\textwidth}
-            \begin{block}{Ray Fan 的读图方式}
+            \begin{block}{Ray Fan 的几何含义}
                 横轴是归一化入瞳坐标 $h\in[-1,1]$，纵轴是每条光线在评估面上的横向偏移，通常以主光线落点为原点。
             \end{block}
 
@@ -194,8 +179,6 @@
                 \item \textbf{视场变化}：区分轴上像差和轴外像差。
                 \item \textbf{波长变化}：区分单色像差和色差。
             \end{itemize}
-
-            \alert{Ray Fan 是几何诊断图；PSF 是最终点像能量分布。两者相关，但不能混用图片和结论。}
         \end{column}
     \end{columns}
 \end{frame}
@@ -250,7 +233,7 @@
 \begin{frame}{三阶像差：理想成像之后的最低阶残差}
 \label{1.7}
     \small
-    \textbf{在一阶成像已经确定之后，Ray Fan 的最低阶残差可写成：}
+    \textbf{在近轴一阶成像已经满足后，剩余像差可按孔径与视场变量继续展开；其中最先保留下来的非零项就是三阶像差。}
     \begin{equation}
         \Delta y(h,\omega)
         \approx A h
@@ -281,7 +264,7 @@
         \label{tab:third_order_rayfan_main}
     \end{table}
 
-    \alert{合并后的理解：}一阶量负责把像“放到正确位置”；三阶项描述“放到那里之后还剩下什么形状的误差”。
+    \alert{理解方式：}一阶量确定理想成像位置，三阶项刻画偏离理想成像后最主要的低阶残差形态。
 \end{frame}
 
 \englishtitle{Zernike Polynomial Expansion}
@@ -360,17 +343,17 @@
     \end{block}
 \end{frame}
 
-\subsection{单色像差诊断：先分清曲线形状}
+\subsection{单色像差诊断：基于曲线形状的判别}
 \label{sec:1.4}
 
 \englishtitle{Monochromatic Aberrations in Ray Fan}
-\begin{frame}{球差、彗差与离焦：先看曲线阶次}
+\begin{frame}{球差、彗差与离焦的 Ray Fan 特征}
 \label{1.10}
     \begin{figure}
         \centering
-        \includegraphics[width=.48\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片23.png}\hfill
-        \includegraphics[width=.23\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片8.png}\hfill
-        \includegraphics[width=.23\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片11.png}
+        \includegraphics[width=.52\textwidth,height=.32\textheight,keepaspectratio]{Figure/图片23.png}\hspace{0.8em}
+        \includegraphics[width=.21\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片8.png}\hspace{0.4em}
+        \includegraphics[width=.21\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片11.png}
         \caption{左：球差的三次型 Ray Fan；右：彗差的二次型 Ray Fan，开口方向区分内向/外向}
         \label{fig:spherical_coma_rayfan_main}
     \end{figure}
@@ -391,22 +374,22 @@
         \end{tabular}
     \end{table}
 
-    \alert{这一页把原先分散的离焦、球差、彗差合并为一个判据：先看阶次，再决定是移像面还是改结构。}
+    \alert{判别要点：}离焦表现为线性斜率，球差表现为三次弯曲，彗差表现为离轴二次弯曲；据此可区分像面调整问题与结构校正问题。
 \end{frame}
 
 \englishtitle{Field Curvature and Astigmatism}
-\begin{frame}{场曲与像散：同是斜率问题，但物理来源不同}
+\begin{frame}{场曲与像散的判别}
 \label{1.11}
     \begin{columns}[T]
         \begin{column}{.53\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.32\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片20.png}\hfill
-                \includegraphics[width=.32\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片21.png}\hfill
-                \includegraphics[width=.32\textwidth,height=.25\textheight,keepaspectratio]{Figure/图片22.png}
+                \includegraphics[width=.32\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片20.png}\hfill
+                \includegraphics[width=.32\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片21.png}\hfill
+                \includegraphics[width=.32\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片22.png}
                 \vspace{3pt}
-                \includegraphics[width=\textwidth,height=.24\textheight,keepaspectratio]{Figure/Edmund/aberrations-4v2.png}
-                \caption{上：离焦、场曲、像散的 Ray Fan；下：场曲的弯曲最佳像面}
+                \includegraphics[width=\textwidth,height=.33\textheight,keepaspectratio]{Figure/Edmund/aberrations-4v2.png}
+                \caption{上：离焦、场曲、像散；下：场曲的弯曲最佳像面}
                 \label{fig:linear_field_curvature_main}
             \end{figure}
         \end{column}
@@ -420,7 +403,7 @@
                 子午与弧矢两组光线的最佳焦点分离，因此同一点物会先后形成两条正交焦线，中间只是最小弥散圆。
             \end{block}
 
-            \begin{alertblock}{诊断顺序}
+            \begin{alertblock}{判别步骤}
                 先看不同视场的最佳焦点是否移动，再看 Tangential/Sagittal 两条曲线是否分离。
             \end{alertblock}
         \end{column}
@@ -434,12 +417,12 @@
         \begin{column}{.56\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.24\textwidth,height=.29\textheight,keepaspectratio]{Figure/图片18.png}\hfill
-                \includegraphics[width=.72\textwidth,height=.29\textheight,keepaspectratio]{Figure/图片26.png}
-                \vspace{3pt}
-                \includegraphics[width=.46\textwidth,height=.18\textheight,keepaspectratio]{Figure/Edmund/abberations-2a.png}\hfill
-                \includegraphics[width=.46\textwidth,height=.18\textheight,keepaspectratio]{Figure/Edmund/abberations-2b.png}
-                \caption{上：子午面与弧矢面；下：像散导致两个方向不能同时清晰}
+                \includegraphics[width=.44\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片18.png}\hspace{0.02\textwidth}
+                \includegraphics[width=.44\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片26.png}
+                \vspace{4pt}
+                \includegraphics[width=.44\textwidth,height=.20\textheight,keepaspectratio]{Figure/Edmund/abberations-2a.png}\hspace{0.02\textwidth}
+                \includegraphics[width=.44\textwidth,height=.20\textheight,keepaspectratio]{Figure/Edmund/abberations-2b.png}
+                \caption{子午面与弧矢面定义，以及像散导致的两个正交方向清晰度差异}
                 \label{fig:meridional_sagittal_astigmatism_main}
             \end{figure}
         \end{column}
@@ -453,7 +436,7 @@
             \end{itemize}
 
             \begin{block}{工程处理}
-                常见手段包括弯月透镜、对称结构、调整光阑位置或降低离轴会聚角。
+                常见手段包括引入弯月透镜、提高结构对称性、调整光阑位置或降低离轴会聚角。
             \end{block}
         \end{column}
     \end{columns}
@@ -466,16 +449,16 @@
 \begin{frame}{阿贝图：把色差问题落到材料选择}
 \label{1.13}
     \begin{columns}[T]
-        \begin{column}{.45\textwidth}
+        \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.45\textheight,keepaspectratio]{Figure/Abbe.png}
+                \includegraphics[width=.98\textwidth,height=.49\textheight,keepaspectratio]{Figure/Abbe.png}
                 \caption{阿贝图：折射率与色散能力的材料地图}
                 \label{fig:abbe_main}
             \end{figure}
         \end{column}
         \hfill
-        \begin{column}{.55\textwidth}
+        \begin{column}{.50\textwidth}
             \textbf{色散是材料属性：}
             \begin{equation}
                 \nu_d = \frac{n_d-1}{n_F-n_C}
@@ -488,23 +471,23 @@
                 \item 对显微物镜，色差校正等级会直接推高材料自由度、镜片数量和制造成本。
             \end{itemize}
 
-            \begin{alertblock}{合并后的主线}
-                色差不要和材料选择分开讲：先看阿贝图决定材料空间，再回到 Ray Fan/OPD 判断色差是否真的被压低。
+            \begin{alertblock}{设计分析要点}
+                色差分析应与材料选择同步展开：先用阿贝图确定可行材料空间，再结合 Ray Fan 与 OPD 判断色差残差是否满足成像要求。
             \end{alertblock}
         \end{column}
     \end{columns}
 \end{frame}
 
 \englishtitle{Chromatic Aberration in Ray Fan}
-\begin{frame}{色差在 Ray Fan 上怎么看}
+\begin{frame}{Ray Fan 中的色差判读}
 \label{1.14}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片30.png}
+                \includegraphics[width=.98\textwidth,height=.26\textheight,keepaspectratio]{Figure/图片30.png}
                 \vspace{2pt}
-                \includegraphics[width=.98\textwidth,height=.19\textheight,keepaspectratio]{Figure/图片28.png}
+                \includegraphics[width=.98\textwidth,height=.21\textheight,keepaspectratio]{Figure/图片28.png}
                 \caption{轴向色差：不同波长近轴焦点位置不同}
                 \label{fig:axial_color_main}
             \end{figure}
@@ -513,9 +496,9 @@
         \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.27\textheight,keepaspectratio]{Figure/图片31.png}
+                \includegraphics[width=.98\textwidth,height=.26\textheight,keepaspectratio]{Figure/图片31.png}
                 \vspace{2pt}
-                \includegraphics[width=.98\textwidth,height=.19\textheight,keepaspectratio]{Figure/图片29.png}
+                \includegraphics[width=.98\textwidth,height=.21\textheight,keepaspectratio]{Figure/图片29.png}
                 \caption{倍率色差：不同波长主光线像高不同}
                 \label{fig:lateral_color_main}
             \end{figure}
@@ -548,10 +531,9 @@
                 \item 选择供应商目录，如 Schott、Hoya、Ohara、CDGM。
                 \item 构建 RMS Wavefront 或 MTF/Spot 相关评价函数。
                 \item 使用 Hammer 或 Global Search 处理离散玻璃变化。
-                \item 用玻璃替换模板过滤成本、供应状态和耐候性。
             \end{enumerate}
 
-            \begin{alertblock}{关键}
+            \begin{alertblock}{方法特点}
                 玻璃型号是离散变量，Local Optimization 不擅长跨越材料跳变；全局搜索更适合玻璃替换。
             \end{alertblock}
         \end{column}
@@ -571,15 +553,15 @@
     \end{columns}
 \end{frame}
 
-\subsection{诊断闭环：从图到结论}
+\subsection{诊断闭环：从像差表征到像质结论}
 \label{sec:1.6}
 
 \englishtitle{Diagnostic Workflow}
-\begin{frame}{像差诊断流程：从图到结论}
+\begin{frame}{像差诊断流程：从表征到结论}
 \label{1.16}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
-            \begin{block}{Ray Fan 先行诊断}
+            \begin{block}{Ray Fan 初步诊断}
                 \begin{enumerate}
                     \item 先看轴上视场：三次曲线为球差，波长斜率差为轴向色差。
                     \item 再看轴外视场：二次曲线为彗差，原点斜率变化为场曲/像散。
@@ -591,7 +573,7 @@
         \end{column}
         \hfill
         \begin{column}{.50\textwidth}
-            \begin{block}{再用波前和像质确认}
+            \begin{block}{波前与像质交叉验证}
                 \begin{itemize}
                     \item \textbf{Zernike}：分解 OPD，确认主要波前模式。
                     \item \textbf{Spot}：查看几何弥散斑是否落入像元。
@@ -601,8 +583,8 @@
                 \end{itemize}
             \end{block}
 
-            \begin{alertblock}{最重要的工作习惯}
-                不要只看一个图下结论；Ray Fan 告诉你“像差形状”，OPD/Zernike 告诉你“波前来源”，MTF/PSF 告诉你“图像后果”。
+            \begin{alertblock}{综合判据}
+                诊断不能仅依据单一图形；Ray Fan 反映像差形状，OPD/Zernike 解释波前来源，MTF/PSF 则给出成像后果。
             \end{alertblock}
         \end{column}
     \end{columns}

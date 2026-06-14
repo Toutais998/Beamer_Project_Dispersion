@@ -1,11 +1,11 @@
-\section{物镜设计方法与 Zemax 闭环}
+\section{物镜设计基础}
 \label{chap:2}
 
 \subsection{物镜规格与结构演化}
 \label{sec:2.1}
 
 \englishtitle{Mechanical Constraints Behind Microscope Objectives}
-\begin{frame}{物镜不是纯光学问题，而是“光学+机械”共同约束}
+\begin{frame}{物镜设计的光机协同约束}
 \label{2.1}
     \small
     \begin{columns}[T]
@@ -30,7 +30,7 @@
                 高 NA、大视场、长工作距和平场并不会自然兼容；它们会同时挤压长度、口径、材料和装调预算。
             \end{block}
 
-            \alert{因此，物镜设计的第一步不是“堆镜片”，而是把应用目标翻译成机械边界和一阶规格。}
+            \alert{因此，物镜设计应先将应用目标转化为机械边界与一阶规格，再开展具体光学结构设计。}
         \end{column}
     \end{columns}
 \end{frame}
@@ -43,9 +43,9 @@
         \begin{column}{.53\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=.98\textwidth,height=.30\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_02.png}
+                \includegraphics[width=.98\textwidth,height=.25\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_02.png}
                 \vspace{3pt}
-                \includegraphics[width=.98\textwidth,height=.28\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_03.png}
+                \includegraphics[width=.98\textwidth,height=.38\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_03.png}
                 \caption{上：19 世纪基础结构；下：20 世纪现代结构分化}
                 \label{fig:objective_history_main}
             \end{figure}
@@ -71,8 +71,8 @@
                 }
             \end{table}
 
-            \begin{alertblock}{插入历史的目的}
-                历史不是背景故事，而是初始结构库：看到规格后，先判断它更像高 NA、平场、长工作距还是大视场远心问题。
+            \begin{alertblock}{历史脉络的设计意义}
+                历史演化提供了可复用的初始结构库：面对具体规格时，可先判断问题更接近高 NA、平场、长工作距还是大视场远心类型。
             \end{alertblock}
         \end{column}
     \end{columns}
@@ -83,16 +83,16 @@
 \label{2.3}
     \small
     \begin{columns}[T]
-        \begin{column}{.56\textwidth}
+        \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_04.png}
+                \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_04.png}
                 \caption{色差校正等级越高，结构和材料自由度越多}
                 \label{fig:objective_chromatic_classes_main}
             \end{figure}
         \end{column}
         \hfill
-        \begin{column}{.42\textwidth}
+        \begin{column}{.50\textwidth}
             \textbf{校正等级对应不同设计代价：}
             \begin{itemize}
                 \item \textbf{Achromat}：两色校正，结构较简单。
@@ -101,7 +101,7 @@
                 \item \textbf{VIS/UV/IR Superapo}：扩展波段后，材料和制造难度显著上升。
             \end{itemize}
 
-            \begin{block}{和第 1 章的连接}
+            \begin{block}{设计思路}
                 阿贝图决定可选材料空间；Ray Fan/OPD 判断色差是否被压低；Zemax 中再通过多波长权重、真实玻璃和评价函数闭环。
             \end{block}
         \end{column}
@@ -109,7 +109,7 @@
 \end{frame}
 
 \englishtitle{Design Specification Before Optimization}
-\begin{frame}{优化前先写清楚规格}
+\begin{frame}{优化前的规格定义}
 \label{2.4}
     \begin{columns}[T]
         \begin{column}{.45\textwidth}
@@ -144,57 +144,57 @@
 \subsection{Zemax 诊断与优化闭环}
 \label{sec:2.2}
 
-\englishtitle{OpticStudio as a Closed Loop}
-\begin{frame}{Zemax 中的完整闭环}
-\label{2.5}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{block}{工作流不是“打开很多分析窗口”}
-                更稳妥的流程是：先用一阶规格把系统放对，再用 Ray Fan 和 OPD 找主要像差，用 Merit Function 改变量，最后用 MTF/PSF 和公差分析确认能否交付。
-            \end{block}
+% \englishtitle{OpticStudio as a Closed Loop}
+% \begin{frame}{Zemax 中的完整闭环}
+% \label{2.5}
+%     \begin{columns}[T]
+%         \begin{column}{.50\textwidth}
+%             \begin{block}{工作流不是“打开很多分析窗口”}
+%                 更稳妥的流程是：先用一阶规格把系统放对，再用 Ray Fan 和 OPD 找主要像差，用 Merit Function 改变量，最后用 MTF/PSF 和公差分析确认能否交付。
+%             \end{block}
 
-            \begin{center}
-                \fbox{\textbf{规格}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{结构}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{诊断}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{优化}}\quad
-                $\rightarrow$\quad
-                \fbox{\textbf{制造}}
-            \end{center}
+%             \begin{center}
+%                 \fbox{\textbf{规格}}\quad
+%                 $\rightarrow$\quad
+%                 \fbox{\textbf{结构}}\quad
+%                 $\rightarrow$\quad
+%                 \fbox{\textbf{诊断}}\quad
+%                 $\rightarrow$\quad
+%                 \fbox{\textbf{优化}}\quad
+%                 $\rightarrow$\quad
+%                 \fbox{\textbf{制造}}
+%             \end{center}
 
-            \bigbreak
-            \textbf{核心判断：}每一次优化都要能回答“我正在压低哪一种物理误差，以及它会如何改善像质”。
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \scriptsize
-            \begin{table}
-                \centering
-                \renewcommand{\arraystretch}{1.3}
-                \resizebox{\linewidth}{!}{%
-                \begin{tabular}{p{2.6cm}|p{5.0cm}}
-                    \toprule
-                    \textbf{理论对象} & \textbf{Zemax 中的常用窗口/指标} \\
-                    \midrule
-                    一阶规格 & System Explorer, Lens Data Editor, Paraxial Data \\
-                    Ray Fan & Ray Aberration, Longitudinal Aberration \\
-                    OPD/波前 & OPD Fan, Wavefront Map, RMS Wavefront \\
-                    Zernike 系数 & Zernike Standard Coefficients \\
-                    PSF/MTF & Huygens PSF, FFT PSF, FFT MTF, Huygens MTF \\
-                    结构边界 & Merit Function Editor, Solve, Pick-up, Thickness constraints \\
-                    制造风险 & Tolerance Data Editor, Sensitivity, Monte Carlo \\
-                    \bottomrule
-                \end{tabular}
-                }
-                \caption{理论量与 OpticStudio 工具的对应关系}
-                \label{tab:zemax_mapping}
-            \end{table}
-        \end{column}
-    \end{columns}
-\end{frame}
+%             \bigbreak
+%             \textbf{核心判断：}每一次优化都要能回答“我正在压低哪一种物理误差，以及它会如何改善像质”。
+%         \end{column}
+%         \hfill
+%         \begin{column}{.50\textwidth}
+%             \scriptsize
+%             \begin{table}
+%                 \centering
+%                 \renewcommand{\arraystretch}{1.3}
+%                 \resizebox{\linewidth}{!}{%
+%                 \begin{tabular}{p{2.6cm}|p{5.0cm}}
+%                     \toprule
+%                     \textbf{理论对象} & \textbf{Zemax 中的常用窗口/指标} \\
+%                     \midrule
+%                     一阶规格 & System Explorer, Lens Data Editor, Paraxial Data \\
+%                     Ray Fan & Ray Aberration, Longitudinal Aberration \\
+%                     OPD/波前 & OPD Fan, Wavefront Map, RMS Wavefront \\
+%                     Zernike 系数 & Zernike Standard Coefficients \\
+%                     PSF/MTF & Huygens PSF, FFT PSF, FFT MTF, Huygens MTF \\
+%                     结构边界 & Merit Function Editor, Solve, Pick-up, Thickness constraints \\
+%                     制造风险 & Tolerance Data Editor, Sensitivity, Monte Carlo \\
+%                     \bottomrule
+%                 \end{tabular}
+%                 }
+%                 \caption{理论量与 OpticStudio 工具的对应关系}
+%                 \label{tab:zemax_mapping}
+%             \end{table}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
 \englishtitle{Merit Function and Optimization Actions}
 \begin{frame}{评价函数：从物理指标到优化动作}
@@ -253,7 +253,7 @@
 \end{frame}
 
 \englishtitle{Wavefront and Image-Quality Metrics}
-\begin{frame}{用 Zernike、PSF 与 MTF 确认优化是否真的改善图像}
+\begin{frame}{用 Zernike、PSF 与 MTF 验证优化结果}
 \label{2.7}
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
@@ -279,7 +279,7 @@
                 \item \textbf{Encircled Energy}：目标像元内能收进多少能量。
             \end{itemize}
 
-            \begin{alertblock}{不要只看一个指标}
+            \begin{alertblock}{指标联合判读}
                 Zernike 解释波前，Ray Fan 定位像差，MTF/PSF 才回答最终图像是否足够清晰。
             \end{alertblock}
         \end{column}
@@ -334,7 +334,7 @@
 \end{frame}
 
 \englishtitle{Design-to-Manufacturing Workflow}
-\begin{frame}{从仿真到制造的最终流程}
+\begin{frame}{从仿真到制造的闭环流程}
 \label{2.9}
     \small
     \begin{table}

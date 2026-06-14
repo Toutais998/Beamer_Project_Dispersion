@@ -1,7 +1,7 @@
-\section{物镜设计仿真案例分析}
+\section{Cousa物镜国产化设计}
 \label{chap:3}
 
-\subsection{Cousa 物镜:文献参数与优化参数对比}
+\subsection{文献参数与优化结果对比}
 \label{sec:3.1}
 
 % \englishtitle{Cousa Objective in Zemax: Published and Optimized Prescriptions}
@@ -42,8 +42,8 @@
 %     \end{columns}
 % \end{frame}
 
-\englishtitle{Layout}
-\begin{frame}{布局图对比}
+\englishtitle{Layout of Cousa}
+\begin{frame}{Cousa 物镜布局对比}
     \label{3.1}
     \framerefbox{Yu, C.-H. et al. Nature Methods 21, 132--141 (2024). DOI: 10.1038/s41592-023-02098-1}
     \begin{columns}[T]
@@ -51,7 +51,7 @@
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_01.png}
-                \caption{Cousa物镜设计图}
+                \caption{文献参数重建的 Cousa 物镜布局}
                 \label{fig:cousa_layout_lit}
             \end{figure}
         \end{column}
@@ -60,26 +60,29 @@
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_02.png}
-                \caption{优化后设计图}
+                \caption{优化后模型的物镜布局}
                 \label{fig:cousa_layout_opt}
             \end{figure}
         \end{column}
     \end{columns}
 
     \vspace{-3pt}
-    \begin{itemize}
-        \item 使用Zemax重新设计Cousa物镜
-    \end{itemize}
+    \begin{block}{比较目的}
+        本页对比文献参数重建模型与优化后模型的镜组布局，用于观察长工作距条件下前组会聚、中后组校正以及系统总长的结构分配方式。
+    \end{block}
 \end{frame}
 
 \englishtitle{Wavefront Error Comparison}
-\begin{frame}{RMS 波前误差:文献参数与优化参数对比}
+\begin{frame}{RMS 波前误差：文献重建与优化结果对比}
     \label{3.2}
     \begin{figure}
         \centering
-        \includegraphics[width=.50\textwidth,height=.31\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_01.png}\hfill
-        \includegraphics[width=.50\textwidth,height=.31\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_02.png}
-        \caption{左:文献参数重建的 RMS wavefront error；右:优化后参数的 RMS wavefront error}
+        \includegraphics[width=.485\textwidth,height=.33\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_01.png}
+
+        \hspace{0.01\textwidth}
+
+        \includegraphics[width=.485\textwidth,height=.33\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_02.png}
+        \caption{左：文献参数重建模型的 RMS 波前误差；右：优化后模型的 RMS 波前误差}
         \label{fig:cousa_rms_compare}
     \end{figure}
 
@@ -87,28 +90,28 @@
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
             \begin{itemize}
-                \item 文献图中给出的判据是 RMS wavefront error 低于约 0.072 waves 时可视作接近衍射极限。
-                \item 重建结果可以作为基准，判断 Cousa 原始公开设计在主工作视场中的误差抬升趋势。
+                \item 文献给出的参考判据表明，当 RMS wavefront error 低于约 0.072 waves 时，系统可近似视作接近衍射极限。
+                \item 因此，文献参数重建结果可以作为比较基准，用于观察原始设计在主工作视场中的误差抬升趋势。
             \end{itemize}
         \end{column}
         \begin{column}{.48\textwidth}
             \begin{itemize}
-                \item 我的优化结果把主要工作波段压到更低的 RMS 水平，并让随视场增长的趋势更平缓。
-                \item 这说明优化并不只是改善轴上点，而是提升了扫描过程中的全场一致性。
+                \item 优化后，主要工作波段的 RMS 水平进一步降低，且随视场增大的变化更平缓。
+                \item 这表明优化不仅改善了轴上像点，也提高了扫描过程中的全场像质一致性。
             \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
 \englishtitle{RMS and OTF Across Field}
-\begin{frame}{RMS 与 OTF 随视场变化:优化后的全场表现}
+\begin{frame}{RMS 与 OTF 的全视场表现}
     \label{3.3}
     \begin{columns}[T]
         \begin{column}{.36\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/MTF.png}
-                \caption{MTF 曲线读法示意:切向/弧矢方向对比度传递}
+                \caption{MTF/OTF 曲线的切向与弧矢读法示意}
                 \label{fig:cousa_mtf_explain}
             \end{figure}
         \end{column}
@@ -117,7 +120,7 @@
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_03.png}
-                \caption{优化后 RMS 与 10 cycles/mm OTF 随扫描视场变化}
+                \caption{优化后模型的 RMS 与 10 cycles/mm OTF 随视场变化}
                 \label{fig:cousa_rms_otf_opt}
             \end{figure}
         \end{column}
@@ -125,30 +128,30 @@
 
     \vspace{-4pt}
     \begin{itemize}
-        \item 左图用于说明 OTF/MTF 读图方式；右图则把优化后的波前误差和 10 cycles/mm 对比度保持能力放在同一页里。
-        \item 从结果看，优化后 910/920/930 nm 三条曲线在主视场内都维持较低 RMS，切向与弧矢 OTF 也接近 1。
-        \item 这意味着优化后的 Cousa 仿真不仅接近衍射极限，而且在扫描到边场时仍保持很高的低频结构还原能力。
+        \item 左图用于说明低空间频率下切向与弧矢 OTF 的解释方式；右图同时给出波前误差与对比度保持能力。
+        \item 优化后，910/920/930 nm 三条曲线在主工作视场内保持较低 RMS，且切向与弧矢 OTF 均接近 1。
+        \item 这说明系统在边场扫描时仍能维持稳定的低频结构传递能力，与前一页的波前误差结果相互印证。
     \end{itemize}
 \end{frame}
 
 \englishtitle{Distortion Comparison}
-\begin{frame}{网格畸变:标准 3$^\circ$ 与扩展 5$^\circ$ 视场}
+\begin{frame}{网格畸变：标准工作视场与扩展视场比较}
     \label{3.4}
     \begin{columns}[T]
-        \begin{column}{.50\textwidth}
+        \begin{column}{.495\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth,height=.44\textheight,keepaspectratio]{Figure/ZemaxSimulation/网格畸变_01.png}
-                \caption{Cousa物镜扫描视场内畸变，虚线框内为标准 $\pm 3^\circ$ 视场，整体为$\pm 5^\circ$ 视场}
+                \caption{文献参数重建模型的网格畸变，虚线框对应标准 $\pm 3^\circ$ 工作视场}
                 \label{fig:cousa_distortion_lit}
             \end{figure}
         \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
+        \hspace{0.01\textwidth}
+        \begin{column}{.495\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[width=\textwidth,height=.44\textheight,keepaspectratio]{Figure/ZemaxSimulation/网格畸变_02.png}
-                \caption{优化后$\pm 5^\circ$ 扩展视场，在$\pm 3^\circ$ 视场下仍保持较低畸变}
+                \caption{优化后模型在 $\pm 5^\circ$ 扩展视场下的网格畸变}
                 \label{fig:cousa_distortion_opt}
             \end{figure}
         \end{column}
@@ -156,29 +159,29 @@
 
     \vspace{-4pt}
     \begin{itemize}
-        \item 虚线框表示标准 $\pm 3^\circ$ 扫描工作区，框外则对应更大的扩展视场评估。
-        \item 标准视场最大畸变约为 0.36\%，扩展 $\pm 5^\circ$ 视场最大畸变约为 1.41\%。
+        \item 虚线框对应标准 $\pm 3^\circ$ 扫描工作区，框外部分用于观察更大扩展视场下的几何失真。
+        \item 在当前评估中，标准工作视场的最大畸变约为 0.36\%，扩展到 $\pm 5^\circ$ 视场时最大畸变约为 1.41\%。
     \end{itemize}
 \end{frame}
 
 \englishtitle{Strehl Ratio Comparison}
-\begin{frame}{斯特列尔比:是否稳定维持在衍射极限附近}
+\begin{frame}{Strehl 比：主工作波段的衍射极限保持能力}
     \label{3.5}
     \begin{columns}[T]
-        \begin{column}{.34\textwidth}
+        \begin{column}{.39\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.46\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_01.png}
-                \caption{文献参数重建结果}
+                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_01.png}
+                \caption{文献参数重建模型的 Strehl 分布}
                 \label{fig:cousa_strehl_lit}
             \end{figure}
         \end{column}
-        \hfill
-        \begin{column}{.66\textwidth}
+        \hspace{0.01\textwidth}
+        \begin{column}{.39\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.52\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_02.png}
-                \caption{优化后结果:主工作波段的 Strehl 几乎贴近 1}
+                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_02.png}
+                \caption{优化后模型在主工作波段的 Strehl 分布}
                 \label{fig:cousa_strehl_opt}
             \end{figure}
         \end{column}
@@ -186,8 +189,8 @@
 
     \vspace{-5pt}
     \begin{itemize}
-        \item Strehl ratio 高于 0.8 通常可视作达到衍射极限附近；而优化后的三条工作波长曲线几乎都贴近 1。
-        \item 这和前面的低 RMS、接近 1 的 OTF 是一致的，说明优化后的 Cousa 设计在主视场内具备很强的波前保真度。
-        \item 对长工作距多光子物镜来说，这一点尤其重要，因为它意味着放宽机械空间后并没有明显牺牲主视场的像质上限。
+        \item Strehl ratio 高于 0.8 通常可作为接近衍射极限的工程判据；优化后三条工作波长曲线整体保持在接近 1 的水平。
+        \item 前述低 RMS 和高 OTF 相一致，说明优化后设计在主工作视场内具有较高的波前保真度。
+        \item 对长工作距多光子物镜而言，这表明在保留机械空间的同时，系统仍能维持较高的像质上限。
     \end{itemize}
 \end{frame}

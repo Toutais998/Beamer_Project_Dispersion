@@ -3,6 +3,7 @@
 %设置为 Beamer 文档类型，设置字体为 10pt，长宽比为16:9，数学字体为 serif 风格
 
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{animate}
 \usepackage{hyperref}
 
@@ -26,6 +27,7 @@
 \setbeamerfont{author in head/foot}{size=\fontsize{7pt}{9pt}}
 \setbeamerfont{title in head/foot}{size=\fontsize{7pt}{9pt}}
 \setbeamerfont{date in head/foot}{size=\fontsize{7pt}{9pt}}
+\setbeamerfont{frame reference}{size=\fontsize{5.5pt}{6.6pt}}
 
 % --- 自定义强调色：蓝色加粗 ---
 \setbeamercolor{alerted text}{fg=blue}
@@ -92,6 +94,21 @@
 \newcommand{\englishtitle}[1]{\def\@englishtitle{#1}}
 \let\@englishtitle\@empty
 
+% --- 当前页参考文献文本框：按页设置，未设置则隐藏 ---
+\newif\ifshowframerefbox
+\showframerefboxfalse
+\newcommand{\insertframerefbox}{}
+\newcommand{\clearframerefbox}{%
+  \global\showframerefboxfalse
+  \gdef\insertframerefbox{}%
+}
+\newcommand{\framerefbox}[1]{%
+  \gdef\insertframerefbox{#1}%
+  \global\showframerefboxtrue
+}
+\newcommand{\framecite}[1]{\framerefbox{参考文献：\cite{#1}}}
+\BeforeBeginEnvironment{frame}{\clearframerefbox}
+
 % 临时屏蔽当前帧编号（目录页、Thank you 页使用）
 \newif\ifnoslidenumber
 \newcommand{\nonumberframe}{\global\noslidenumbertrue}
@@ -157,6 +174,25 @@
   }%
   \vskip0pt%
 }
+\addtobeamertemplate{background canvas}{%
+  \ifshowframerefbox
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[
+        anchor=south west,
+        xshift=.30cm,
+        yshift=.88cm,
+        rounded corners=2pt,
+        draw=black!25,
+        fill=white,
+        text width=.62\paperwidth,
+        inner xsep=5pt,
+        inner ysep=3pt
+      ] at (current page.south west) {%
+        \usebeamerfont{frame reference}\color{black}\insertframerefbox
+      };
+    \end{tikzpicture}%
+  \fi
+}{}
 
 \AtBeginSection[]
 {
@@ -177,13 +213,13 @@
 
 % -----------------------------------------------------------------------------
 
-% \input{Chapter/01.Chapter1}
+\input{Chapter/01.Chapter1}
 
-% \input{Chapter/02.Chapter2}
+\input{Chapter/02.Chapter2}
 
 \input{Chapter/02.Zhang}
 
-% \input{Chapter/03.Chapter3}
+\input{Chapter/03.ZemaxSimulation}
 
 % \input{Chapter/04.Chapter4}
 

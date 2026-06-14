@@ -351,28 +351,25 @@
 
 \englishtitle{Spherical Aberration and Coma in Ray Fan}
 \begin{frame}{球差与彗差：看曲线阶次}
+    \begin{figure}
+        \centering
+        \includegraphics[width=.52\textwidth,height=.32\textheight,keepaspectratio]{Figure/图片23.png}\hfill
+        \includegraphics[width=.21\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片8.png}\hfill
+        \includegraphics[width=.21\textwidth,height=.20\textheight,keepaspectratio]{Figure/图片11.png}
+        \caption{左：球差的三次型 Ray Fan；右：彗差的二次型 Ray Fan，开口方向区分内向/外向}
+        \label{fig:spherical_coma_rayfan_main}
+    \end{figure}
+
+    \vspace{-2pt}
     \begin{columns}[T]
-        \begin{column}{.42\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/图片23.png}
-                \caption{球差：轴上三次型 Ray Fan}
-                \label{fig:spherical_rayfan_main}
-            \end{figure}
-            \vfil
-            \begin{figure}
-                \centering
-                \includegraphics[width=.46\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片8.png}\hfill
-                \includegraphics[width=.46\textwidth,height=.28\textheight,keepaspectratio]{Figure/图片11.png}
-                \caption{彗差：二次型曲线，开口方向区分内向/外向}
-                \label{fig:coma_rayfan_main}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.58\textwidth}
+        \begin{column}{.50\textwidth}
             \begin{itemize}
                 \item \textbf{球差}：轴上也存在，孔径越大越明显；Ray Fan 为奇函数三次曲线。
                 \item \textbf{彗差}：轴外像差，随视场增加；Ray Fan 呈偶函数二次曲线。
+            \end{itemize}
+        \end{column}
+        \begin{column}{.50\textwidth}
+            \begin{itemize}
                 \item \textbf{离焦对比}：离焦只能改变直线斜率，不能把二次彗差项消掉。
                 \item \textbf{工程处理}：分摊光焦度、改变光阑位置、加入非球面或对称结构。
             \end{itemize}
@@ -384,9 +381,9 @@
 \begin{frame}{离焦、场曲与像散：看原点附近斜率}
     \begin{figure}
         \centering
-        \includegraphics[width=.31\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片20.png}\hfill
-        \includegraphics[width=.31\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片21.png}\hfill
-        \includegraphics[width=.31\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片22.png}
+        \includegraphics[width=.33\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片20.png}\hfill
+        \includegraphics[width=.33\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片21.png}\hfill
+        \includegraphics[width=.33\textwidth,height=.36\textheight,keepaspectratio]{Figure/图片22.png}
         \caption{离焦、场曲与像散都表现在线性斜率上，但判据不同}
         \label{fig:linear_aberrations_main}
     \end{figure}
@@ -411,6 +408,98 @@
             \begin{itemize}
                 \item 子午与弧矢斜率不同
                 \item 两条焦线无法同时聚焦
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Meridional and Sagittal Planes}
+\begin{frame}{子午面与弧矢面：像散分析的两个切面}
+    \begin{figure}
+        \centering
+        \includegraphics[width=.24\textwidth,height=.34\textheight,keepaspectratio]{Figure/图片18.png}\hfill
+        \includegraphics[width=.72\textwidth,height=.34\textheight,keepaspectratio]{Figure/图片26.png}
+        \caption{图片18给出子午面/弧矢面的空间定义，图片26补充了主光线、入射瞳与像平面坐标}
+        \label{fig:meridional_sagittal_planes_main}
+    \end{figure}
+
+    \vspace{-2pt}
+    \begin{itemize}
+        \item \textbf{子午面}包含光轴和主光线；\textbf{弧矢面}与其正交，并同样经过主光线。
+        \item Zemax 的 Tangential Fan / Sagittal Fan，本质上就是分别在这两个切面中观察 Ray Fan。
+        \item 后面判断像散时，关键不是“曲线有没有斜率”，而是子午与弧矢两组光线的最佳焦点是否分离。
+    \end{itemize}
+\end{frame}
+
+\englishtitle{Astigmatism Light Path}
+\begin{frame}{像散发生时：子午像面与弧矢像面分离}
+    \begin{columns}[T]
+        \begin{column}{.54\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.33\textheight,keepaspectratio]{Figure/图片19.png}
+                \caption{像散下的光路：同一点物不能在同一平面同时成像}
+                \label{fig:astigmatism_light_path_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.46\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.33\textheight,keepaspectratio]{Figure/Edmund/aberrations-3v3.png}
+                \caption{Edmund 补充图：Tangential 焦线与 Sagittal 焦线分开}
+                \label{fig:astigmatism_edmund_main}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \vspace{-4pt}
+    \begin{itemize}
+        \item 先到达的通常是一条焦线，再往后才是另一条焦线，中间位置对应最小弥散圆而不是理想点像。
+        \item 这也是为什么在 Ray Fan 中需要同时看子午与弧矢两条曲线，单看其中一条很容易误判。
+    \end{itemize}
+\end{frame}
+
+\englishtitle{Astigmatism Image Comparison}
+\begin{frame}{像散的直接后果：两个方向不能同时清晰}
+    \begin{columns}[T]
+        \begin{column}{.46\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.46\textwidth,height=.22\textheight,keepaspectratio]{Figure/Edmund/abberations-2a.png}\hfill
+                \includegraphics[width=.46\textwidth,height=.22\textheight,keepaspectratio]{Figure/Edmund/abberations-2b.png}
+                \caption{Edmund 对比图：调到一个方向清晰时，正交方向仍然发虚}
+                \label{fig:astigmatism_compare_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.54\textwidth}
+            \begin{itemize}
+                \item 图样一边更清晰，说明系统此时更接近其中一条焦线，而不是同时到达两个正交方向的最佳焦点。
+                \item 若只靠整体移动像面，通常只能在两条焦线之间折中，不能真正消掉像散。
+                \item 工程上常通过弯月透镜、对称结构或降低离轴会聚角来减弱像散。
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\englishtitle{Field Curvature Supplement}
+\begin{frame}{场曲：最佳像面本身就是弯的}
+    \begin{columns}[T]
+        \begin{column}{.55\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.36\textheight,keepaspectratio]{Figure/Edmund/aberrations-4v2.png}
+                \caption{Edmund 场曲示意：实际最佳焦点落在弯曲像面上}
+                \label{fig:field_curvature_edmund_main}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.45\textwidth}
+            \begin{itemize}
+                \item 场曲的核心不是“轴外有模糊”，而是不同视场对应不同最佳像面位置。
+                \item 若探测器是平面，中心和边缘往往只能二选一地达到最佳清晰度。
+                \item 它和像散都表现为 Ray Fan 原点附近斜率变化，但像散还伴随子午/弧矢分离。
             \end{itemize}
         \end{column}
     \end{columns}
@@ -459,6 +548,24 @@
             \end{itemize}
         \end{column}
     \end{columns}
+\end{frame}
+
+\englishtitle{Achromat and Apochromat}
+\begin{frame}{消色差与复消色差：校正目标的差别}
+    \begin{figure}
+        \centering
+        \includegraphics[width=.47\textwidth,height=.31\textheight,keepaspectratio]{Figure/Edmund/aberrations-6v2.png}\hfill
+        \includegraphics[width=.47\textwidth,height=.31\textheight,keepaspectratio]{Figure/Edmund/aberrations-7v2.png}
+        \caption{左：消色差镜组让两个波长聚焦在同一平面；右：复消色差镜组让三个波长同时接近同一平面}
+        \label{fig:achromat_apochromat_main}
+    \end{figure}
+
+    \vspace{-2pt}
+    \begin{itemize}
+        \item \textbf{消色差}通常先校正两种代表波长，显著压低轴向色差，是最常见的基础方案。
+        \item \textbf{复消色差}进一步把第三个波长也拉回同一焦平面，更适合宽光谱、高 NA 或高倍率系统。
+        \item 读图时可直接看不同彩色点是否贴近同一条竖直参考线；越重合，剩余焦移越小。
+    \end{itemize}
 \end{frame}
 
 \englishtitle{Chromatic Aberration in Ray Fan}

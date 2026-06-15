@@ -12,9 +12,9 @@
 %         \begin{column}{.49\textwidth}
 %             \begin{figure}
 %                 \centering
-%                 \includegraphics[width=.98\textwidth,height=.25\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_01.png}
+%                 \includegraphics[width=.98\textwidth,height=.25\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_01.jpg}
 %                 \vspace{2pt}
-%                 \includegraphics[width=.98\textwidth,height=.24\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_02.png}
+%                 \includegraphics[width=.98\textwidth,height=.24\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_02.jpg}
 %                 \caption{上:文献参数(01)；下:我的 Zemax 优化参数(02)}
 %                 \label{fig:cousa_layout_compare}
 %             \end{figure}
@@ -50,7 +50,7 @@
         \begin{column}{.49\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_01.png}
+                \includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_01.jpg}
                 \caption{文献参数重建的 Cousa 物镜布局}
                 \label{fig:cousa_layout_lit}
             \end{figure}
@@ -59,45 +59,54 @@
         \begin{column}{.49\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_02.png}
-                \caption{优化后模型的物镜布局}
+                \includegraphics[width=\textwidth,height=.40\textheight,keepaspectratio]{Figure/ZemaxSimulation/布局图_02.jpg}
+                \caption{重建后的物镜布局}
                 \label{fig:cousa_layout_opt}
             \end{figure}
         \end{column}
     \end{columns}
 
-    \vspace{-3pt}
-    \begin{block}{比较目的}
-        本页对比文献参数重建模型与优化后模型的镜组布局，用于观察长工作距条件下前组会聚、中后组校正以及系统总长的结构分配方式。
-    \end{block}
+    % \vspace{-3pt}
+    % \begin{block}{比较目的}
+    %     本页对比文献参数重建模型与优化后模型的镜组布局，用于观察长工作距条件下前组会聚、中后组校正以及系统总长的结构分配方式。
+    % \end{block}
 \end{frame}
 
 \englishtitle{Wavefront Error Comparison}
 \begin{frame}{RMS 波前误差：文献重建与优化结果对比}
     \label{3.2}
-    \begin{figure}
-        \centering
-        \includegraphics[width=.485\textwidth,height=.33\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_01.png}
-
-        \hspace{0.01\textwidth}
-
-        \includegraphics[width=.485\textwidth,height=.33\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_02.png}
-        \caption{左：文献参数重建模型的 RMS 波前误差；右：优化后模型的 RMS 波前误差}
-        \label{fig:cousa_rms_compare}
-    \end{figure}
+    \begin{columns}[T]
+        \begin{column}{.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.50\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_02}
+                \caption{Cousa的 RMS 波前误差}
+                \label{fig:cousa_rms_lit}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.50\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.50\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_01}
+                \caption{重建后物镜的 RMS 波前误差}
+                \label{fig:cousa_rms_opt}
+            \end{figure}
+        \end{column}
+    \end{columns}
 
     \vspace{-2pt}
     \begin{columns}[T]
         \begin{column}{.52\textwidth}
             \begin{itemize}
-                \item 文献给出的参考判据表明，当 RMS wavefront error 低于约 0.072 waves 时，系统可近似视作接近衍射极限。
-                \item 因此，文献参数重建结果可以作为比较基准，用于观察原始设计在主工作视场中的误差抬升趋势。
+                \item 当 RMS wavefront error 低于约 0.072 waves 时，系统可近似视作接近衍射极限。
+                % \item 因此，文献参数重建结果可以作为比较基准，用于观察原始设计在主工作视场中的误差抬升趋势。
             \end{itemize}
         \end{column}
         \begin{column}{.48\textwidth}
             \begin{itemize}
-                \item 优化后，主要工作波段的 RMS 水平进一步降低，且随视场增大的变化更平缓。
-                \item 这表明优化不仅改善了轴上像点，也提高了扫描过程中的全场像质一致性。
+                \item 主要工作波段的 RMS 水平进一步降低，且随视场增大的变化更平缓。
+                % \item 轴上像点，也提高了扫描过程中的全场像质一致性。
             \end{itemize}
         \end{column}
     \end{columns}
@@ -110,7 +119,7 @@
         \begin{column}{.36\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/MTF.png}
+                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/MTF.jpg}
                 \caption{MTF/OTF 曲线的切向与弧矢读法示意}
                 \label{fig:cousa_mtf_explain}
             \end{figure}
@@ -119,7 +128,7 @@
         \begin{column}{.64\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_03.png}
+                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_03.jpg}
                 \caption{优化后模型的 RMS 与 10 cycles/mm OTF 随视场变化}
                 \label{fig:cousa_rms_otf_opt}
             \end{figure}
@@ -130,7 +139,7 @@
     \begin{itemize}
         \item 左图用于说明低空间频率下切向与弧矢 OTF 的解释方式；右图同时给出波前误差与对比度保持能力。
         \item 优化后，910/920/930 nm 三条曲线在主工作视场内保持较低 RMS，且切向与弧矢 OTF 均接近 1。
-        \item 这说明系统在边场扫描时仍能维持稳定的低频结构传递能力，与前一页的波前误差结果相互印证。
+        \item 系统在边场扫描时仍能维持稳定的低频结构传递能力。
     \end{itemize}
 \end{frame}
 
@@ -138,20 +147,20 @@
 \begin{frame}{网格畸变：标准工作视场与扩展视场比较}
     \label{3.4}
     \begin{columns}[T]
-        \begin{column}{.495\textwidth}
+        \begin{column}{.498\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.44\textheight,keepaspectratio]{Figure/ZemaxSimulation/网格畸变_01.png}
-                \caption{文献参数重建模型的网格畸变，虚线框对应标准 $\pm 3^\circ$ 工作视场}
+                \includegraphics[width=\textwidth,height=.44\textheight,keepaspectratio]{Figure/ZemaxSimulation/网格畸变_01.jpg}
+                \caption{Cousa的网格畸变，虚线框对应标准 $\pm 3^\circ$ 工作视场}
                 \label{fig:cousa_distortion_lit}
             \end{figure}
         \end{column}
-        \hspace{0.01\textwidth}
-        \begin{column}{.495\textwidth}
+        \hspace{0.002\textwidth}
+        \begin{column}{.498\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.44\textheight,keepaspectratio]{Figure/ZemaxSimulation/网格畸变_02.png}
-                \caption{优化后模型在 $\pm 5^\circ$ 扩展视场下的网格畸变}
+                \includegraphics[width=\textwidth,height=.44\textheight,keepaspectratio]{Figure/ZemaxSimulation/网格畸变_02.jpg}
+                \caption{重建物镜在 $\pm 5^\circ$ 扩展视场下的网格畸变}
                 \label{fig:cousa_distortion_opt}
             \end{figure}
         \end{column}
@@ -171,7 +180,7 @@
         \begin{column}{.39\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_01.png}
+                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_01.jpg}
                 \caption{文献参数重建模型的 Strehl 分布}
                 \label{fig:cousa_strehl_lit}
             \end{figure}
@@ -180,8 +189,8 @@
         \begin{column}{.39\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_02.png}
-                \caption{优化后模型在主工作波段的 Strehl 分布}
+                \includegraphics[width=\textwidth,height=.48\textheight,keepaspectratio]{Figure/ZemaxSimulation/斯特列尔比_02}
+                \caption{重建物镜在主工作波段的 Strehl 分布}
                 \label{fig:cousa_strehl_opt}
             \end{figure}
         \end{column}
@@ -191,6 +200,6 @@
     \begin{itemize}
         \item Strehl ratio 高于 0.8 通常可作为接近衍射极限的工程判据；优化后三条工作波长曲线整体保持在接近 1 的水平。
         \item 前述低 RMS 和高 OTF 相一致，说明优化后设计在主工作视场内具有较高的波前保真度。
-        \item 对长工作距多光子物镜而言，这表明在保留机械空间的同时，系统仍能维持较高的像质上限。
+        % \item 对长工作距多光子物镜而言，这表明在保留机械空间的同时，系统仍能维持较高的像质上限。
     \end{itemize}
 \end{frame}

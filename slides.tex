@@ -1,9 +1,15 @@
-% \documentclass[10pt,aspectratio=43,mathserif,table]{beamer} %这个是4：3的
-\documentclass[8pt,aspectratio=169,mathserif,table]{beamer}  %这个是16：9的
+% \documentclass[10pt,aspectratio=43,table]{beamer} %这个是4：3的
+\documentclass[8pt,aspectratio=169,table]{beamer}  %这个是16：9的
 %设置为 Beamer 文档类型，设置字体为 10pt，长宽比为16:9，数学字体为 serif 风格
 
 \usepackage{graphicx}
 \usepackage{tikz}
+
+% --- 草稿模式：仅抑制图片，保留页脚/页码 ---
+%     定稿时注释掉下面三行即可
+% \makeatletter
+% \Gin@drafttrue
+% \makeatother
 \usepackage{animate}
 \usepackage{hyperref}
 
@@ -16,9 +22,11 @@
 % 设置英文字体
 \setmainfont{Times New Roman}
 \setsansfont{Microsoft YaHei}
+\setmonofont{Courier New} %等宽字体，用于 \texttt 和 listings 代码块
 
 \usetheme{Berlin} %主题
 \usecolortheme{sustech} %主题颜色
+\usefonttheme[onlymath]{serif} %替代已废弃的 mathserif 选项
 
 % --- 保持标题字号与原来 9pt 一致 ---
 \setbeamerfont{frametitle}{size=\fontsize{9pt}{11pt}\bfseries}
@@ -43,7 +51,7 @@
 \usepackage[ruled,linesnumbered]{algorithm2e}
 \usepackage{fancybox}
 \usepackage{xcolor}
-\usepackage{times}
+% \usepackage{times} 已删除：fontspec 已设置 Times New Roman，且 times 包会覆盖等宽字体导致 pcr 警告
 \usepackage{listings}
 \usepackage{booktabs}
 \usepackage{colortbl}
@@ -77,8 +85,8 @@
 \definecolor{mycyan}{cmyk}{.3,0,0,0}
 
 %题目，作者，学校，日期
-\title{光学像差诊断与 Zemax 仿真闭环}
-\subtitle{\fontsize{9pt}{14pt}\textbf{从 OPD、Ray Fan、Zernike 到可制造光学设计}}
+\title{光学像差诊断与国产大视场空气物镜设计}
+\subtitle{\fontsize{9pt}{14pt}\textbf{Zemax说明及仿真}}
 \author{汇报人: 胡子睿}
 \institute{\fontsize{10pt}{16pt}Institute of Physics, CAS}
 \date{\today}
@@ -116,6 +124,10 @@
 % 编号前缀宽度（确保中英标题对齐）
 \newlength{\numberwidth}
 \setlength{\numberwidth}{2.5em}
+
+% 页脚与参考文献框对齐参数
+\newlength{\footlineheight}
+\setlength{\footlineheight}{3.625ex}
 
 \setbeamertemplate{frametitle}
 {%
@@ -177,7 +189,7 @@
       \node[
         anchor=south west,
         xshift=.08cm,
-        yshift=.88cm,
+        yshift=\footlineheight,
         rounded corners=2pt,
         draw=black!25,
         fill=white,
@@ -215,9 +227,7 @@
 % -----------------------------------------------------------------------------
 
 \input{Chapter/01.Chapter1}
-
 \input{Chapter/02.Chapter2}
-
 \input{Chapter/03.Chapter3}
 
 % -----------------------------------------------------------------------------

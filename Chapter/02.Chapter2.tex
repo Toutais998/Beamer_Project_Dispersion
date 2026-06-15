@@ -5,14 +5,14 @@
 \label{sec:2.1}
 
 \englishtitle{Mechanical Constraints Behind Microscope Objectives}
-\begin{frame}{物镜设计的光机协同约束}
-\label{2.1}
+\begin{frame}{物镜设计的光机协同约束}\label{2.1}
+    \framerefbox{Zhang, Y. et al. Advanced Optical Technologies (2019). 10.1515/aot-2019-0002}
     \small
     \begin{columns}[T]
         \begin{column}{.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_01.png}
+                \includegraphics[width=\textwidth,height=0.52\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_01.jpg}
                 \caption{显微物镜设计中的机械边界与远心光瞳}
                 \label{fig:objective_mechanics_main}
             \end{figure}
@@ -35,111 +35,39 @@
     \end{columns}
 \end{frame}
 
-\englishtitle{Objective History as Design Logic}
-\begin{frame}{物镜设计史：消色差、高 NA、平场与长工作距}
-\label{2.2}
-    \small
-    \begin{columns}[T]
-        \begin{column}{.53\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=.98\textwidth,height=.25\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_02.png}
-                \vspace{3pt}
-                \includegraphics[width=.98\textwidth,height=.38\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_03.png}
-                \caption{上：19 世纪基础结构；下：20 世纪现代结构分化}
-                \label{fig:objective_history_main}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.47\textwidth}
-            \begin{table}
-                \centering
-                \scriptsize
-                \renewcommand{\arraystretch}{1.25}
-                \resizebox{\linewidth}{!}{%
-                \begin{tabular}{p{1.6cm}|p{3.0cm}|p{3.0cm}}
-                    \toprule
-                    \textbf{阶段} & \textbf{主要问题} & \textbf{结构响应} \\
-                    \midrule
-                    Lister & 轴向色差、球差 & 消色差双胶合成为物镜基本单元 \\
-                    Amici/Abbe & 高 NA 与浸液成像 & 前组 aplanatic 结构、异常色散材料 \\
-                    Plan 物镜 & 场曲与像散 & 后组场曲补偿，平场成为显微成像刚需 \\
-                    长工作距 & 样品空间与物镜间距 & 借鉴 Double-Gauss，增加中后组校正自由度 \\
-                    低倍远心 & 大视场、齐焦与远心 & PNP 等专门结构服务系统匹配 \\
-                    \bottomrule
-                \end{tabular}
-                }
-            \end{table}
 
-            \begin{alertblock}{历史脉络的设计意义}
-                历史演化提供了可复用的初始结构库：面对具体规格时，可先判断问题更接近高 NA、平场、长工作距还是大视场远心类型。
-            \end{alertblock}
-        \end{column}
-    \end{columns}
-\end{frame}
+% \englishtitle{Design Specification Before Optimization}
+% \begin{frame}{优化前的规格定义}
+% \label{2.4}
+%     \begin{columns}[T]
+%         \begin{column}{.45\textwidth}
+%             \textbf{一阶规格决定设计空间：}
+%             \begin{itemize}
+%                 \item 焦距、放大率、工作距离、后焦距
+%                 \item 孔径、$F/\#$、NA、入瞳位置
+%                 \item 视场角、像面尺寸、探测器像元
+%                 \item 波长范围、权重、是否单色照明
+%                 \item 总长、镜片数量、外径、封装空间
+%                 \item 成本、材料目录、加工等级、装调自由度
+%             \end{itemize}
+%         \end{column}
+%         \hfill
+%         \begin{column}{.55\textwidth}
+%             \begin{block}{System Explorer 中先确定}
+%                 \begin{itemize}
+%                     \item \textbf{Aperture}：Entrance Pupil、Image Space NA 或 $F/\#$
+%                     \item \textbf{Fields}：角度、物高或像高
+%                     \item \textbf{Wavelengths}：主波长、权重、色差控制范围
+%                     \item \textbf{Units}：长度单位和玻璃目录
+%                 \end{itemize}
+%             \end{block}
 
-\englishtitle{Chromatic Correction Classes and Structural Cost}
-\begin{frame}{色差校正等级：从 Achromat 到 Superapochromat}
-\label{2.3}
-    \small
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{Figure/Zhang/ZhangFig_04.png}
-                \caption{色差校正等级越高，结构和材料自由度越多}
-                \label{fig:objective_chromatic_classes_main}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{校正等级对应不同设计代价：}
-            \begin{itemize}
-                \item \textbf{Achromat}：两色校正，结构较简单。
-                \item \textbf{Fluorite/Semi-Apo}：三色改善，但仍有明显残余。
-                \item \textbf{Apochromat}：可见光范围内纵向色差压到景深附近。
-                \item \textbf{VIS/UV/IR Superapo}：扩展波段后，材料和制造难度显著上升。
-            \end{itemize}
-
-            \begin{block}{设计思路}
-                阿贝图决定可选材料空间；Ray Fan/OPD 判断色差是否被压低；Zemax 中再通过多波长权重、真实玻璃和评价函数闭环。
-            \end{block}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\englishtitle{Design Specification Before Optimization}
-\begin{frame}{优化前的规格定义}
-\label{2.4}
-    \begin{columns}[T]
-        \begin{column}{.45\textwidth}
-            \textbf{一阶规格决定设计空间：}
-            \begin{itemize}
-                \item 焦距、放大率、工作距离、后焦距
-                \item 孔径、$F/\#$、NA、入瞳位置
-                \item 视场角、像面尺寸、探测器像元
-                \item 波长范围、权重、是否单色照明
-                \item 总长、镜片数量、外径、封装空间
-                \item 成本、材料目录、加工等级、装调自由度
-            \end{itemize}
-        \end{column}
-        \hfill
-        \begin{column}{.55\textwidth}
-            \begin{block}{System Explorer 中先确定}
-                \begin{itemize}
-                    \item \textbf{Aperture}：Entrance Pupil、Image Space NA 或 $F/\#$
-                    \item \textbf{Fields}：角度、物高或像高
-                    \item \textbf{Wavelengths}：主波长、权重、色差控制范围
-                    \item \textbf{Units}：长度单位和玻璃目录
-                \end{itemize}
-            \end{block}
-
-            \begin{alertblock}{规格到结构的判断}
-                高 NA 优先检查前组会聚角；平场优先检查 Petzval 补偿；长工作距优先检查总长、前端口径和中后组校正自由度。
-            \end{alertblock}
-        \end{column}
-    \end{columns}
-\end{frame}
+%             \begin{alertblock}{规格到结构的判断}
+%                 高 NA 优先检查前组会聚角；平场优先检查 Petzval 补偿；长工作距优先检查总长、前端口径和中后组校正自由度。
+%             \end{alertblock}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
 \subsection{Zemax 诊断与优化闭环}
 \label{sec:2.2}
@@ -252,39 +180,39 @@
     \end{alertblock}
 \end{frame}
 
-\englishtitle{Wavefront and Image-Quality Metrics}
-\begin{frame}{用 Zernike、PSF 与 MTF 验证优化结果}
-\label{2.7}
-    \begin{columns}[T]
-        \begin{column}{.50\textwidth}
-            \textbf{波前侧：解释误差来源}
-            \begin{itemize}
-                \item Wavefront Map 和 OPD Fan 直接观察 $W(\rho,\theta)$。
-                \item Zernike Standard Coefficients 分离 defocus、astigmatism、coma、spherical 等模式。
-                \item RMS Wavefront 可近似关联 Strehl Ratio：
-            \end{itemize}
+% \englishtitle{Wavefront and Image-Quality Metrics}
+% \begin{frame}{用 Zernike、PSF 与 MTF 验证优化结果}
+% \label{2.7}
+%     \begin{columns}[T]
+%         \begin{column}{.50\textwidth}
+%             \textbf{波前侧：解释误差来源}
+%             \begin{itemize}
+%                 \item Wavefront Map 和 OPD Fan 直接观察 $W(\rho,\theta)$。
+%                 \item Zernike Standard Coefficients 分离 defocus、astigmatism、coma、spherical 等模式。
+%                 \item RMS Wavefront 可近似关联 Strehl Ratio：
+%             \end{itemize}
 
-            \begin{equation}
-                S.R. \approx \exp\!\left[-\left(\frac{2\pi}{\lambda}OPD_{\text{rms}}\right)^2\right]
-                \label{eq:strehl_zemax}
-            \end{equation}
-        \end{column}
-        \hfill
-        \begin{column}{.50\textwidth}
-            \textbf{图像侧：确认成像后果}
-            \begin{itemize}
-                \item \textbf{Spot Diagram}：几何弥散斑是否落入像元。
-                \item \textbf{PSF}：点像能量是否集中，旁瓣是否可接受。
-                \item \textbf{MTF}：目标空间频率还能传递多少对比度。
-                \item \textbf{Encircled Energy}：目标像元内能收进多少能量。
-            \end{itemize}
+%             \begin{equation}
+%                 S.R. \approx \exp\!\left[-\left(\frac{2\pi}{\lambda}OPD_{\text{rms}}\right)^2\right]
+%                 \label{eq:strehl_zemax}
+%             \end{equation}
+%         \end{column}
+%         \hfill
+%         \begin{column}{.50\textwidth}
+%             \textbf{图像侧：确认成像后果}
+%             \begin{itemize}
+%                 \item \textbf{Spot Diagram}：几何弥散斑是否落入像元。
+%                 \item \textbf{PSF}：点像能量是否集中，旁瓣是否可接受。
+%                 \item \textbf{MTF}：目标空间频率还能传递多少对比度。
+%                 \item \textbf{Encircled Energy}：目标像元内能收进多少能量。
+%             \end{itemize}
 
-            \begin{alertblock}{指标联合判读}
-                Zernike 解释波前，Ray Fan 定位像差，MTF/PSF 才回答最终图像是否足够清晰。
-            \end{alertblock}
-        \end{column}
-    \end{columns}
-\end{frame}
+%             \begin{alertblock}{指标联合判读}
+%                 Zernike 解释波前，Ray Fan 定位像差，MTF/PSF 才回答最终图像是否足够清晰。
+%             \end{alertblock}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
 \subsection{公差与可制造闭环}
 \label{sec:2.3}

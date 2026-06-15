@@ -77,8 +77,8 @@
 \definecolor{mycyan}{cmyk}{.3,0,0,0}
 
 %题目，作者，学校，日期
-\title{光学像差诊断与 Zemax 仿真闭环}
-\subtitle{\fontsize{9pt}{14pt}\textbf{从 OPD、Ray Fan、Zernike 到可制造光学设计}}
+\title{光学像差诊断与国产大视场空气物镜设计}
+\subtitle{\fontsize{9pt}{14pt}\textbf{Zemax说明及仿真}}
 \author{汇报人: 胡子睿}
 \institute{\fontsize{10pt}{16pt}Institute of Physics, CAS}
 \date{\today}
@@ -116,6 +116,10 @@
 % 编号前缀宽度（确保中英标题对齐）
 \newlength{\numberwidth}
 \setlength{\numberwidth}{2.5em}
+
+% 页脚与参考文献框对齐参数
+\newlength{\footlineheight}
+\setlength{\footlineheight}{3.625ex}
 
 \setbeamertemplate{frametitle}
 {%
@@ -177,7 +181,7 @@
       \node[
         anchor=south west,
         xshift=.08cm,
-        yshift=.88cm,
+        yshift=\footlineheight,
         rounded corners=2pt,
         draw=black!25,
         fill=white,
@@ -215,9 +219,7 @@
 % -----------------------------------------------------------------------------
 
 \input{Chapter/01.Chapter1}
-
 \input{Chapter/02.Chapter2}
-
 \input{Chapter/03.Chapter3}
 
 % -----------------------------------------------------------------------------

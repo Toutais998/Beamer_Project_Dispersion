@@ -131,22 +131,26 @@
                 \caption{PSF、FWHM 与 NA 的关系}
                 \label{fig:psf_na_main}
             \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.58\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=.96\textwidth,height=.38\textheight,keepaspectratio]{Figure/PSF_02.png}
-                \caption{物体与 PSF 卷积形成退化图像}
-                \label{fig:psf_conv_main}
-            \end{figure}
 
             \vspace{-4pt}
+
             \begin{equation}
                 r_{\text{Airy}} = \frac{0.61\lambda}{NA}, \qquad
                 OTF=\mathcal{F}\{PSF\}
                 \label{eq:airy_otf_main}
             \end{equation}
+
+        \end{column}
+        \hfill
+        \begin{column}{.58\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=.96\textwidth,height=.42\textheight,keepaspectratio]{Figure/PSF_02.png}
+                \caption{物体与 PSF 卷积形成退化图像}
+                \label{fig:psf_conv_main}
+            \end{figure}
+
+            \vspace{-4pt}
 
             \begin{block}{从 OPD 到像质}
                 当 $W(\rho,\theta)$ 偏离零值时，焦点附近能量由理想 Airy 分布向更宽、更不对称的形式扩展，最终表现为 PSF 展宽和 MTF 下降。

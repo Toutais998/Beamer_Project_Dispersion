@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.23)  14 JUN 2026 16:26
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.6.23)  15 JUN 2026 10:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -127,12 +127,8 @@ Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 \pgfmath@stack@operation=\toks25
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count305
-)))
-
-Class beamer Warning: ``mathserif'' is obsolete. Use font theme ``serif'' with option ``onlymath'' on input line 360.
-
-(e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/extsizes/size9.clo
-File: size9.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
+))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/extsizes/size8.clo
+File: size8.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
@@ -399,7 +395,15 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator.sty
+)) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/sansmathaccent/sansmathaccent.sty
+Package: sansmathaccent 2020/01/31
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2025/06/04 v3.45 KOMA-Script package (file load hooks)
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2025/06/04 v3.45 KOMA-Script package (using LaTeX hooks)
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2025/06/04 v3.45 KOMA-Script package (logo)
+))))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasetranslator.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator.sty
 Package: translator 2021-05-31 v1.12d Easy translation of strings in LaTeX
 )) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasemisc.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
 \beamer@argscount=\count331
@@ -543,7 +547,58 @@ Package: amsthm 2020/05/29 v2.20.6
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerbasethemes.sty)) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerthemedefault.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerfontthemedefault.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemedefault.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerinnerthemedefault.sty
 \beamer@dima=\dimen302
 \beamer@dimb=\dimen303
-) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/animate/animate.sty
+) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerouterthemedefault.sty))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box81
+) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen304
+\pgf@nodesepend=\dimen305
+) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+)) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen306
+\pgffor@skip=\dimen307
+\pgffor@stack=\toks48
+\pgffor@toks=\toks49
+)) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count358
+\pgfplotmarksize=\dimen308
+)
+\tikz@lastx=\dimen309
+\tikz@lasty=\dimen310
+\tikz@lastxsaved=\dimen311
+\tikz@lastysaved=\dimen312
+\tikz@lastmovetox=\dimen313
+\tikz@lastmovetoy=\dimen314
+\tikzleveldistance=\dimen315
+\tikzsiblingdistance=\dimen316
+\tikz@figbox=\box82
+\tikz@figbox@bg=\box83
+\tikz@tempbox=\box84
+\tikz@tempbox@bg=\box85
+\tikztreelevel=\count359
+\tikznumberofchildren=\count360
+\tikznumberofcurrentchild=\count361
+\tikz@fig@count=\count362
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count363
+\pgfmatrixcurrentcolumn=\count364
+\pgf@matrix@numberofcolumns=\count365
+)
+\tikz@expandcount=\count366
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/animate/animate.sty
 Package: animate 2024/10/14 PDF & SVG animations from files and inline graphics
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
@@ -551,27 +606,27 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 Package: ifdraft 2016/05/16 v1.4 Detect class options draft and final (HO)
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count358
-\calc@Bcount=\count359
-\calc@Adimen=\dimen304
-\calc@Bdimen=\dimen305
+\calc@Acount=\count367
+\calc@Bcount=\count368
+\calc@Adimen=\dimen317
+\calc@Bdimen=\dimen318
 \calc@Askip=\skip69
 \calc@Bskip=\skip70
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count360
+\calc@Ccount=\count369
 \calc@Cskip=\skip71
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/media9/pdfbase.sty
 Package: pdfbase 2024/09/16 v0.59 driver independent access to low-level PDF features
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
 File: l3backend-xetex.def 2025-04-14 L3 backend support: XeTeX
-\g__graphics_track_int=\count361
-\g__pdfannot_backend_int=\count362
-\g__pdfannot_backend_link_int=\count363
+\g__graphics_track_int=\count370
+\g__pdfannot_backend_int=\count371
+\g__pdfannot_backend_link_int=\count372
 )
-\g_pbs_page_int=\count364
-\g_pbs_obj_int=\count365
-\g_pbs_oc_int=\count366
+\g_pbs_page_int=\count373
+\g_pbs_obj_int=\count374
+\g_pbs_oc_int=\count375
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/zref/zref-abspage.sty
 Package: zref-abspage 2025-06-08 v2.36 Module abspage for zref (HO)
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/zref/zref-base.sty
@@ -585,41 +640,46 @@ Package zref Info: New property list: main on input line 767.
 Package zref Info: New property: default on input line 768.
 Package zref Info: New property: page on input line 769.
 )
-\c@abspage=\count367
+\c@abspage=\count376
 Package zref Info: New property: abspage on input line 67.
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/ocgx2/ocgbase.sty
 Package: ocgbase 2024/09/15 v0.24 support package for ocgx2.sty
 )
-\@anim@box=\box81
-\@anim@measbox=\box82
-\@anim@tmpdima=\dimen306
-\@anim@tmpdimb=\dimen307
-\@anim@num=\count368
-\@anim@curframe=\count369
-\@anim@curframe@zb=\count370
-\@anim@resizeflags=\count371
-\@anim@skipfram=\count372
-\@anim@mulframecnt=\count373
+\@anim@box=\box86
+\@anim@measbox=\box87
+\@anim@tmpdima=\dimen319
+\@anim@tmpdimb=\dimen320
+\@anim@num=\count377
+\@anim@curframe=\count378
+\@anim@curframe@zb=\count379
+\@anim@resizeflags=\count380
+\@anim@skipfram=\count381
+\@anim@mulframecnt=\count382
 \@anim@@tmlnfile=\read3
-\@anim@tmpcnt=\count374
-\c@@anim@ltxcnt=\count375
-\@anim@curlayer=\count376
-\@anim@lineno=\count377
-\@anim@curfield=\count378
-\@anim@@resizeflags=\count379
-) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/tools/bm.sty
+\@anim@tmpcnt=\count383
+\c@@anim@ltxcnt=\count384
+\@anim@curlayer=\count385
+\@anim@lineno=\count386
+\@anim@curfield=\count387
+\@anim@@resizeflags=\count388
+)
+\sympureletters=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 18.
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
+\symboldoperators=\mathgroup7
+\symboldletters=\mathgroup8
+\symboldsymbols=\mathgroup9
 Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
 Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
+\symboldpureletters=\mathgroup10
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/graphics/epsfig.sty
 Package: epsfig 2024/01/14 v1.7b (e)psfig emulation (SPQR)
-\epsfxsize=\dimen308
-\epsfysize=\dimen309
+\epsfxsize=\dimen321
+\epsfysize=\dimen322
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/bbm-macros/bbm.sty
 Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
 LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
@@ -633,7 +693,7 @@ Package: multimedia 2012/05/02 ver 0.02
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 )
-\mm@movie=\count380
+\mm@movie=\count389
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2025-05-26 L3 programming layer (loader) 
 )
@@ -643,13 +703,13 @@ Package: ctexhook 2022/07/14 v2.5.10 Document and package hooks (CTEX)
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
 Package: xtemplate 2024-08-16 L3 Experimental prototype document functions
 )
-\l__xeCJK_tmp_int=\count381
-\l__xeCJK_tmp_box=\box83
-\l__xeCJK_tmp_dim=\dimen310
+\l__xeCJK_tmp_int=\count390
+\l__xeCJK_tmp_box=\box88
+\l__xeCJK_tmp_dim=\dimen323
 \l__xeCJK_tmp_skip=\skip72
-\g__xeCJK_space_factor_int=\count382
-\l__xeCJK_begin_int=\count383
-\l__xeCJK_end_int=\count384
+\g__xeCJK_space_factor_int=\count391
+\l__xeCJK_begin_int=\count392
+\l__xeCJK_end_int=\count393
 \c__xeCJK_CJK_class_int=\XeTeXcharclass1
 \c__xeCJK_FullLeft_class_int=\XeTeXcharclass2
 \c__xeCJK_FullRight_class_int=\XeTeXcharclass3
@@ -659,49 +719,49 @@ Package: xtemplate 2024-08-16 L3 Experimental prototype document functions
 \c__xeCJK_CM_class_int=\XeTeXcharclass7
 \c__xeCJK_HangulJamo_class_int=\XeTeXcharclass8
 \l__xeCJK_last_skip=\skip73
-\c__xeCJK_none_node=\count385
-\g__xeCJK_node_int=\count386
-\c__xeCJK_CJK_node_dim=\dimen311
-\c__xeCJK_CJK-space_node_dim=\dimen312
-\c__xeCJK_default_node_dim=\dimen313
-\c__xeCJK_CJK-widow_node_dim=\dimen314
-\c__xeCJK_normalspace_node_dim=\dimen315
+\c__xeCJK_none_node=\count394
+\g__xeCJK_node_int=\count395
+\c__xeCJK_CJK_node_dim=\dimen324
+\c__xeCJK_CJK-space_node_dim=\dimen325
+\c__xeCJK_default_node_dim=\dimen326
+\c__xeCJK_CJK-widow_node_dim=\dimen327
+\c__xeCJK_normalspace_node_dim=\dimen328
 \c__xeCJK_default-space_node_skip=\skip74
 \l__xeCJK_ccglue_skip=\skip75
 \l__xeCJK_ecglue_skip=\skip76
 \l__xeCJK_punct_kern_skip=\skip77
-\l__xeCJK_indent_box=\box84
-\l__xeCJK_last_penalty_int=\count387
-\l__xeCJK_last_bound_dim=\dimen316
-\l__xeCJK_last_kern_dim=\dimen317
-\l__xeCJK_widow_penalty_int=\count388
+\l__xeCJK_indent_box=\box89
+\l__xeCJK_last_penalty_int=\count396
+\l__xeCJK_last_bound_dim=\dimen329
+\l__xeCJK_last_kern_dim=\dimen330
+\l__xeCJK_widow_penalty_int=\count397
 
 LaTeX template Info: Declaring template type 'xeCJK/punctuation' taking 0
 (template)           argument(s) on line 2396.
 
-\l__xeCJK_fixed_punct_width_dim=\dimen318
-\l__xeCJK_mixed_punct_width_dim=\dimen319
-\l__xeCJK_middle_punct_width_dim=\dimen320
-\l__xeCJK_fixed_margin_width_dim=\dimen321
-\l__xeCJK_mixed_margin_width_dim=\dimen322
-\l__xeCJK_middle_margin_width_dim=\dimen323
-\l__xeCJK_bound_punct_width_dim=\dimen324
-\l__xeCJK_bound_margin_width_dim=\dimen325
-\l__xeCJK_margin_minimum_dim=\dimen326
-\l__xeCJK_kerning_total_width_dim=\dimen327
-\l__xeCJK_same_align_margin_dim=\dimen328
-\l__xeCJK_different_align_margin_dim=\dimen329
-\l__xeCJK_kerning_margin_width_dim=\dimen330
-\l__xeCJK_kerning_margin_minimum_dim=\dimen331
-\l__xeCJK_bound_dim=\dimen332
-\l__xeCJK_reverse_bound_dim=\dimen333
-\l__xeCJK_margin_dim=\dimen334
-\l__xeCJK_minimum_bound_dim=\dimen335
-\l__xeCJK_kerning_margin_dim=\dimen336
-\g__xeCJK_family_int=\count389
-\l__xeCJK_fam_int=\count390
-\g__xeCJK_fam_allocation_int=\count391
-\l__xeCJK_verb_case_int=\count392
+\l__xeCJK_fixed_punct_width_dim=\dimen331
+\l__xeCJK_mixed_punct_width_dim=\dimen332
+\l__xeCJK_middle_punct_width_dim=\dimen333
+\l__xeCJK_fixed_margin_width_dim=\dimen334
+\l__xeCJK_mixed_margin_width_dim=\dimen335
+\l__xeCJK_middle_margin_width_dim=\dimen336
+\l__xeCJK_bound_punct_width_dim=\dimen337
+\l__xeCJK_bound_margin_width_dim=\dimen338
+\l__xeCJK_margin_minimum_dim=\dimen339
+\l__xeCJK_kerning_total_width_dim=\dimen340
+\l__xeCJK_same_align_margin_dim=\dimen341
+\l__xeCJK_different_align_margin_dim=\dimen342
+\l__xeCJK_kerning_margin_width_dim=\dimen343
+\l__xeCJK_kerning_margin_minimum_dim=\dimen344
+\l__xeCJK_bound_dim=\dimen345
+\l__xeCJK_reverse_bound_dim=\dimen346
+\l__xeCJK_margin_dim=\dimen347
+\l__xeCJK_minimum_bound_dim=\dimen348
+\l__xeCJK_kerning_margin_dim=\dimen349
+\g__xeCJK_family_int=\count398
+\l__xeCJK_fam_int=\count399
+\g__xeCJK_fam_allocation_int=\count400
+\l__xeCJK_verb_case_int=\count401
 \l__xeCJK_verb_exspace_skip=\skip78
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2024-08-16 L3 Experimental document command parser
@@ -709,20 +769,20 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
 Package: fontspec-xetex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
-\l__fontspec_script_int=\count393
-\l__fontspec_language_int=\count394
-\l__fontspec_strnum_int=\count395
-\l__fontspec_tmp_int=\count396
-\l__fontspec_tmpa_int=\count397
-\l__fontspec_tmpb_int=\count398
-\l__fontspec_tmpc_int=\count399
-\l__fontspec_em_int=\count400
-\l__fontspec_emdef_int=\count401
-\l__fontspec_strong_int=\count402
-\l__fontspec_strongdef_int=\count403
-\l__fontspec_tmpa_dim=\dimen337
-\l__fontspec_tmpb_dim=\dimen338
-\l__fontspec_tmpc_dim=\dimen339
+\l__fontspec_script_int=\count402
+\l__fontspec_language_int=\count403
+\l__fontspec_strnum_int=\count404
+\l__fontspec_tmp_int=\count405
+\l__fontspec_tmpa_int=\count406
+\l__fontspec_tmpb_int=\count407
+\l__fontspec_tmpc_int=\count408
+\l__fontspec_em_int=\count409
+\l__fontspec_emdef_int=\count410
+\l__fontspec_strong_int=\count411
+\l__fontspec_strongdef_int=\count412
+\l__fontspec_tmpa_dim=\dimen350
+\l__fontspec_tmpb_dim=\dimen351
+\l__fontspec_tmpc_dim=\dimen352
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2024/12/21 v2.1c Standard LaTeX package
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
@@ -802,16 +862,34 @@ Package fontspec Info:
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Microsoft
 (fontspec)             YaHei/BI/OT:script=latn;language=dflt;mapping=tex-text;"
 
- (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerthemeBerlin.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerouterthememiniframes.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerinnerthemerectangles.sty)) (./beamercolorthemesustech.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+
+Package fontspec Info: 
+(fontspec)             Font family 'CourierNew(0)' created for font 'Courier
+(fontspec)             New' with options
+(fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=WordSpace].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Courier
+(fontspec)             New/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Courier
+(fontspec)             New/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Courier
+(fontspec)             New/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Courier
+(fontspec)             New/BI/OT:script=latn;language=dflt;"
+
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerthemeBerlin.sty (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerouterthememiniframes.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemewhale.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamercolorthemeorchid.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerinnerthemerectangles.sty)) (./beamercolorthemesustech.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Invalid UTF-8 byte or sequence at line 284 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 299 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 550 replaced by U+FFFD.
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count404
+\c@AlgoLine=\count413
 \algocf@hangindent=\skip79
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count405
+\c@checkoddpage=\count414
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/relsize/relsize.sty
@@ -825,108 +903,107 @@ Package: relsize 2013/03/29 ver 4.1
 \skiplength=\skip85
 \algomargin=\skip86
 \skipalgocfslide=\skip87
-\algowidth=\dimen340
-\inoutsize=\dimen341
-\inoutindent=\dimen342
-\interspacetitleruled=\dimen343
-\interspacealgoruled=\dimen344
-\interspacetitleboxruled=\dimen345
+\algowidth=\dimen353
+\inoutsize=\dimen354
+\inoutindent=\dimen355
+\interspacetitleruled=\dimen356
+\interspacealgoruled=\dimen357
+\interspacetitleboxruled=\dimen358
 \algocf@ruledwidth=\skip88
-\algocf@inoutbox=\box85
-\algocf@inputbox=\box86
+\algocf@inoutbox=\box90
+\algocf@inputbox=\box91
 \AlCapSkip=\skip89
 \AlCapHSkip=\skip90
 \algoskipindent=\skip91
-\algocf@nlbox=\box87
-\algocf@hangingbox=\box88
-\algocf@untilbox=\box89
+\algocf@nlbox=\box92
+\algocf@hangingbox=\box93
+\algocf@untilbox=\box94
 \algocf@skipuntil=\skip92
-\algocf@capbox=\box90
+\algocf@capbox=\box95
 \algocf@lcaptionbox=\skip93
 \algoheightruledefault=\skip94
 \algoheightrule=\skip95
 \algotitleheightruledefault=\skip96
 \algotitleheightrule=\skip97
-\c@algocfline=\count406
-\c@algocfproc=\count407
-\c@algocf=\count408
-\algocf@algoframe=\box91
-\algocf@algobox=\box92
+\c@algocfline=\count415
+\c@algocfproc=\count416
+\c@algocf=\count417
+\algocf@algoframe=\box96
+\algocf@algobox=\box97
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/fancybox/fancybox.sty
 Package: fancybox 2010/05/15 1.4
 
 Style option: `fancybox' v1.4 <2010/05/15> (tvz)
-\@fancybox=\box93
-\shadowsize=\dimen346
-\@Sbox=\box94
-\do@VerbBox=\toks48
-\the@fancyput=\toks49
-\this@fancyput=\toks50
-\EndVerbatimTokens=\toks51
+\@fancybox=\box98
+\shadowsize=\dimen359
+\@Sbox=\box99
+\do@VerbBox=\toks50
+\the@fancyput=\toks51
+\this@fancyput=\toks52
+\EndVerbatimTokens=\toks53
 \Verbatim@Outfile=\write5
 \Verbatim@Infile=\read4
-) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/psnfss/times.sty
-Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count409
-\lst@gtempboxa=\box95
-\lst@token=\toks52
-\lst@length=\count410
-\lst@currlwidth=\dimen347
-\lst@column=\count411
-\lst@pos=\count412
-\lst@lostspace=\dimen348
-\lst@width=\dimen349
-\lst@newlines=\count413
-\lst@lineno=\count414
-\lst@maxwidth=\dimen350
+\lst@mode=\count418
+\lst@gtempboxa=\box100
+\lst@token=\toks54
+\lst@length=\count419
+\lst@currlwidth=\dimen360
+\lst@column=\count420
+\lst@pos=\count421
+\lst@lostspace=\dimen361
+\lst@width=\dimen362
+\lst@newlines=\count422
+\lst@lineno=\count423
+\lst@maxwidth=\dimen363
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
-\c@lstnumber=\count415
-\lst@skipnumbers=\count416
-\lst@framebox=\box96
+\c@lstnumber=\count424
+\lst@skipnumbers=\count425
+\lst@framebox=\box101
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/xelatex/xecjk/xeCJK-listings.sty
 Package: xeCJK-listings 2022/08/05 v3.9.1 xeCJK patch file for listings
-\l__xeCJK_listings_max_char_int=\count417
-\l__xeCJK_listings_flag_int=\count418
+\l__xeCJK_listings_max_char_int=\count426
+\l__xeCJK_listings_flag_int=\count427
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen351
-\lightrulewidth=\dimen352
-\cmidrulewidth=\dimen353
-\belowrulesep=\dimen354
-\belowbottomsep=\dimen355
-\aboverulesep=\dimen356
-\abovetopsep=\dimen357
-\cmidrulesep=\dimen358
-\cmidrulekern=\dimen359
-\defaultaddspace=\dimen360
-\@cmidla=\count419
-\@cmidlb=\count420
-\@aboverulesep=\dimen361
-\@belowrulesep=\dimen362
-\@thisruleclass=\count421
-\@lastruleclass=\count422
-\@thisrulewidth=\dimen363
+\heavyrulewidth=\dimen364
+\lightrulewidth=\dimen365
+\cmidrulewidth=\dimen366
+\belowrulesep=\dimen367
+\belowbottomsep=\dimen368
+\aboverulesep=\dimen369
+\abovetopsep=\dimen370
+\cmidrulesep=\dimen371
+\cmidrulekern=\dimen372
+\defaultaddspace=\dimen373
+\@cmidla=\count428
+\@cmidlb=\count429
+\@aboverulesep=\dimen374
+\@belowrulesep=\dimen375
+\@thisruleclass=\count430
+\@lastruleclass=\count431
+\@thisrulewidth=\dimen376
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip98
-\multirow@cntb=\count423
+\multirow@cntb=\count432
 \multirow@dima=\skip99
-\bigstrutjot=\dimen364
+\bigstrutjot=\dimen377
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 )
-\c@secframenumber=\count424
+\c@secframenumber=\count433
 \numberwidth=\skip100
+\footlineheight=\skip101
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "Microsoft YaHei/I" (it probably
@@ -950,26 +1027,26 @@ Package fontspec Info:
  (./slides.aux)
 \openout1 = `slides.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 165.
-LaTeX Font Info:    ... okay on input line 165.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 219.
+LaTeX Font Info:    ... okay on input line 219.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -995,7 +1072,7 @@ LaTeX Font Info:    ... okay on input line 165.
 * \marginparwidth=4.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=8.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=7.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1005,45 +1082,62 @@ LaTeX Font Info:    ... okay on input line 165.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 165.
+Package hyperref Info: Link coloring OFF on input line 219.
 (./slides.out) (./slides.out)
 \@outlinefile=\write6
 \openout6 = `slides.out'.
 
-\symnumbers=\mathgroup9
-\sympureletters=\mathgroup10
-LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 165.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 165.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/MicrosoftYaHei(0)/m/n on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/MicrosoftYaHei(0)/m/n on input line 165.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(0)/m/it on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(0)/m/it on input line 165.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/pcr/m/n on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/pcr/m/n on input line 165.
-LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on input line 165.
+\symnumbers=\mathgroup11
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 219.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `pureletters' in the math version `normal' on input line 219.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
+(Font)                  OT1/mathkerncmss/m/sl --> TU/TimesNewRoman(0)/m/it on input line 219.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `pureletters' in the math version `bold' on input line 219.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/b/it on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/b/n on input line 165.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/b/n --> TU/TimesNewRoman(0)/b/n on input line 165.
+(Font)                  OT1/mathkerncmss/bx/sl --> TU/TimesNewRoman(0)/m/it on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 219.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 219.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/MicrosoftYaHei(0)/m/n on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/MicrosoftYaHei(0)/m/n --> TU/MicrosoftYaHei(0)/b/n on input line 165.
+(Font)                  OT1/cmss/bx/n --> TU/MicrosoftYaHei(0)/m/n on input line 219.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(0)/m/it on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/b/it on input line 165.
+(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(0)/m/it on input line 219.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/CourierNew(0)/m/n on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/pcr/m/n --> TU/pcr/b/n on input line 165.
+(Font)                  OT1/cmtt/m/n --> TU/CourierNew(0)/m/n on input line 219.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on input line 219.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/b/it on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/b/n on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  TU/TimesNewRoman(0)/b/n --> TU/TimesNewRoman(0)/b/n on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  TU/MicrosoftYaHei(0)/m/n --> TU/MicrosoftYaHei(0)/b/n on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/b/it on input line 219.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  TU/CourierNew(0)/m/n --> TU/CourierNew(0)/b/n on input line 219.
+LaTeX Font Info:    Redeclaring symbol font `boldpureletters' on input line 219.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `boldpureletters' in the math version `normal' on input line 219.
+LaTeX Font Info:    Overwriting symbol font `boldpureletters' in version `normal'
+(Font)                  OT1/mathkerncmss/bx/sl --> TU/TimesNewRoman(0)/bx/it on input line 219.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `boldpureletters' in the math version `bold' on input line 219.
+LaTeX Font Info:    Overwriting symbol font `boldpureletters' in version `bold'
+(Font)                  OT1/mathkerncmss/bx/sl --> TU/TimesNewRoman(0)/bx/it on input line 219.
  (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/translator/translator-bibliography-dictionary-English.dict
@@ -1062,112 +1156,296 @@ Package fontspec Info:
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
-\symlegacymaths=\mathgroup11
+\symlegacymaths=\mathgroup12
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 165.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 165.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 165.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 165.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 165.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 165.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 165.
-LaTeX Font Info:    Redeclaring math accent \check on input line 165.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 165.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 165.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 165.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 165.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 165.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 219.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 219.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 219.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 219.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 219.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 219.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 219.
+LaTeX Font Info:    Redeclaring math accent \check on input line 219.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 219.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 219.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 219.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 219.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 165.
+(Font)              `operators' in the math version `normal' on input line 219.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 165.
+(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(0)/m/n on input line 219.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 165.
+(Font)              `operators' in the math version `bold' on input line 219.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/m/n on input line 165.
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(0)/m/n on input line 219.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/m/n on input line 165.
-LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 165.
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/m/n on input line 219.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/m/it on input line 165.
+(Font)                  TU/TimesNewRoman(0)/m/it --> TU/TimesNewRoman(0)/m/it on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  TU/TimesNewRoman(0)/b/n --> TU/TimesNewRoman(0)/b/n on input line 165.
+(Font)                  TU/TimesNewRoman(0)/b/n --> TU/TimesNewRoman(0)/b/n on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  TU/MicrosoftYaHei(0)/m/n --> TU/MicrosoftYaHei(0)/m/n on input line 165.
+(Font)                  TU/MicrosoftYaHei(0)/m/n --> TU/MicrosoftYaHei(0)/m/n on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  TU/pcr/m/n --> TU/pcr/m/n on input line 165.
+(Font)                  TU/CourierNew(0)/m/n --> TU/CourierNew(0)/m/n on input line 219.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on input line 165.
+(Font)                  TU/TimesNewRoman(0)/m/n --> TU/TimesNewRoman(0)/b/n on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  TU/TimesNewRoman(0)/b/it --> TU/TimesNewRoman(0)/b/it on input line 165.
+(Font)                  TU/TimesNewRoman(0)/b/it --> TU/TimesNewRoman(0)/b/it on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  TU/MicrosoftYaHei(0)/b/n --> TU/MicrosoftYaHei(0)/b/n on input line 165.
+(Font)                  TU/MicrosoftYaHei(0)/b/n --> TU/MicrosoftYaHei(0)/b/n on input line 219.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  TU/pcr/b/n --> TU/pcr/b/n on input line 165.
-\c@lstlisting=\count425
+(Font)                  TU/CourierNew(0)/b/n --> TU/CourierNew(0)/b/n on input line 219.
+\c@lstlisting=\count434
  (./slides.nav)
 
 [1
 
-] (./Chapter/02.Zhang.tex (./slides.toc)
+] (./Chapter/01.Chapter1.tex (./slides.toc)
 
 [2
 
 ]
-File: Figure/Zhang/ZhangFig_01.png Graphic file (type bmp)
-<Figure/Zhang/ZhangFig_01.png>
-
-
-LaTeX Font Warning: Font shape `TU/MicrosoftYaHei(0)/m/it' undefined
-(Font)              using `TU/MicrosoftYaHei(0)/m/n' instead on input line 36.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
+ (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/bx/it' in size <8> not available
+(Font)              Font shape `TU/TimesNewRoman(0)/b/it' tried instead on input line 32.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/bx/it' in size <6> not available
+(Font)              Font shape `TU/TimesNewRoman(0)/b/it' tried instead on input line 32.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/bx/it' in size <5> not available
+(Font)              Font shape `TU/TimesNewRoman(0)/b/it' tried instead on input line 32.
 
 
 [3
 
 ]
-File: Figure/Zhang/ZhangFig_02.png Graphic file (type bmp)
-<Figure/Zhang/ZhangFig_02.png>
-
 
 [4
 
 ]
-File: Figure/Zhang/ZhangFig_03.png Graphic file (type bmp)
-<Figure/Zhang/ZhangFig_03.png>
-
 
 [5
 
 ]
-File: Figure/Zhang/ZhangFig_04.png Graphic file (type bmp)
-<Figure/Zhang/ZhangFig_04.png>
+File: Figure/PSF_01.jpg Graphic file (type bmp)
+<Figure/PSF_01.jpg>
 
 
 [6
 
-])
-LaTeX Font Info:    Trying to load font information for U+msa on input line 196.
- (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 196.
- (e:/Code/TexLive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+]
+File: Figure/PSF_02.jpg Graphic file (type bmp)
+<Figure/PSF_02.jpg>
+
 
 [7
+
+]
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/bx/it' in size <7> not available
+(Font)              Font shape `TU/TimesNewRoman(0)/b/it' tried instead on input line 272.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/bx/it' in size <9> not available
+(Font)              Font shape `TU/TimesNewRoman(0)/b/it' tried instead on input line 272.
+
+
+[8
+
+]
+File: Figure/图片1.jpg Graphic file (type bmp)
+<Figure/图片1.jpg>
+
+
+[9
+
+]
+File: Figure/图片3.jpg Graphic file (type bmp)
+<Figure/图片3.jpg>
+File: Figure/图片4.png Graphic file (type bmp)
+<Figure/图片4.png>
+File: Figure/图片6.jpg Graphic file (type bmp)
+<Figure/图片6.jpg>
+
+
+[10
+
+]
+
+[11
+
+]
+File: Figure/Zernike.jpg Graphic file (type bmp)
+<Figure/Zernike.jpg>
+
+
+[12
+
+]
+
+[13
+
+]
+File: Figure/图片18.png Graphic file (type bmp)
+<Figure/图片18.png>
+File: Figure/图片26.jpg Graphic file (type bmp)
+<Figure/图片26.jpg>
+File: Figure/Edmund/abberations-2a.jpg Graphic file (type bmp)
+<Figure/Edmund/abberations-2a.jpg>
+File: Figure/Edmund/abberations-2b.jpg Graphic file (type bmp)
+<Figure/Edmund/abberations-2b.jpg>
+
+
+[14
+
+]
+File: Figure/图片23.jpg Graphic file (type bmp)
+<Figure/图片23.jpg>
+File: Figure/图片8.png Graphic file (type bmp)
+<Figure/图片8.png>
+File: Figure/图片11.jpg Graphic file (type bmp)
+<Figure/图片11.jpg>
+
+
+[15
+
+]
+File: Figure/图片20.jpg Graphic file (type bmp)
+<Figure/图片20.jpg>
+File: Figure/图片21.jpg Graphic file (type bmp)
+<Figure/图片21.jpg>
+File: Figure/图片22.jpg Graphic file (type bmp)
+<Figure/图片22.jpg>
+File: Figure/Edmund/aberrations-4v2.pdf Graphic file (type pdf)
+<use Figure/Edmund/aberrations-4v2.pdf>
+
+
+[16
+
+]
+File: Figure/图片30.jpg Graphic file (type bmp)
+<Figure/图片30.jpg>
+File: Figure/图片28.jpg Graphic file (type bmp)
+<Figure/图片28.jpg>
+File: Figure/图片31.jpg Graphic file (type bmp)
+<Figure/图片31.jpg>
+File: Figure/图片29.jpg Graphic file (type bmp)
+<Figure/图片29.jpg>
+
+
+[17
+
+]
+File: Figure/Abbe.jpg Graphic file (type bmp)
+<Figure/Abbe.jpg>
+
+
+[18
+
+]
+File: Figure/玻璃替换/Picture1zh-cn.jpg Graphic file (type bmp)
+<Figure/玻璃替换/Picture1zh-cn.jpg>
+File: Figure/玻璃替换/Picture2zh-cn.png Graphic file (type bmp)
+<Figure/玻璃替换/Picture2zh-cn.png>
+File: Figure/玻璃替换/Picture3zh-cn.jpg Graphic file (type bmp)
+<Figure/玻璃替换/Picture3zh-cn.jpg>
+File: Figure/玻璃替换/Picture8zh-cn.png Graphic file (type bmp)
+<Figure/玻璃替换/Picture8zh-cn.png>
+
+
+[19
+
+]) (./Chapter/02.Chapter2.tex (./slides.toc)
+
+[20
+
+]
+File: Figure/Zhang/ZhangFig_01.jpg Graphic file (type bmp)
+<Figure/Zhang/ZhangFig_01.jpg>
+
+
+[21
+
+]
+
+[22
+
+]
+
+[23
+
+]
+
+[24
+
+]) (./Chapter/03.Chapter3.tex (./slides.toc)
+
+[25
+
+]
+File: Figure/ZemaxSimulation/布局图_01.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/布局图_01.jpg>
+File: Figure/ZemaxSimulation/布局图_02.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/布局图_02.jpg>
+
+
+[26
+
+]
+File: Figure/ZemaxSimulation/RMS_02.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/RMS_02.jpg>
+File: Figure/ZemaxSimulation/RMS_01.png Graphic file (type bmp)
+<Figure/ZemaxSimulation/RMS_01.png>
+
+
+[27
+
+]
+File: Figure/ZemaxSimulation/MTF.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/MTF.jpg>
+File: Figure/ZemaxSimulation/RMS_03.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/RMS_03.jpg>
+
+
+[28
+
+]
+File: Figure/ZemaxSimulation/网格畸变_01.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/网格畸变_01.jpg>
+File: Figure/ZemaxSimulation/网格畸变_02.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/网格畸变_02.jpg>
+
+
+[29
+
+]
+File: Figure/ZemaxSimulation/斯特列尔比_01.jpg Graphic file (type bmp)
+<Figure/ZemaxSimulation/斯特列尔比_01.jpg>
+File: Figure/ZemaxSimulation/斯特列尔比_02.png Graphic file (type bmp)
+<Figure/ZemaxSimulation/斯特列尔比_02.png>
+
+
+[30
+
+])
+
+[31
 
 ]
 \tf@nav=\write7
@@ -1184,20 +1462,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
 Package rerunfilecheck Info: File `slides.out' has not changed.
-(rerunfilecheck)             Checksum: 3B2F9321C7D28A2F03F15158163C6643;699.
+(rerunfilecheck)             Checksum: 2798B896DF26792B0C5761DF31D70C3A;1743.
  ) 
 Here is how much of TeX's memory you used:
- 30021 strings out of 468527
- 650926 string characters out of 5445410
- 1251224 words of memory out of 5000000
- 57735 multiletter control sequences out of 15000+600000
- 634660 words of font info for 118 fonts, out of 8000000 for 9000
+ 34184 strings out of 468527
+ 757871 string characters out of 5445410
+ 1338288 words of memory out of 5000000
+ 61750 multiletter control sequences out of 15000+600000
+ 638885 words of font info for 157 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,15n,107p,469b,680s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,16n,123p,469b,1104s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on slides.pdf (7 pages).
+Output written on slides.pdf (31 pages).

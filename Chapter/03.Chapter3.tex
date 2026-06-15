@@ -112,37 +112,6 @@
     \end{columns}
 \end{frame}
 
-\englishtitle{RMS and OTF Across Field}
-\begin{frame}{RMS 与 OTF 的全视场表现}
-    \label{3.3}
-    \begin{columns}[T]
-        \begin{column}{.36\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/MTF.jpg}
-                \caption{MTF/OTF 曲线的切向与弧矢读法示意}
-                \label{fig:cousa_mtf_explain}
-            \end{figure}
-        \end{column}
-        \hfill
-        \begin{column}{.64\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_03.jpg}
-                \caption{优化后模型的 RMS 与 10 cycles/mm OTF 随视场变化}
-                \label{fig:cousa_rms_otf_opt}
-            \end{figure}
-        \end{column}
-    \end{columns}
-
-    \vspace{-4pt}
-    \begin{itemize}
-        \item 左图用于说明低空间频率下切向与弧矢 OTF 的解释方式；右图同时给出波前误差与对比度保持能力。
-        \item 优化后，910/920/930 nm 三条曲线在主工作视场内保持较低 RMS，且切向与弧矢 OTF 均接近 1。
-        \item 系统在边场扫描时仍能维持稳定的低频结构传递能力。
-    \end{itemize}
-\end{frame}
-
 \englishtitle{Distortion Comparison}
 \begin{frame}{网格畸变：标准工作视场与扩展视场比较}
     \label{3.4}
@@ -198,8 +167,40 @@
 
     \vspace{-5pt}
     \begin{itemize}
-        \item Strehl ratio 高于 0.8 通常可作为接近衍射极限的工程判据；优化后三条工作波长曲线整体保持在接近 1 的水平。
-        \item 前述低 RMS 和高 OTF 相一致，说明优化后设计在主工作视场内具有较高的波前保真度。
+        \item 斯特列尔比 (Strehl Ratio)物理意义： 实际带有像差的系统在焦点处的中心峰值光强，与完全无像差的理想系统在焦点处的中心峰值光强之比
+        \item Strehl ratio 高于 0.8 通常可作为接近衍射极限的工程判据；三条工作波长曲线整体保持在接近 1 的水平
+        \item 前述低 RMS 和高 OTF 相一致，说明优化后设计在主工作视场内具有较高的波前保真度
         % \item 对长工作距多光子物镜而言，这表明在保留机械空间的同时，系统仍能维持较高的像质上限。
+    \end{itemize}
+\end{frame}
+
+\englishtitle{RMS and OTF Across Field}
+\begin{frame}{RMS 与 OTF 的全视场表现}
+    \label{3.3}
+    \begin{columns}[T]
+        \begin{column}{.36\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/MTF.jpg}
+                \caption{MTF/OTF 曲线的切向与弧矢读法示意}
+                \label{fig:cousa_mtf_explain}
+            \end{figure}
+        \end{column}
+        \hfill
+        \begin{column}{.64\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[width=\textwidth,height=.58\textheight,keepaspectratio]{Figure/ZemaxSimulation/RMS_03.jpg}
+                \caption{优化后模型的 RMS 与 10 cycles/mm OTF 随视场变化}
+                \label{fig:cousa_rms_otf_opt}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+    \vspace{-4pt}
+    \begin{itemize}
+        \item 左图用于说明低空间频率下切向与弧矢 OTF 的解释方式；右图同时给出波前误差与对比度保持能力。
+        \item 优化后，910/920/930 nm 三条曲线在主工作视场内保持较低 RMS，且切向与弧矢 OTF 均接近 1。
+        \item 马瑞夏标准 (Maréchal criterion)，当RMS波前误差小于 0.072 个波长时，系统被认为是“衍射极限”的
     \end{itemize}
 \end{frame}
